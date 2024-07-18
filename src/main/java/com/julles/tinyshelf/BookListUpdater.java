@@ -41,7 +41,7 @@ public class BookListUpdater {
             //ex.printStackTrace();
             if (savedBooks.isEmpty()) {
                 savedBooks = new ArrayList<Book>();
-                System.out.println("Note: Your book list was empty or not yet created.\nThe populated file can be found at /home/*local user*/.config/booklist.json.\n");
+                System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated file can be found at /home/*local user*/.booklist.json.\n");
             }
         }
 
