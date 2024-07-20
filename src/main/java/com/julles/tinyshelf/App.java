@@ -15,19 +15,20 @@ public class App
     {
 
       Scanner scanner = new Scanner(System.in);
+      Prompts prompt = new Prompts();
 
       System.out.println("\nGreetings!\n>>>> Welcome to tinyShelf <<<<");
       System.out.print("\nPlease type information as asked. All fields are required.\n");
 
       while(true) {
         
-         Prompts prompt = new Prompts();
-
          prompt.askTitle();
          prompt.askAuthor();
          prompt.askPublisher();
          prompt.askYear();
          prompt.askNumPages();
+
+         prompt.continueOrNot();
 
          // System.out.print("\nTitle: ");
          // String title = scanner.nextLine();
@@ -67,9 +68,10 @@ public class App
          //    break;
          // }
 
-         System.out.println("Continue? y/n");
-         String continuePrompt = scanner.nextLine();
-         System.out.println();
+         //System.out.println("Continue? y/n");
+         String continuePrompt = prompt.returnContinueOrNot();
+
+         //System.out.println();
 
 
          if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
@@ -97,6 +99,7 @@ public class App
          }
          
       }
-
+      scanner.close();
+      
     }
 }

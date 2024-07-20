@@ -10,6 +10,9 @@ public class Prompts {
     private int year;
     private int numPages;
 
+    private String continueOrNot;
+
+    Scanner scanner = new Scanner(System.in);
 
     public Prompts(){
         
@@ -25,7 +28,6 @@ public class Prompts {
 
         while (true) {
             System.out.print("\nTitle: ");
-            Scanner scanner = new Scanner(System.in);
             String title = scanner.nextLine();
             if (title.isEmpty()) {
                 System.out.print("All fields are required.\n");
@@ -49,7 +51,6 @@ public class Prompts {
 
         while (true) {
             System.out.print("Author: ");
-            Scanner scanner = new Scanner(System.in);
             String author = scanner.nextLine();
             if (author.isEmpty()) {
                 System.out.println("All fields are required.\n");
@@ -73,7 +74,6 @@ public class Prompts {
 
         while (true) {
             System.out.print("Publisher: ");
-            Scanner scanner = new Scanner(System.in);
             String publisher = scanner.nextLine();
             if (publisher.isEmpty()) {
                 System.out.println("All fields are required.\n");
@@ -97,7 +97,6 @@ public class Prompts {
 
         while (true) {
             System.out.print("Publication year: ");
-            Scanner scanner = new Scanner(System.in);
             String year = scanner.nextLine();
             if (year.isEmpty()) {
                 System.out.print("All fields are required!\n");
@@ -122,7 +121,6 @@ public class Prompts {
 
         while (true) {
             System.out.print("Number of pages: ");
-            Scanner scanner = new Scanner(System.in);
             String pages = scanner.nextLine();
             if (pages.isEmpty()) {
                 System.out.print("All fields are required!\n");
@@ -143,5 +141,23 @@ public class Prompts {
 
 
     //continue prompt
-    
+    public void continueOrNot(){
+
+        while (true) {
+            System.out.println("\nContinue? y/n");
+            String answer = scanner.nextLine();
+            System.out.println();
+            if (answer.isEmpty()) {
+                continue;
+            }
+            this.continueOrNot = answer;
+            break;
+        }
+
+    }
+
+    public String returnContinueOrNot(){
+        return this.continueOrNot;
+    }
+
 }
