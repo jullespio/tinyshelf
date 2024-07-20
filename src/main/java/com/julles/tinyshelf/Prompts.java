@@ -165,4 +165,11 @@ public class Prompts {
         return this.continueOrNot;
     }
 
+    public void sendToUpdater(){
+        
+        BookListUpdater bookList = new BookListUpdater();
+        bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages());
+    
+    }
+
 }

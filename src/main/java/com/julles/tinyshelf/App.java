@@ -31,22 +31,19 @@ public class App
 
          if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
 
-            BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
+            prompt.sendToUpdater();
             continue;
 
          } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
 
             System.out.print("\nSee you next time!\n");
-            BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
+            prompt.sendToUpdater();
             break;
 
          } else {
 
             System.out.print("\nInvalid answer. Saving data and closing program.\n");
-            BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
+            prompt.sendToUpdater();
             break;
 
          }
