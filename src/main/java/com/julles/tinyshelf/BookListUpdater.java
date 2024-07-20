@@ -15,11 +15,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class BookListUpdater {
 
-    //private List<Book> books;
-    final String homeDir = System.getProperty("user.home");
+    final String homeDir;
 
     public BookListUpdater(){
     
+        homeDir = System.getProperty("user.home");
+
     }
 
     public List<Book> loadBookList(){
@@ -48,6 +49,32 @@ public class BookListUpdater {
         return savedBooks;
 
     }
+
+    public List<Book> retrieveBookList(){
+
+        List<Book> savedBooks = new ArrayList<Book>();
+        
+
+        try {
+            // create object mapper instance
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        
+            // convert JSON array to list of books
+            savedBooks = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
+        
+        } catch (Exception ex) {
+            
+            ex.printStackTrace();
+            
+        }
+
+        return savedBooks;
+
+    }
+
 
     public void AddNewBook(String title, String author, String publisher, int year, int numPages){
 

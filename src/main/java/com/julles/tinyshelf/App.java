@@ -52,6 +52,7 @@ public class App
 
          System.out.print("Number of pages: ");
          String pages = scanner.nextLine();
+         System.out.println();
          int pagesNum = Integer.valueOf(pages);;
          if (year.isEmpty()) {
             System.out.print("All fields are required!\n");
