@@ -109,4 +109,10 @@ public class BookListUpdater {
 
     }
 
+    public void editBook(){
+
+        // edit a selected book from list
+
+    }
+
 }
