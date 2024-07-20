@@ -32,7 +32,7 @@ public class App
          String author = scanner.nextLine();
          if (author.isEmpty()) {
             System.out.println("All fields are required!\n");
-            break;
+            continue;
          }
 
          System.out.print("Publisher: ");

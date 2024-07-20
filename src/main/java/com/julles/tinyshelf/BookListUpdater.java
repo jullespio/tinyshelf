@@ -25,9 +25,8 @@ public class BookListUpdater {
 
     public List<Book> loadBookList(){
 
-        List<Book> savedBooks = new ArrayList<>();
+        List<Book> savedBooks = new ArrayList<Book>();
         
-
         try {
             // create object mapper instance
             ObjectMapper objectMapper = new ObjectMapper();
@@ -40,10 +39,12 @@ public class BookListUpdater {
         
         } catch (Exception ex) {
             //ex.printStackTrace();
+            //if list is empty or doesn't exist, populate/create
             if (savedBooks.isEmpty()) {
-                savedBooks = new ArrayList<Book>();
+                //savedBooks = new ArrayList<Book>();
                 System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated file can be found at /home/*local user*/.booklist.json.\n");
             }
+            
         }
 
         return savedBooks;
