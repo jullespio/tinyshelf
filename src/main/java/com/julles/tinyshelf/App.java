@@ -17,10 +17,20 @@ public class App
       Scanner scanner = new Scanner(System.in);
 
       System.out.println("\nGreetings!\n>>>> Welcome to tinyShelf <<<<");
+      System.out.print("\nPlease type information as asked. All fields are required.\n");
 
       while(true) {
 
-         System.out.print("\nPlease type information as asked. All fields are required.\n");
+         //try to make prompt more efficient with Prompts class
+         //add validations, so that typing wrong info on prompts
+         //(or leaving the field empty) restarts them instead of throwing an error 
+      
+            
+         //Prompts prompt = new Prompts();
+
+         // prompt.askTitle();
+         // prompt.askAuthor();
+
          System.out.print("\nTitle: ");
          String title = scanner.nextLine();
          if (title.isEmpty()) {
