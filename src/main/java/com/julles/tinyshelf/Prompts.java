@@ -1,3 +1,8 @@
+/*
+ * This software is free to use
+ * @author julles
+ */
+
 package com.julles.tinyshelf;
 
 import java.util.Scanner;

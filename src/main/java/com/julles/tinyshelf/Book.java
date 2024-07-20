@@ -6,7 +6,6 @@
 package com.julles.tinyshelf;
 
 import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
