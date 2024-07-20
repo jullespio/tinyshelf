@@ -26,6 +26,8 @@ public class App
          prompt.askTitle();
          prompt.askAuthor();
          prompt.askPublisher();
+         prompt.askYear();
+         prompt.askNumPages();
 
          // System.out.print("\nTitle: ");
          // String title = scanner.nextLine();
@@ -48,22 +50,22 @@ public class App
          //    break;
          // }
 
-         System.out.print("Publication year: ");
-         String year = scanner.nextLine();
-         int yearNum = Integer.valueOf(year);
-         if (year.isEmpty()) {
-            System.out.print("All fields are required!\n");
-            break;
-         }
+         // System.out.print("Publication year: ");
+         // String year = scanner.nextLine();
+         // int yearNum = Integer.valueOf(year);
+         // if (year.isEmpty()) {
+         //    System.out.print("All fields are required!\n");
+         //    break;
+         // }
 
-         System.out.print("Number of pages: ");
-         String pages = scanner.nextLine();
-         System.out.println();
-         int pagesNum = Integer.valueOf(pages);;
-         if (year.isEmpty()) {
-            System.out.print("All fields are required!\n");
-            break;
-         }
+         // System.out.print("Number of pages: ");
+         // String pages = scanner.nextLine();
+         // System.out.println();
+         // int pagesNum = Integer.valueOf(pages);;
+         // if (year.isEmpty()) {
+         //    System.out.print("All fields are required!\n");
+         //    break;
+         // }
 
          System.out.println("Continue? y/n");
          String continuePrompt = scanner.nextLine();
@@ -73,7 +75,7 @@ public class App
          if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
 
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
             continue;
 
          } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
@@ -81,7 +83,7 @@ public class App
             System.out.print("\nSee you next time!\n");
             scanner.close();
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
             break;
 
          } else {
@@ -89,7 +91,7 @@ public class App
             System.out.print("\nInvalid answer. Saving data and closing program.\n");
             scanner.close();
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), prompt.returnYear(), prompt.returnNumPages());
             break;
 
          }

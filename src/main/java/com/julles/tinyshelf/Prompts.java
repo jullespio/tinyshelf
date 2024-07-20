@@ -43,6 +43,7 @@ public class Prompts {
 
     }
 
+
     //Author
     public void askAuthor(){
 
@@ -65,6 +66,7 @@ public class Prompts {
         return this.author;
 
     }
+
 
     //Publisher
     public void askPublisher(){
@@ -89,9 +91,57 @@ public class Prompts {
 
     }
 
+
     //year
+    public void askYear(){
+
+        while (true) {
+            System.out.print("Publication year: ");
+            Scanner scanner = new Scanner(System.in);
+            String year = scanner.nextLine();
+            if (year.isEmpty()) {
+                System.out.print("All fields are required!\n");
+                System.out.println();
+                continue;
+            }
+            this.year = Integer.valueOf(year);
+            break;   
+        }
+        
+    }
+
+    public int returnYear(){
+
+        return this.year;
+
+    }
 
 
     //pages
+    public void askNumPages(){
 
+        while (true) {
+            System.out.print("Number of pages: ");
+            Scanner scanner = new Scanner(System.in);
+            String pages = scanner.nextLine();
+            if (pages.isEmpty()) {
+                System.out.print("All fields are required!\n");
+                System.out.println();
+                continue;
+            }
+            this.numPages = Integer.valueOf(pages);
+            break;   
+        }
+        
+    }
+
+    public int returnNumPages(){
+
+        return this.numPages;
+
+    }
+
+
+    //continue prompt
+    
 }
