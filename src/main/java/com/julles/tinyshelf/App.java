@@ -20,14 +20,7 @@ public class App
       System.out.print("\nPlease type information as asked. All fields are required.\n");
 
       while(true) {
-
-         //try to make prompt more efficient with Prompts class
-         //add validations, so that typing wrong info on prompts
-         //(or leaving the field empty) restarts them instead of throwing an error;
-         //this step is necessary for the implementation of searches, 
-         //updating specific fields (simple CRUD in general)
-      
-            
+        
          Prompts prompt = new Prompts();
 
          prompt.askTitle();

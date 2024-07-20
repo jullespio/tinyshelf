@@ -15,6 +15,11 @@ public class Prompts {
         
     }
 
+    //add validations, so that typing wrong info on prompts
+    //restarts them instead of throwing an error;
+    //this step is necessary for the implementation of searches, 
+    //updating specific fields (simple CRUD in general)
+
     // Title
     public void askTitle(){
 
