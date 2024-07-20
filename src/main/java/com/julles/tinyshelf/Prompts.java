@@ -23,7 +23,7 @@ public class Prompts {
             Scanner scanner = new Scanner(System.in);
             String title = scanner.nextLine();
             if (title.isEmpty()) {
-                System.out.print("All fields are required.");
+                System.out.print("All fields are required.\n");
                 continue;
             }
             this.title = title;
@@ -46,7 +46,7 @@ public class Prompts {
             Scanner scanner = new Scanner(System.in);
             String author = scanner.nextLine();
             if (author.isEmpty()) {
-                System.out.print("All fields are required.");
+                System.out.println("All fields are required.\n");
                 continue;
             }
             this.author = author;
@@ -69,7 +69,7 @@ public class Prompts {
             Scanner scanner = new Scanner(System.in);
             String publisher = scanner.nextLine();
             if (publisher.isEmpty()) {
-                System.out.print("All fields are required.");
+                System.out.println("All fields are required.\n");
                 continue;
             }
             this.publisher = publisher;
