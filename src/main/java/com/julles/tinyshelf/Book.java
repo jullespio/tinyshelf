@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
 
+    // possible new fields: rating, genre (?);
+
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Author")
