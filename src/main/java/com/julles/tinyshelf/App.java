@@ -23,34 +23,37 @@ public class App
 
          //try to make prompt more efficient with Prompts class
          //add validations, so that typing wrong info on prompts
-         //(or leaving the field empty) restarts them instead of throwing an error 
+         //(or leaving the field empty) restarts them instead of throwing an error;
+         //this step is necessary for the implementation of searches, 
+         //updating specific fields (simple CRUD in general)
       
             
-         //Prompts prompt = new Prompts();
+         Prompts prompt = new Prompts();
 
-         // prompt.askTitle();
-         // prompt.askAuthor();
+         prompt.askTitle();
+         prompt.askAuthor();
+         prompt.askPublisher();
 
-         System.out.print("\nTitle: ");
-         String title = scanner.nextLine();
-         if (title.isEmpty()) {
-            System.out.println("All fields are required!\n");
-            continue;
-         }
+         // System.out.print("\nTitle: ");
+         // String title = scanner.nextLine();
+         // if (title.isEmpty()) {
+         //    System.out.println("All fields are required!\n");
+         //    continue;
+         // }
 
-         System.out.print("Author: ");
-         String author = scanner.nextLine();
-         if (author.isEmpty()) {
-            System.out.println("All fields are required!\n");
-            continue;
-         }
+         // System.out.print("Author: ");
+         // String author = scanner.nextLine();
+         // if (author.isEmpty()) {
+         //    System.out.println("All fields are required!\n");
+         //    continue;
+         // }
 
-         System.out.print("Publisher: ");
-         String publisher = scanner.nextLine();
-         if (publisher.isEmpty()) {
-            System.out.println("All fields are required!\n");
-            break;
-         }
+         // System.out.print("Publisher: ");
+         // String publisher = scanner.nextLine();
+         // if (publisher.isEmpty()) {
+         //    System.out.println("All fields are required!\n");
+         //    break;
+         // }
 
          System.out.print("Publication year: ");
          String year = scanner.nextLine();
@@ -77,7 +80,7 @@ public class App
          if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
 
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(title, author, publisher, yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
             continue;
 
          } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
@@ -85,7 +88,7 @@ public class App
             System.out.print("\nSee you next time!\n");
             scanner.close();
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(title, author, publisher, yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
             break;
 
          } else {
@@ -93,7 +96,7 @@ public class App
             System.out.print("\nInvalid answer. Saving data and closing program.\n");
             scanner.close();
             BookListUpdater bookList = new BookListUpdater();
-            bookList.AddNewBook(title, author, publisher, yearNum, pagesNum);
+            bookList.AddNewBook(prompt.returnTitle(), prompt.returnAuthor(), prompt.returnPublisher(), yearNum, pagesNum);
             break;
 
          }
