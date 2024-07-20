@@ -29,37 +29,6 @@ public class App
          prompt.askNumPages();
 
          prompt.continueOrNot();
-
-         // System.out.print("\nTitle: ");
-         // String title = scanner.nextLine();
-         // if (title.isEmpty()) {
-         //    System.out.println("All fields are required!\n");
-         //    continue;
-         // }
-
-         // System.out.print("Author: ");
-         // String author = scanner.nextLine();
-         // if (author.isEmpty()) {
-         //    System.out.println("All fields are required!\n");
-         //    continue;
-         // }
-
-         // System.out.print("Publisher: ");
-         // String publisher = scanner.nextLine();
-         // if (publisher.isEmpty()) {
-         //    System.out.println("All fields are required!\n");
-         //    break;
-         // }
-
-         // System.out.print("Publication year: ");
-         // String year = scanner.nextLine();
-         // int yearNum = Integer.valueOf(year);
-         // if (year.isEmpty()) {
-         //    System.out.print("All fields are required!\n");
-         //    break;
-         // }
-
-         // System.out.print("Number of pages: ");
          // String pages = scanner.nextLine();
          // System.out.println();
          // int pagesNum = Integer.valueOf(pages);;
@@ -68,11 +37,7 @@ public class App
          //    break;
          // }
 
-         //System.out.println("Continue? y/n");
          String continuePrompt = prompt.returnContinueOrNot();
-
-         //System.out.println();
-
 
          if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
 
@@ -99,6 +64,7 @@ public class App
          }
          
       }
+      
       scanner.close();
       
     }
