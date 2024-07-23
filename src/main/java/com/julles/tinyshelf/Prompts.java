@@ -18,6 +18,8 @@ public class Prompts {
 
     private String continueOrNot;
 
+    private String field;
+
     private Scanner scanner = new Scanner(System.in);
 
     public Prompts(){
@@ -36,6 +38,10 @@ public class Prompts {
         
     }
 
+    public String returnExit(){
+        return this.field;
+    }
+    
     // Title
     public void askTitle(){
 
@@ -45,8 +51,9 @@ public class Prompts {
             if (title.isEmpty()) {
                 System.out.print("All fields are required.\n");
                 continue;
-            }
+            } 
             this.title = title;
+            this.field = title;
             break;   
         }
         
@@ -70,6 +77,7 @@ public class Prompts {
                 continue;
             }
             this.author = author;
+            this.field = author;
             break;   
         }
         
@@ -93,6 +101,7 @@ public class Prompts {
                 continue;
             }
             this.publisher = publisher;
+            this.field = publisher;
             break;   
         }
         
@@ -111,13 +120,19 @@ public class Prompts {
         while (true) {
             System.out.print("Publication year: ");
             String year = scanner.nextLine();
+
             if (year.isEmpty()) {
                 System.out.print("All fields are required!\n");
                 System.out.println();
                 continue;
+            } else if (year.equals("e")) {
+                this.field = year;
+                break;
+            } else {
+                this.year = Integer.valueOf(year);
+                break; 
             }
-            this.year = Integer.valueOf(year);
-            break;   
+              
         }
         
     }
@@ -139,9 +154,13 @@ public class Prompts {
                 System.out.print("All fields are required!\n");
                 System.out.println();
                 continue;
+            } else if (pages.equals("e")) {
+                this.field = pages;
+                break;
+            } else {
+                this.numPages = Integer.valueOf(pages);
+                break; 
             }
-            this.numPages = Integer.valueOf(pages);
-            break;   
         }
         
     }
@@ -186,13 +205,28 @@ public class Prompts {
 
         while(true) {
         
-            System.out.print("\nPlease type information as asked. All fields are required.");
+            System.out.print("\nPlease type information as asked. All fields are required.\nPress (e) to exit.\n");
 
             this.askTitle();
+            if (this.field.equals("e")) {
+                break;
+            }
             this.askAuthor();
+            if (this.field.equals("e")) {
+                break;
+            }
             this.askPublisher();
+            if (this.field.equals("e")) {
+                break;
+            }
             this.askYear();
+            if (this.field.equals("e")) {
+                break;
+            }
             this.askNumPages();
+            if (this.field.equals("e")) {
+                break;
+            }
    
             this.continueOrNot();
    
@@ -223,8 +257,12 @@ public class Prompts {
     public void searchPrompt(){
 
         while (true) {
-        System.out.println("\nType name of the book. Note: search is case sensitive.\n");
+        System.out.println("\nType name of the book. Note: search is case sensitive.\nEnter a blank search term to exit.\n");
         String searchTerm = scanner.nextLine();
+
+        if (searchTerm.isEmpty()) {
+            break;
+        }
 
         BookList bookList = new BookList();
 
