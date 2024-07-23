@@ -77,19 +77,21 @@ public class BookList {
 
     }
 
-    public void findBook(String search){
+    public List<Book> findBook(String searchTerm){
 
-        // remove a selected book from list
+        //  list
         List<Book> bookList = returnBookList();
+        List<Book> searchFinds = new ArrayList<Book>();
 
         for (Book book : bookList) {
             
-            // change so it returns the findings
-            if (book.getTitle().contains(search)) {
-                System.out.println(book.getTitle());
+            if (book.getTitle().contains(searchTerm) || book.getAuthor().contains(searchTerm)) {
+                searchFinds.add(book);
             }
             
         }
+
+        return searchFinds;
 
     }
 

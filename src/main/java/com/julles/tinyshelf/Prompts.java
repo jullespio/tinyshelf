@@ -6,6 +6,7 @@
 package com.julles.tinyshelf;
 
 import java.util.Scanner;
+import java.util.List;
 
 public class Prompts {
 
@@ -222,10 +223,14 @@ public class Prompts {
     public void searchPrompt(){
 
         System.out.println("\nType name of the book. Note: search is case sensitive.\n");
-        String search = scanner.nextLine();
+        String searchTerm = scanner.nextLine();
 
         BookList bookList = new BookList();
-        bookList.findBook(search);
+        List<Book> searchResult = bookList.findBook(searchTerm);
+
+        for (Book book : searchResult) {
+            System.out.println(book);
+        }
         
     }
 
