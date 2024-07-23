@@ -17,9 +17,5 @@ public class App
       prompt.displayGreetings();
       prompt.mainMenuPrompt();
 
-      // prompt.displayGreetings();
-
-      // prompt.newBookPrompt();
-
     }
 }
