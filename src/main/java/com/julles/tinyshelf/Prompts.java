@@ -224,10 +224,19 @@ public class Prompts {
 
         System.out.println("\nType name of the book. Note: search is case sensitive.\n");
         String searchTerm = scanner.nextLine();
-
+        
         BookList bookList = new BookList();
         List<Book> searchResult = bookList.findBook(searchTerm);
+        int numOfResults = searchResult.size();
 
+        if (numOfResults == 1) {
+            System.out.println("1 entry has been found containing '" + searchTerm + "'':\n");
+        } else if (numOfResults > 1) {
+            System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
+        } else if (numOfResults == 0) {
+            System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
+        }
+        
         for (Book book : searchResult) {
             System.out.println(book);
         }
