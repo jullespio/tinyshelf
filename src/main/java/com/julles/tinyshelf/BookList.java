@@ -51,7 +51,6 @@ public class BookList {
 
     }
 
-
     public void AddNewBook(String title, String author, String publisher, int year, int numPages){
 
         try {
@@ -78,15 +77,14 @@ public class BookList {
 
     }
 
-
-    public void findBook(String name){
+    public void findBook(String search){
 
         // remove a selected book from list
         List<Book> bookList = returnBookList();
 
         for (Book book : bookList) {
             
-            if (book.getTitle().contains(name)) {
+            if (book.getTitle().contains(search)) {
                 System.out.println(book.getTitle());
             }
             
