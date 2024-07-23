@@ -172,7 +172,7 @@ public class Prompts {
     public String returnContinueOrNot(){
         return this.continueOrNot;
     }
-    
+
 
     // Send new book to list
     public void sendToList(){
@@ -180,10 +180,6 @@ public class Prompts {
         BookList bookList = new BookList();
         bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages());
     
-    }
-
-    public void menuPrompt(){
-        // Ask user what they wish to do (create new book, update book, remove book)
     }
 
     public void newBookPrompt(){
@@ -231,6 +227,10 @@ public class Prompts {
         BookList bookList = new BookList();
         bookList.findBook(search);
         
+    }
+
+    public void menuPrompt(){
+        // Ask user what they wish to do (add new book, find book, update book, delete book)
     }
 
 }

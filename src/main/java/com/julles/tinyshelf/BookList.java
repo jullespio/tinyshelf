@@ -100,4 +100,10 @@ public class BookList {
 
     }
 
+    public void removeBook(){
+
+        // remove a selected book from list
+        
+    }
+
 }
