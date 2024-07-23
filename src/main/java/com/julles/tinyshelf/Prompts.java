@@ -173,11 +173,53 @@ public class Prompts {
         return this.continueOrNot;
     }
 
+    // Send new book to list
     public void sendToUpdater(){
 
         BookListUpdater bookList = new BookListUpdater();
         bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages());
     
+    }
+
+    public void menuPrompt(){
+        // Ask user what they wish to do (create new book, update book, remove book)
+    }
+
+    public void newBookPrompt(){
+
+        while(true) {
+        
+            this.askTitle();
+            this.askAuthor();
+            this.askPublisher();
+            this.askYear();
+            this.askNumPages();
+   
+            this.continueOrNot();
+   
+            String continuePrompt = this.returnContinueOrNot();
+   
+            if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
+   
+                this.sendToUpdater();
+               continue;
+   
+            } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
+   
+               System.out.print("\nSee you next time!\n");
+               this.sendToUpdater();
+               break;
+   
+            } else {
+   
+               System.out.print("\nInvalid answer. Saving data and closing program.\n");
+               this.sendToUpdater();
+               break;
+   
+            }
+            
+         }        
+
     }
 
 }
