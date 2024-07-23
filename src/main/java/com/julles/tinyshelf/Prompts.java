@@ -174,9 +174,9 @@ public class Prompts {
     }
 
     // Send new book to list
-    public void sendToUpdater(){
+    public void sendToList(){
 
-        BookListUpdater bookList = new BookListUpdater();
+        BookList bookList = new BookList();
         bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages());
     
     }
@@ -201,19 +201,19 @@ public class Prompts {
    
             if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
    
-                this.sendToUpdater();
+                this.sendToList();
                continue;
    
             } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
    
                System.out.print("\nSee you next time!\n");
-               this.sendToUpdater();
+               this.sendToList();
                break;
    
             } else {
    
                System.out.print("\nInvalid answer. Saving data and closing program.\n");
-               this.sendToUpdater();
+               this.sendToList();
                break;
    
             }

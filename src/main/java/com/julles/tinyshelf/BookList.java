@@ -13,17 +13,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-public class BookListUpdater {
+public class BookList {
 
     final String homeDir;
 
-    public BookListUpdater(){
+    public BookList(){
     
         homeDir = System.getProperty("user.home");
 
     }
 
-    public List<Book> loadBookList(){
+    public List<Book> returnBookList(){
 
         List<Book> savedBooks = new ArrayList<Book>();
         
@@ -51,37 +51,12 @@ public class BookListUpdater {
 
     }
 
-    public List<Book> retrieveBookList(){
-
-        List<Book> savedBooks = new ArrayList<Book>();
-        
-
-        try {
-            // create object mapper instance
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        
-            // convert JSON array to list of books
-            savedBooks = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
-        
-        } catch (Exception ex) {
-            
-            ex.printStackTrace();
-            
-        }
-
-        return savedBooks;
-
-    }
-
 
     public void AddNewBook(String title, String author, String publisher, int year, int numPages){
 
         try {
 
-            List<Book> savedBooks = loadBookList();
+            List<Book> savedBooks = returnBookList();
 
             Book newBook = new Book(title, author, publisher, year, numPages); 
 
@@ -106,6 +81,11 @@ public class BookListUpdater {
     public void removeBook(){
 
         // remove a selected book from list
+        List<Book> bookList = returnBookList();
+
+        for (Book book : bookList) {
+            
+        }
 
     }
 
