@@ -84,6 +84,7 @@ public class BookList {
 
         for (Book book : bookList) {
             
+            // change so it returns the findings
             if (book.getTitle().contains(search)) {
                 System.out.println(book.getTitle());
             }
