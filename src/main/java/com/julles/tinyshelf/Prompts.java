@@ -257,7 +257,7 @@ public class Prompts {
     public void searchPrompt(){
 
         while (true) {
-        System.out.println("\nType name of the book. Note: search is case sensitive.\nEnter a blank search term to exit.\n");
+        System.out.println("\nType complete or partial name of the book or author. Search is case sensitive.\nEnter a blank search term to exit.\n");
         String searchTerm = scanner.nextLine();
 
         if (searchTerm.isEmpty()) {
