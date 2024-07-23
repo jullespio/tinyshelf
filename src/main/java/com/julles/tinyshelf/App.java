@@ -14,8 +14,7 @@ public class App
 
       Prompts prompt = new Prompts();
 
-      System.out.println("\nGreetings!\n>>>> Welcome to tinyShelf <<<<");
-      System.out.print("\nPlease type information as asked. All fields are required.\n");
+      prompt.displayGreetings();
 
       while(true) {
         

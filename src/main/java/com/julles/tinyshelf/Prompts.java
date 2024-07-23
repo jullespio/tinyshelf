@@ -28,6 +28,14 @@ public class Prompts {
     //this step is necessary for the implementation of searches, 
     //updating specific fields (simple CRUD in general)
 
+    // Greetings
+    public void displayGreetings(){
+
+        System.out.println("\nGreetings!\n>>>> Welcome to tinyShelf <<<<");
+        System.out.print("\nPlease type information as asked. All fields are required.\n");
+
+    }
+
     // Title
     public void askTitle(){
 
