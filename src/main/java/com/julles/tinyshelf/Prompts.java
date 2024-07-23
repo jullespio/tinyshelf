@@ -33,8 +33,7 @@ public class Prompts {
     public void displayGreetings(){
 
         System.out.println("\nGreetings!\n>>>> Welcome to tinyShelf <<<<");
-        System.out.print("\nPlease type information as asked. All fields are required.\n");
-
+        
     }
 
     // Title
@@ -187,6 +186,8 @@ public class Prompts {
 
         while(true) {
         
+            System.out.print("\nPlease type information as asked. All fields are required.");
+
             this.askTitle();
             this.askAuthor();
             this.askPublisher();
@@ -200,17 +201,16 @@ public class Prompts {
             if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
    
                 this.sendToList();
-               continue;
+                continue;
    
             } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
    
-               System.out.print("\nSee you next time!\n");
                this.sendToList();
                break;
    
             } else {
    
-               System.out.print("\nInvalid answer. Saving data and closing program.\n");
+               System.out.print("\nInvalid answer. Saving data and exiting.\n");
                this.sendToList();
                break;
    
@@ -222,29 +222,84 @@ public class Prompts {
 
     public void searchPrompt(){
 
+        while (true) {
         System.out.println("\nType name of the book. Note: search is case sensitive.\n");
         String searchTerm = scanner.nextLine();
-        
-        BookList bookList = new BookList();
-        List<Book> searchResult = bookList.findBook(searchTerm);
-        int numOfResults = searchResult.size();
 
-        if (numOfResults == 1) {
-            System.out.println("1 entry has been found containing '" + searchTerm + "'':\n");
-        } else if (numOfResults > 1) {
-            System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
-        } else if (numOfResults == 0) {
-            System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
+        BookList bookList = new BookList();
+
+
+            List<Book> searchResult = bookList.findBook(searchTerm);
+            int numOfResults = searchResult.size();
+    
+            if (numOfResults == 1) {
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "'':");
+            } else if (numOfResults > 1) {
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
+            } else if (numOfResults == 0) {
+                System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
+            }
+            
+            for (Book book : searchResult) {
+                System.out.println("==> " + book);
+            }
+
+            this.continueOrNot();
+            String answer = this.returnContinueOrNot();
+            
+            if (answer.equals("y") || answer.equals("Y")) {
+   
+                continue;
+   
+            } else if (answer.equals("n") || answer.equals("N")) {
+   
+               break;
+   
+            } else {
+   
+               System.out.print("\nInvalid answer. Exiting.\n");
+
+               break;
+   
+            }
+
+
         }
-        
-        for (Book book : searchResult) {
-            System.out.println(book);
-        }
+       
         
     }
 
-    public void menuPrompt(){
+    public void mainMenuPrompt(){
         // Ask user what they wish to do (add new book, find book, update book, delete book)
+   
+        while (true) {
+
+            System.out.println("\nWhat do you wish to do?\nType (a) to add a new book or (s) to use the search function. Type (e) to exit program.");
+            String answer = scanner.nextLine();
+    
+
+            if (answer.equals("a") || answer.equals("A")) {
+
+                this.newBookPrompt();
+                continue;
+    
+            } else if (answer.equals("s") || answer.equals("S")) {
+    
+                this.searchPrompt();
+                continue;
+    
+            } else if (answer.equals("e") || answer.equals("E")) {
+                
+                System.out.print("\nSee you next time!\n");
+                break;
+    
+            } else {
+                System.out.println("\nInvalid option. Please try again.\n");
+                continue;
+            }
+
+        }
+
     }
 
 }
