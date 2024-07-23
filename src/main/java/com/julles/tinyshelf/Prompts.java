@@ -172,6 +172,7 @@ public class Prompts {
     public String returnContinueOrNot(){
         return this.continueOrNot;
     }
+    
 
     // Send new book to list
     public void sendToList(){
@@ -218,8 +219,18 @@ public class Prompts {
    
             }
             
-         }        
+        }        
 
+    }
+
+    public void searchPrompt(){
+
+        System.out.println("\nType name of the book. Note: search is case sensitive.\n");
+        String search = scanner.nextLine();
+
+        BookList bookList = new BookList();
+        bookList.findBook(search);
+        
     }
 
 }

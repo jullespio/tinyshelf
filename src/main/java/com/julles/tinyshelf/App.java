@@ -14,9 +14,10 @@ public class App
 
       Prompts prompt = new Prompts();
 
-      prompt.displayGreetings();
+      // prompt.displayGreetings();
 
-      prompt.newBookPrompt();
-      
+      // prompt.newBookPrompt();
+
+      prompt.searchPrompt();
     }
 }

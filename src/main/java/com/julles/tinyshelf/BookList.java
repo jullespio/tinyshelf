@@ -25,7 +25,7 @@ public class BookList {
 
     public List<Book> returnBookList(){
 
-        List<Book> savedBooks = new ArrayList<Book>();
+        List<Book> bookList = new ArrayList<Book>();
         
         try {
             // create object mapper instance
@@ -35,19 +35,19 @@ public class BookList {
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         
             // convert JSON array to list of books
-            savedBooks = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
+            bookList = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
         
         } catch (Exception ex) {
             //ex.printStackTrace();
             //if list is empty or doesn't exist, populate/create
-            if (savedBooks.isEmpty()) {
+            if (bookList.isEmpty()) {
                 //savedBooks = new ArrayList<Book>();
                 System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated file can be found at /home/*local user*/.booklist.json.\n");
             }
             
         }
 
-        return savedBooks;
+        return bookList;
 
     }
 
@@ -78,12 +78,17 @@ public class BookList {
 
     }
 
-    public void removeBook(){
+
+    public void findBook(String name){
 
         // remove a selected book from list
         List<Book> bookList = returnBookList();
 
         for (Book book : bookList) {
+            
+            if (book.getTitle().contains(name)) {
+                System.out.println(book.getTitle());
+            }
             
         }
 
