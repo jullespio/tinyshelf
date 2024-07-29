@@ -21,6 +21,7 @@ public class Prompts {
     private String field;
 
     private Scanner scanner = new Scanner(System.in);
+    
 
     public Prompts(){
         

@@ -10,7 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
 
-    // possible new fields: rating, genre (?);
+    // New fields to implement: 
+    // rating (int, 0-10)
+    // isbn (int, optional)
+
+    // Create optional field for More Information, moreInfo (string? check best data type)
 
     @JsonProperty("Title")
     private String title;
@@ -103,7 +107,9 @@ public class Book {
     //fix toString method at later date
     @Override
     public String toString() {
-        return this.title + ", " + this.author + ", " + this.numPages + " pages, " + this.year;
+        return this.title + ", by " + this.author + 
+        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year +
+        "\n    Created " + this.dateCreated + ", last modified " + dateModified;
     }
     
 }
