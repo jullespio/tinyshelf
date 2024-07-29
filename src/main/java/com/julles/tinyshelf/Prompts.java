@@ -272,9 +272,9 @@ public class Prompts {
             int numOfResults = searchResult.size();
     
             if (numOfResults == 1) {
-                System.out.println("\n1 entry has been found containing '" + searchTerm + "'':");
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
             } else if (numOfResults > 1) {
-                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
             }
