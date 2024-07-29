@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
 
-    // New fields to implement: 
+    // New optional fields to implement: 
     // rating (int, 0-10)
-    // isbn (int, optional)
+    // isbn (int, check size)
 
     // Create optional field for More Information, moreInfo (string? check best data type)
 
@@ -104,7 +104,7 @@ public class Book {
         return this.dateModified;
     }
     
-    //fix toString method at later date
+    // update when new optional fields are created
     @Override
     public String toString() {
         return this.title + ", by " + this.author + 
