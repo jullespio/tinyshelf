@@ -6,6 +6,7 @@
 package com.julles.tinyshelf;
 
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,7 @@ public class BookList {
 
     final String homeDir;
     private List<Book> updatedBookList;
+    //private Book updatedBook;
 
     public BookList(){
     
@@ -74,9 +76,9 @@ public class BookList {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
 
     }
+
 
     public List<Book> findBook(String searchTerm){
 
@@ -96,27 +98,41 @@ public class BookList {
 
     }
 
-    public void updateBookFieldString(Book book, int field, String updatedData){
-        // edit a selected string field from a book 
-        
-        List<Book> bookList = this.returnBookList();
-        Book updatedBook = book;
-        
-        // set new value for field
-        switch (field) {
-            case 0:
-                updatedBook.setTitle(updatedData);
-                break;
-        
-            default:
-                break;
-        }
-        
-        try {
+    public void updateBook(Book book, String newData, int field){
 
-            // Remove selected book from booklist before updating field
-            bookList.remove(book); //this isn't working, find out why
+
+            List<Book> bookList = this.returnBookList();
+            Book toRemove = book;
+
+            for (Book item : bookList) {
+                if (item.toString().equals(book.toString())) {
+                    toRemove = item;
+                }
+            }
+
+            bookList.remove(toRemove);
+
+            Book updatedBook = book;
+
+            switch (field) {
+                case 0:
+                    updatedBook.setTitle(newData);
+                    break;
+                case 1:
+                    updatedBook.setAuthor(newData);
+                    break;
+                case 3:
+                    updatedBook.setYear(Integer.valueOf(newData));
+                default:
+                    break;
+            }
+
+            updatedBook.setDateModified(LocalDate.now());
+
             bookList.add(updatedBook);
+
+                
+        try {
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -130,27 +146,64 @@ public class BookList {
             ex.printStackTrace();
         }
 
-        
-        // send to this.updateBook();
 
     }
 
-    public void updateBookFieldInt(Book book, int field, int updatedData){
+    // public void updateBookFieldString(Book book, int field, String updatedData){
+    //     // edit a selected string field from a book 
+        
+    //     List<Book> bookList = this.returnBookList();
+    //     Book updatedBook = book;
+        
+    //     // set new value for field
+    //     switch (field) {
+    //         case 0:
+    //             updatedBook.setTitle(updatedData);
+    //             break;
+        
+    //         default:
+    //             break;
+    //     }
+        
+    //     try {
+
+    //         // Remove selected book from booklist before updating field
+    //         bookList.remove(book); //this isn't working, find out why
+    //         bookList.add(updatedBook);
+
+    //         ObjectMapper objectMapper = new ObjectMapper();
+    //         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    //         objectMapper.registerModule(new JavaTimeModule());
+    //         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        
+    //         // convert books object to JSON file
+    //         objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+        
+    //     } catch (Exception ex) {
+    //         ex.printStackTrace();
+    //     }
+
+        
+    //     // send to this.updateBook();
+
+    // }
+
+    // public void updateBookFieldInt(Book book, int field, int updatedData){
 
         
 
-        // edit a selected string field from a book 
+    //     // edit a selected string field from a book 
 
-    }
+    // }
 
     public void removeBook(Book book, List<Book> booklist){
 
         // remove a preselected book from list
 
-        if (booklist.contains(book)) {
+        //if (booklist.contains(book)) {
             booklist.remove(book);
             this.updatedBookList = booklist;
-        }
+        //}
                 
         try {
 

@@ -63,6 +63,19 @@ public class Book {
         this.dateCreated = LocalDate.now();
         this.dateModified = LocalDate.now();  
     };
+
+    public Book(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo, LocalDate dateModified){
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.year = year;
+        this.numPages = numPages;
+        this.isbn = "<add ISBN number>";
+        this.rating = 0.0;
+        this.otherInfo = "<add other relevant information about the book>";
+        this.dateCreated = LocalDate.now();
+        this.dateModified = LocalDate.now();  
+    };
     
 
     /*  Getters */

@@ -16,6 +16,11 @@ public class Prompts {
     private int year;
     private int numPages;
 
+    // create askMethods and returnMethods for fields below 
+    private String isbn;
+    private double rating;
+    private int otherInfo;
+
     private String continueOrNot;
 
     private String fieldString;
@@ -52,11 +57,10 @@ public class Prompts {
             System.out.print("\nTitle: ");
             String title = scanner.nextLine();
             if (title.isEmpty()) {
-                System.out.print("All fields are required.\n");
+                System.out.print("Field required.\n");
                 continue;
             } 
             this.title = title;
-            this.fieldString = title;
             break;   
         }
         
@@ -76,11 +80,10 @@ public class Prompts {
             System.out.print("Author: ");
             String author = scanner.nextLine();
             if (author.isEmpty()) {
-                System.out.println("All fields are required.\n");
+                System.out.print("Field required.\n");
                 continue;
             }
             this.author = author;
-            this.fieldString = author;
             break;   
         }
         
@@ -100,11 +103,10 @@ public class Prompts {
             System.out.print("Publisher: ");
             String publisher = scanner.nextLine();
             if (publisher.isEmpty()) {
-                System.out.println("All fields are required.\n");
+                System.out.print("Field required.\n");
                 continue;
             }
             this.publisher = publisher;
-            this.fieldString = publisher;
             break;   
         }
         
@@ -125,7 +127,7 @@ public class Prompts {
             String year = scanner.nextLine();
 
             if (year.isEmpty()) {
-                System.out.print("All fields are required!\n");
+                System.out.print("Field required.\n");
                 System.out.println();
                 continue;
             } else if (year.equals("e")) {
@@ -133,6 +135,7 @@ public class Prompts {
                 break;
             } else {
                 this.year = Integer.valueOf(year);
+                this.fieldString = year;
                 break; 
             }
               
@@ -154,7 +157,7 @@ public class Prompts {
             System.out.print("Number of pages: ");
             String pages = scanner.nextLine();
             if (pages.isEmpty()) {
-                System.out.print("All fields are required!\n");
+                System.out.print("Field required.\n");
                 System.out.println();
                 continue;
             } else if (pages.equals("e")) {
@@ -325,7 +328,6 @@ public class Prompts {
     
             BookList bookList = new BookList();
 
-            List<Book> currenList = bookList.returnBookList();
             List<Book> searchResult = bookList.findBook(searchTerm);
 
             int numOfResults = searchResult.size();
@@ -338,7 +340,6 @@ public class Prompts {
                     
             } else if (numOfResults > 1) {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
-                // add decision tree for which book object to update
                          
                 for (int count = 0; count < numOfResults; count++) {
                     System.out.println("key " + count + "==> " + searchResult.get(count));
@@ -348,7 +349,7 @@ public class Prompts {
                 System.out.println("\nType key corresponding to book you wish to update:");
                 System.out.print("> ");
                 int key = Integer.valueOf(scanner.nextLine());
-                if (key>numOfResults-1) {
+                if (key<0 || key>numOfResults-1) {
                     System.out.println("No such key found.\n");
                     continue;
                 }
@@ -366,12 +367,34 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
 
-                for (Book book : currenList) {
-                    if (book.toString().equals(bookToUpdate.toString())) {
-                        bookList.removeBook(book, currenList);
-                        break;
-                    }
+                System.out.println("Type key corresponding to field you wish to update:");
+                System.out.println("\n0 - Title\n1 - Author\n2 - Publisher\n3 - Year\n4 - Number of pages\n5 - ISBN\n6 - Rating\n7 - Other Information\n");
+                System.out.print("> ");
+                int key = Integer.valueOf(scanner.nextLine());
+
+                if (key<0 || key>7) {
+                    System.out.println("No such key found.\n");
+                    continue;
                 }
+
+                switch (key) {
+                    case 0:
+                        this.askTitle();
+                        bookList.updateBook(bookToUpdate, this.title, key);    
+                        break;
+                    case 1:
+                        this.askAuthor();
+                        bookList.updateBook(bookToUpdate, this.author, key);    
+                        break;
+                    case 3:
+                        this.askYear();
+                        bookList.updateBook(bookToUpdate, this.fieldString, key);
+                        break;    
+                    default:
+                        break;
+                }
+                
+                System.out.println("\nBook has been updated.");
 
             } else if (answerCont.equals("n") || answerCont.equals("N")) {
                 continue;
@@ -399,7 +422,7 @@ public class Prompts {
     
             BookList bookList = new BookList();
 
-            List<Book> currenList = bookList.returnBookList();
+            List<Book> currentList = bookList.returnBookList();
             List<Book> searchResult = bookList.findBook(searchTerm);
 
             int numOfResults = searchResult.size();
@@ -413,7 +436,6 @@ public class Prompts {
                     
             } else if (numOfResults > 1) {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
-                // add decision tree for which book object to update
                          
                 for (int count = 0; count < numOfResults; count++) {
                     System.out.println("key " + count + "==> " + searchResult.get(count));
@@ -440,11 +462,11 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
                 
-                bookList.removeBook(bookToUpdate, currenList);
+                bookList.removeBook(bookToUpdate, currentList);
 
-                for (Book book : currenList) {
+                for (Book book : currentList) {
                     if (book.toString().equals(bookToUpdate.toString())) {
-                        bookList.removeBook(book, currenList);
+                        bookList.removeBook(book, currentList);
                         break;
                     }
                 }
@@ -465,7 +487,7 @@ public class Prompts {
    
         while (true) {
 
-            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(r) to remove a book.);\n(e) to exit program.");
+            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(u) to update a book.\n(r) to remove a book.);\n(e) to exit program.");
             String answer = scanner.nextLine();
 
             if (answer.equals("a") || answer.equals("A")) {
@@ -476,6 +498,11 @@ public class Prompts {
             } else if (answer.equals("s") || answer.equals("S")) {
     
                 this.searchPrompt();
+                continue;
+    
+            } else if (answer.equals("u") || answer.equals("U")) {
+
+                this.updatePrompt();
                 continue;
     
             } else if (answer.equals("r") || answer.equals("R")) {

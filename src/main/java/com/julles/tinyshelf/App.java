@@ -14,10 +14,10 @@ public class App
     {
 
       Prompts prompt = new Prompts();
-      prompt.displayGreetings();
-      prompt.mainMenuPrompt();
-      
-      // prompt.updatePrompt();
+      // prompt.displayGreetings();
+      // prompt.mainMenuPrompt();
+
+      prompt.updatePrompt();
       // BookList bookList = new BookList();
       // List<Book> savedBooks = bookList.returnBookList();
       // Book book = savedBooks.get(0);
