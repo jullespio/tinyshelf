@@ -101,7 +101,6 @@ public class BookList {
         
         // Remove selected book from booklist before updating field
         List<Book> bookList = this.returnBookList();
-        bookList.remove(book);
         Book updatedBook = book;
         
         // set new value for field
@@ -117,6 +116,7 @@ public class BookList {
         try {
 
             // add book to list
+            bookList.remove(book); //this isn't working, check
             bookList.add(updatedBook);
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -144,9 +144,29 @@ public class BookList {
 
     }
 
-    public void removeBook(){
+    public void removeBook(Book book){
 
         // remove a selected book from list
+
+        List<Book> bookList = this.returnBookList();
+                
+        try {
+
+            // add book to list
+            bookList.remove(book);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        
+            // convert books object to JSON file
+            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         
     }
 
