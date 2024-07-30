@@ -116,7 +116,7 @@ public class BookList {
         try {
 
             // add book to list
-            bookList.remove(book); //this isn't working, check
+            bookList.remove(book); //this isn't working, find out why
             bookList.add(updatedBook);
 
             ObjectMapper objectMapper = new ObjectMapper();
