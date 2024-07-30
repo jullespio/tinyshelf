@@ -258,14 +258,15 @@ public class Prompts {
     public void searchPrompt(){
 
         while (true) {
-        System.out.println("\nType complete or partial name of the book or author. Search is case sensitive.\nEnter a blank search term to exit.\n");
-        String searchTerm = scanner.nextLine();
 
-        if (searchTerm.isEmpty()) {
-            break;
-        }
+            System.out.println("\nType complete or partial name of the book or author. Search is case sensitive.\nEnter a blank search term to exit.\n");
+            String searchTerm = scanner.nextLine();
 
-        BookList bookList = new BookList();
+            if (searchTerm.isEmpty()) {
+                break;
+            }
+
+            BookList bookList = new BookList();
 
 
             List<Book> searchResult = bookList.findBook(searchTerm);
@@ -302,10 +303,32 @@ public class Prompts {
    
             }
 
+        }
+
+    }
+
+    public void updatePrompt(){
+        while (true) {
+            System.out.println("\nWhich book do you wish to update? Search is case sensitive.\nEnter a blank search term to exit.\n");
+            String searchTerm = scanner.nextLine();
+
+            if (searchTerm.isEmpty()) {
+                break;
+            }
+
+            BookList bookList = new BookList();
+
+
+            List<Book> searchResult = bookList.findBook(searchTerm);
+            int numOfResults = searchResult.size();
+
+            // create rest of prompt using searchPrompt as model
 
         }
-       
-        
+    }
+
+    public void removePrompt(){
+
     }
 
     public void mainMenuPrompt(){

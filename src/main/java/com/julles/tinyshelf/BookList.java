@@ -42,7 +42,7 @@ public class BookList {
             //if list is empty or doesn't exist, populate/create
             if (bookList.isEmpty()) {
                 //savedBooks = new ArrayList<Book>();
-                System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated file can be found at /home/*local user*/.booklist.json.\n");
+                System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated hidden file can be found at /home/*local user*/.booklist.json.\n");
             }
             
         }
@@ -95,7 +95,7 @@ public class BookList {
 
     }
 
-    public void editBook(){
+    public void updateBook(){
 
         // edit a selected book from list
 
