@@ -381,7 +381,51 @@ public class Prompts {
     }
 
     public void removePrompt(){
+        while (true) {
+            System.out.println("\nWhich book do you wish to remove? Search is case sensitive.\nEnter a blank search term to exit.\n");
+            String searchTerm = scanner.nextLine();
+    
+            if (searchTerm.isEmpty()) {
+                break;
+            }
+    
+            BookList bookList = new BookList();
+    
+            List<Book> searchResult = bookList.findBook(searchTerm);
+            int numOfResults = searchResult.size();
+    
+            if (numOfResults == 1) {
+    
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
+                System.out.println("==> " + searchResult.get(0));
+                this.bookToUpdate = searchResult.get(0);
+                System.out.println("Selected book can be removed.\n");
+                    
+            } else if (numOfResults > 1) {
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
+                // add decision tree for which book object to update
+    
+            } else if (numOfResults == 0) {
+                System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
+                break;
+            }
+            
+            this.continueOrNot();
+            String answerCont = this.returnContinueOrNot();
 
+            if (answerCont.equals("y") || answerCont.equals("Y")) {
+                
+                List<Book> currenList = bookList.returnBookList();
+                for (Book book : currenList) {
+                    if (book.toString().equals(bookToUpdate.toString())) {
+                        bookList.removeBook(book, currenList);
+                        break;
+                    }
+                }
+
+            }
+    
+        }
     }
 
     public void mainMenuPrompt(){

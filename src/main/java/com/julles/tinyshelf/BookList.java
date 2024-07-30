@@ -16,7 +16,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 public class BookList {
 
     final String homeDir;
-    //private Book updatedBook;
+    private List<Book> updatedBookList;
 
     public BookList(){
     
@@ -99,7 +99,6 @@ public class BookList {
     public void updateBookFieldString(Book book, int field, String updatedData){
         // edit a selected string field from a book 
         
-        // Remove selected book from booklist before updating field
         List<Book> bookList = this.returnBookList();
         Book updatedBook = book;
         
@@ -115,7 +114,7 @@ public class BookList {
         
         try {
 
-            // add book to list
+            // Remove selected book from booklist before updating field
             bookList.remove(book); //this isn't working, find out why
             bookList.add(updatedBook);
 
@@ -144,24 +143,25 @@ public class BookList {
 
     }
 
-    public void removeBook(Book book){
+    public void removeBook(Book book, List<Book> booklist){
 
-        // remove a selected book from list
+        // remove a preselected book from list
 
-        List<Book> bookList = this.returnBookList();
+        if (booklist.contains(book)) {
+            booklist.remove(book);
+            this.updatedBookList = booklist;
+        }
                 
         try {
 
             // add book to list
-            bookList.remove(book);
-
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
             objectMapper.registerModule(new JavaTimeModule());
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         
             // convert books object to JSON file
-            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), updatedBookList);
         
         } catch (Exception ex) {
             ex.printStackTrace();
