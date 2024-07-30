@@ -13,8 +13,9 @@ public class App
     {
 
       Prompts prompt = new Prompts();
-      prompt.displayGreetings();
-      prompt.mainMenuPrompt();
+      // prompt.displayGreetings();
+      // prompt.mainMenuPrompt();
+      prompt.updatePrompt();
 
     }
 }

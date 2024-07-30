@@ -16,6 +16,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 public class BookList {
 
     final String homeDir;
+    //private Book updatedBook;
 
     public BookList(){
     
@@ -95,9 +96,51 @@ public class BookList {
 
     }
 
-    public void updateBook(){
+    public void updateBookFieldString(Book book, int field, String updatedData){
+        // edit a selected string field from a book 
+        
+        // Remove selected book from booklist before updating field
+        List<Book> bookList = this.returnBookList();
+        bookList.remove(book);
+        Book updatedBook = book;
+        
+        // set new value for field
+        switch (field) {
+            case 0:
+                updatedBook.setTitle(updatedData);
+                break;
+        
+            default:
+                break;
+        }
+        
+        try {
 
-        // edit a selected book from list
+            // add book to list
+            bookList.add(updatedBook);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        
+            // convert books object to JSON file
+            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        
+        // send to this.updateBook();
+
+    }
+
+    public void updateBookFieldInt(Book book, int field, int updatedData){
+
+        
+
+        // edit a selected string field from a book 
 
     }
 
