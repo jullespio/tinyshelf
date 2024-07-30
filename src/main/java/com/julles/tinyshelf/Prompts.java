@@ -417,6 +417,10 @@ public class Prompts {
 
                 System.out.println("\nType key corresponding to book you wish to remove:\n");
                 int key = Integer.valueOf(scanner.nextLine());
+                if (key>numOfResults) {
+                    System.out.println("No such key found.\n");
+                    continue;
+                }
                 this.bookToUpdate = searchResult.get(key);
                 System.out.println("Selected book ready to be removed.\n");
 
