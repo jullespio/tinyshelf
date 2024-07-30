@@ -381,7 +381,9 @@ public class Prompts {
     }
 
     public void removePrompt(){
+
         while (true) {
+
             System.out.println("\nWhich book do you wish to remove? Search is case sensitive.\nEnter a blank search term to exit.\n");
             String searchTerm = scanner.nextLine();
     
@@ -390,8 +392,10 @@ public class Prompts {
             }
     
             BookList bookList = new BookList();
+
             List<Book> currenList = bookList.returnBookList();
             List<Book> searchResult = bookList.findBook(searchTerm);
+
             int numOfResults = searchResult.size();
     
             if (numOfResults == 1) {
@@ -404,6 +408,18 @@ public class Prompts {
             } else if (numOfResults > 1) {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
                 // add decision tree for which book object to update
+                
+           
+                for (int count = 0; count < numOfResults; count++) {
+                    System.out.println("key " + count + "==> " + searchResult.get(count));
+                }
+  
+
+                System.out.println("\nType key corresponding to book you wish to remove:\n");
+                int key = Integer.valueOf(scanner.nextLine());
+                this.bookToUpdate = searchResult.get(key);
+                System.out.println("Selected book ready to be removed.\n");
+
     
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
@@ -415,12 +431,20 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
                 
+                bookList.removeBook(bookToUpdate, currenList);
+
                 for (Book book : currenList) {
                     if (book.toString().equals(bookToUpdate.toString())) {
                         bookList.removeBook(book, currenList);
                         break;
                     }
                 }
+
+            } else if (answerCont.equals("n") || answerCont.equals("N")) {
+                continue;
+            } else {
+                System.out.print("\nInvalid answer. Please try again.\n");
+                continue;
 
             }
     
@@ -432,9 +456,8 @@ public class Prompts {
    
         while (true) {
 
-            System.out.println("\nWhat do you wish to do?\nType (a) to add a new book or (s) to use the search function. Type (e) to exit program.");
+            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(r) to remove a book.);\n(e) to exit program.");
             String answer = scanner.nextLine();
-    
 
             if (answer.equals("a") || answer.equals("A")) {
 
@@ -444,6 +467,11 @@ public class Prompts {
             } else if (answer.equals("s") || answer.equals("S")) {
     
                 this.searchPrompt();
+                continue;
+    
+            } else if (answer.equals("r") || answer.equals("R")) {
+    
+                this.removePrompt();
                 continue;
     
             } else if (answer.equals("e") || answer.equals("E")) {

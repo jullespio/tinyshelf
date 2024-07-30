@@ -14,8 +14,8 @@ public class App
     {
 
       Prompts prompt = new Prompts();
-      // prompt.displayGreetings();
-      // prompt.mainMenuPrompt();
+      prompt.displayGreetings();
+      prompt.mainMenuPrompt();
       // prompt.updatePrompt();
       // BookList bookList = new BookList();
       // List<Book> savedBooks = bookList.returnBookList();
@@ -23,7 +23,7 @@ public class App
 
       // bookList.removeBook(book, savedBooks);
 
-      prompt.removePrompt();
+      // prompt.removePrompt();
 
     }
 }
