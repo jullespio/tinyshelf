@@ -180,6 +180,7 @@ public class Prompts {
 
         while (true) {
             System.out.println("\nContinue? y/n");
+            System.out.print("> ");
             String answer = scanner.nextLine();
             System.out.println();
             if (answer.isEmpty()) {
@@ -261,7 +262,8 @@ public class Prompts {
 
         while (true) {
 
-            System.out.println("\nType complete or partial name of the book or author. Search is case sensitive.\nEnter a blank search term to exit.\n");
+            System.out.println("\nType complete or partial name of the book or author. Search is case sensitive.\nEnter a blank search term to exit.");
+            System.out.print("> ");
             String searchTerm = scanner.nextLine();
 
             if (searchTerm.isEmpty()) {
@@ -285,24 +287,26 @@ public class Prompts {
                 System.out.println("==> " + book);
             }
 
-            this.continueOrNot();
-            String answer = this.returnContinueOrNot();
-            
-            if (answer.equals("y") || answer.equals("Y")) {
-   
-                continue;
-   
-            } else if (answer.equals("n") || answer.equals("N")) {
-   
-               break;
-   
-            } else {
-   
-               System.out.print("\nInvalid answer. Exiting.\n");
+            continue;
 
-               break;
+            // this.continueOrNot();
+            // String answer = this.returnContinueOrNot();
+            
+            // if (answer.equals("y") || answer.equals("Y")) {
    
-            }
+            //     continue;
+   
+            // } else if (answer.equals("n") || answer.equals("N")) {
+   
+            //    break;
+   
+            // } else {
+   
+            //    System.out.print("\nInvalid answer. Exiting.\n");
+
+            //    break;
+   
+            // }
 
         }
 
@@ -310,81 +314,83 @@ public class Prompts {
 
     public void updatePrompt(){
         while (true) {
-            System.out.println("\nWhich book do you wish to update? Search is case sensitive.\nEnter a blank search term to exit.\n");
-            String searchTerm = scanner.nextLine();
 
+            System.out.println("\nWhich book do you wish to update? Search is case sensitive.\nEnter a blank search term to exit.");
+            System.out.print("> ");
+            String searchTerm = scanner.nextLine();
+    
             if (searchTerm.isEmpty()) {
                 break;
             }
-
+    
             BookList bookList = new BookList();
 
+            List<Book> currenList = bookList.returnBookList();
             List<Book> searchResult = bookList.findBook(searchTerm);
+
             int numOfResults = searchResult.size();
     
-            if (numOfResults == 1) {
-
-                System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
+            if (numOfResults == 1) {  
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "':\n");
                 System.out.println("==> " + searchResult.get(0));
                 this.bookToUpdate = searchResult.get(0);
-                System.out.println("Book is ready to be updated.\n");
+                System.out.println("Selected book ready to be updated.");
                     
             } else if (numOfResults > 1) {
-                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
                 // add decision tree for which book object to update
+                         
+                for (int count = 0; count < numOfResults; count++) {
+                    System.out.println("key " + count + "==> " + searchResult.get(count));
+
+                }
+  
+                System.out.println("\nType key corresponding to book you wish to update:");
+                System.out.print("> ");
+                int key = Integer.valueOf(scanner.nextLine());
+                if (key>numOfResults-1) {
+                    System.out.println("No such key found.\n");
+                    continue;
+                }
+                this.bookToUpdate = searchResult.get(key);
+                System.out.println("\nSelected book ready to be updated.");
 
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
-                break;
+                continue;
+
             }
             
             this.continueOrNot();
             String answerCont = this.returnContinueOrNot();
-                    
-            if (answerCont.equals("y") || answerCont.equals("Y")) {
-   
-                System.out.println("Which field do you wish to update? Type the corresponding number.");
-                System.out.println("\n0 - Title\n1 - Author\n2 - Publisher\n3 - Year\n4 - Pages\n5 - ISBN\n6 - Rating\n7 - Other Information");
-                int answerField = Integer.valueOf(scanner.nextLine());
-                System.out.println("New value for field: ");
-                String newData = scanner.nextLine();
 
-                // decide which kind of field (string/int) and send to update with new data
-                switch (answerField) {
-                    case 0:
-                        bookList.updateBookFieldString(bookToUpdate, 0, newData);
+            if (answerCont.equals("y") || answerCont.equals("Y")) {
+
+                for (Book book : currenList) {
+                    if (book.toString().equals(bookToUpdate.toString())) {
+                        bookList.removeBook(book, currenList);
                         break;
-                
-                    default:
-                        break;
+                    }
                 }
 
-       
             } else if (answerCont.equals("n") || answerCont.equals("N")) {
-       
-                break;
-       
+                continue;
             } else {
-       
-                System.out.print("\nInvalid answer. Exiting.\n");
-    
-                break;
-       
+                System.out.print("\nInvalid answer. Please try again.\n");
+                continue;
+
             }
-
-
-
-            //bookList.updateBook(searchResult.get(0), this.field);
-            // create rest of prompt using searchPrompt as model
-            break;
+    
         }
+
     }
 
     public void removePrompt(){
 
         while (true) {
 
-            System.out.println("\nWhich book do you wish to remove? Search is case sensitive.\nEnter a blank search term to exit.\n");
+            System.out.println("\nWhich book do you wish to remove? Search is case sensitive.\nEnter a blank search term to exit.");
+            System.out.print("> ");
             String searchTerm = scanner.nextLine();
     
             if (searchTerm.isEmpty()) {
@@ -400,29 +406,28 @@ public class Prompts {
     
             if (numOfResults == 1) {
     
-                System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "':\n");
                 System.out.println("==> " + searchResult.get(0));
                 this.bookToUpdate = searchResult.get(0);
-                System.out.println("Selected book ready to be removed.\n");
+                System.out.println("Selected book ready to be removed.");
                     
             } else if (numOfResults > 1) {
-                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
                 // add decision tree for which book object to update
-                
-           
+                         
                 for (int count = 0; count < numOfResults; count++) {
                     System.out.println("key " + count + "==> " + searchResult.get(count));
                 }
   
-
-                System.out.println("\nType key corresponding to book you wish to remove:\n");
+                System.out.println("\nType key corresponding to book you wish to remove:");
+                System.out.print("> ");
                 int key = Integer.valueOf(scanner.nextLine());
-                if (key>numOfResults) {
+                if (key>numOfResults-1) {
                     System.out.println("No such key found.\n");
                     continue;
                 }
                 this.bookToUpdate = searchResult.get(key);
-                System.out.println("Selected book ready to be removed.\n");
+                System.out.println("\nSelected book ready to be removed.");
 
     
             } else if (numOfResults == 0) {
