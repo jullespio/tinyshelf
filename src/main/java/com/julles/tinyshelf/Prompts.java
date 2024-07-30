@@ -390,7 +390,7 @@ public class Prompts {
             }
     
             BookList bookList = new BookList();
-    
+            List<Book> currenList = bookList.returnBookList();
             List<Book> searchResult = bookList.findBook(searchTerm);
             int numOfResults = searchResult.size();
     
@@ -399,7 +399,7 @@ public class Prompts {
                 System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
                 System.out.println("==> " + searchResult.get(0));
                 this.bookToUpdate = searchResult.get(0);
-                System.out.println("Selected book can be removed.\n");
+                System.out.println("Selected book ready to be removed.\n");
                     
             } else if (numOfResults > 1) {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
@@ -407,7 +407,7 @@ public class Prompts {
     
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
-                break;
+                continue;
             }
             
             this.continueOrNot();
@@ -415,7 +415,6 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
                 
-                List<Book> currenList = bookList.returnBookList();
                 for (Book book : currenList) {
                     if (book.toString().equals(bookToUpdate.toString())) {
                         bookList.removeBook(book, currenList);
