@@ -36,8 +36,6 @@ public class Prompts {
 
     //add validations, so that typing invalid info (like string instead of int) on prompts
     //restarts them instead of throwing an error;
-    //this step is necessary for the implementation of searches, 
-    //updating specific fields (simple CRUD in general)
 
     // Greetings
     public void displayGreetings(){
