@@ -50,6 +50,7 @@ public class Prompts {
         return this.fieldString;
     }
     
+
     // Title
     public void askTitle(){
 
@@ -61,6 +62,7 @@ public class Prompts {
                 continue;
             } 
             this.title = title;
+            this.fieldString = title;
             break;   
         }
         
@@ -84,6 +86,7 @@ public class Prompts {
                 continue;
             }
             this.author = author;
+            this.fieldString = author;
             break;   
         }
         
@@ -107,6 +110,7 @@ public class Prompts {
                 continue;
             }
             this.publisher = publisher;
+            this.fieldString = publisher;
             break;   
         }
         
@@ -165,6 +169,7 @@ public class Prompts {
                 break;
             } else {
                 this.numPages = Integer.valueOf(pages);
+                this.fieldString = pages;
                 break; 
             }
         }
@@ -279,9 +284,9 @@ public class Prompts {
             int numOfResults = searchResult.size();
     
             if (numOfResults == 1) {
-                System.out.println("\n1 entry has been found containing '" + searchTerm + "':");
+                System.out.println("\n1 entry has been found containing '" + searchTerm + "':\n");
             } else if (numOfResults > 1) {
-                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':");
+                System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
             }
@@ -487,7 +492,8 @@ public class Prompts {
    
         while (true) {
 
-            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(u) to update a book.\n(r) to remove a book.);\n(e) to exit program.");
+            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(u) to update a book\n(r) to remove a book\n(e) to exit program");
+            System.out.print("> ");
             String answer = scanner.nextLine();
 
             if (answer.equals("a") || answer.equals("A")) {
