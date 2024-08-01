@@ -182,12 +182,15 @@ public class Prompts {
     public void askIsbn(){
 
         while (true) {
-            System.out.print("ISBN: ");
+            //add validation to ensure the field is only 10 or 13 characters long
+            //and all inputs are numbers;
+            System.out.print("-optional- ISBN: ");
             String isbn = scanner.nextLine();
             if (publisher.isEmpty()) {
-                System.out.print("Field required.\n");
-                continue;
-            }
+                this.isbn = "<add ISBN number>";
+                this.fieldString = "<add ISBN number>";
+                break;   
+                }
             this.isbn = isbn;
             this.fieldString = isbn;
             break;   
@@ -205,12 +208,12 @@ public class Prompts {
     public void askRating(){
 
         while (true) {
-            System.out.print("Rating: ");
+            System.out.print("-optional- Rating: ");
             String rating = scanner.nextLine();
             if (rating.isEmpty()) {
-                System.out.print("Field required.\n");
-                System.out.println();
-                continue;
+                this.rating = 0.0;
+                this.fieldString = "0";
+                break;
             } else if (rating.equals("e")) {
                 this.fieldString = rating;
                 break;
@@ -219,6 +222,7 @@ public class Prompts {
                 this.fieldString = rating;
                 break; 
             }
+
         }
         
     }
@@ -233,11 +237,12 @@ public class Prompts {
     public void askOtherInfo(){
 
         while (true) {
-            System.out.print("Other info: ");
+            System.out.print("-optional- Other info: ");
             String otherInfo = scanner.nextLine();
             if (otherInfo.isEmpty()) {
-                System.out.print("Field required.\n");
-                continue;
+                this.otherInfo = "<add relevant information about the book>";
+                this.fieldString = "<add relevant information about the book>";
+                break;   
             }
             this.otherInfo = otherInfo;
             this.fieldString = otherInfo;
@@ -271,6 +276,7 @@ public class Prompts {
 
     }
 
+    //return continue prompt answer
     public String returnContinueOrNot(){
         return this.continueOrNot;
     }
@@ -280,7 +286,7 @@ public class Prompts {
     public void sendToList(){
 
         BookList bookList = new BookList();
-        bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages());
+        bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages(), returnIsbn(), returnRating(), returnOtherInfo());
     
     }
 
@@ -288,7 +294,10 @@ public class Prompts {
 
         while(true) {
         
-            System.out.print("\nPlease type information as asked. All fields are required.\nPress (e) to exit.\n");
+            System.out.print(
+                "\nPlease type information as asked. Fields are required unless stated otherwise." + 
+                "\nPress (e) to exit.\n"
+                );
 
             this.askTitle();
             if (this.fieldString.equals("e")) {
@@ -310,6 +319,18 @@ public class Prompts {
             if (this.fieldString.equals("e")) {
                 break;
             }
+            this.askIsbn();
+            if (this.fieldString.equals("e")) {
+                break;
+            }
+            this.askRating();
+            if (this.fieldString.equals("e")) {
+                break;
+            }
+            this.askOtherInfo();
+            if (this.fieldString.equals("e")) {
+                break;
+            }
    
             this.continueOrNot();
    
@@ -318,18 +339,20 @@ public class Prompts {
             if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
    
                 this.sendToList();
+                System.out.println("New entry -" + this.title + "- has been added.");
                 continue;
    
             } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
    
-               this.sendToList();
-               break;
+                this.sendToList();
+                System.out.println("New entry -" + this.title + "- has been added.");
+                break;
    
             } else {
    
-               System.out.print("\nInvalid answer. Saving data and exiting.\n");
-               this.sendToList();
-               break;
+                this.sendToList();
+                System.out.println("Invalid answer. New entry -" + this.title + "- has been added.\nExiting...");
+                break;
    
             }
             
@@ -367,25 +390,6 @@ public class Prompts {
             }
 
             continue;
-
-            // this.continueOrNot();
-            // String answer = this.returnContinueOrNot();
-            
-            // if (answer.equals("y") || answer.equals("Y")) {
-   
-            //     continue;
-   
-            // } else if (answer.equals("n") || answer.equals("N")) {
-   
-            //    break;
-   
-            // } else {
-   
-            //    System.out.print("\nInvalid answer. Exiting.\n");
-
-            //    break;
-   
-            // }
 
         }
 

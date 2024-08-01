@@ -63,13 +63,13 @@ public class BookList {
 
     }
 
-    public void AddNewBook(String title, String author, String publisher, int year, int numPages){
+    public void AddNewBook(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
 
         try {
 
             List<Book> savedBooks = returnBookList();
 
-            Book newBook = new Book(title, author, publisher, year, numPages); 
+            Book newBook = new Book(title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
             // add book to list
             savedBooks.add(newBook);
