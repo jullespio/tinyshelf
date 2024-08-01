@@ -622,15 +622,20 @@ public class Prompts {
 
             System.out.println(
             "\nWhat do you wish to do?\n" + 
+
             "\nType:" + 
             "\n(a) to add a new book" + 
             "\n(s) to use the search function" + 
             "\n(u) to update a book" +
             "\n(r) to remove a book" +
-            "\n-or-\n(h) for help\n(e) to exit program\n");
+            "\n-or-" + 
+            "\n(h) for help" + 
+            "\n(e) to exit program\n");
+            
             System.out.print("> ");
             String answer = scanner.nextLine();
 
+            //substitute if-sequence below for a switch
             if (answer.equals("a") || answer.equals("A")) {
 
                 this.newBookPrompt();
