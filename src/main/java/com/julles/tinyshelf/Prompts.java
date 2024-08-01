@@ -186,7 +186,7 @@ public class Prompts {
             //and all inputs are numbers;
             System.out.print("-optional- ISBN: ");
             String isbn = scanner.nextLine();
-            if (publisher.isEmpty()) {
+            if (isbn.isEmpty()) {
                 this.isbn = "<add ISBN number>";
                 this.fieldString = "<add ISBN number>";
                 break;   
@@ -206,7 +206,7 @@ public class Prompts {
 
     //rating
     public void askRating(){
-
+        //add validation to ensure the field is at least an int
         while (true) {
             System.out.print("-optional- Rating: ");
             String rating = scanner.nextLine();
@@ -369,6 +369,7 @@ public class Prompts {
             String searchTerm = scanner.nextLine();
 
             if (searchTerm.isEmpty()) {
+                System.out.println("Exiting...\n");
                 break;
             }
 
@@ -403,6 +404,7 @@ public class Prompts {
             String searchTerm = scanner.nextLine();
     
             if (searchTerm.isEmpty()) {
+                System.out.println("Exiting...\n");
                 break;
             }
     
@@ -416,7 +418,7 @@ public class Prompts {
                 System.out.println("\n1 entry has been found containing '" + searchTerm + "':\n");
                 System.out.println("==> " + searchResult.get(0));
                 this.bookToUpdate = searchResult.get(0);
-                System.out.println("Selected book ready to be updated.");
+                System.out.println("\nSelected book ready to be updated.");
                     
             } else if (numOfResults > 1) {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
@@ -426,18 +428,34 @@ public class Prompts {
 
                 }
   
-                System.out.println("\nType key corresponding to book you wish to update:");
+                System.out.println("\nType key corresponding to book you wish to update. Leave blank to exit.");
                 System.out.print("> ");
-                int key = Integer.valueOf(scanner.nextLine());
+                String key = scanner.nextLine();
 
-                if (key<0 || key>numOfResults-1) {
-                    System.out.println("No such key found.\n");
-                    continue;
+                if (key.isEmpty()) {
+                    System.out.println("Exiting...\n");
+                    break;
+                } else {
+                    int numKey = Integer.valueOf(key);
+                    if (numKey>=0 && numKey<=numOfResults) {
+                        this.bookToUpdate = searchResult.get(numKey);
+                        System.out.println("\nSelected book ready to be updated.");
+
+                    } else {
+                        System.out.println("No such key found.");
+                        continue;
+                    }
                 }
+                    
+                    // ADD VALIDATION TO CHECK IF KEY IS NUMERIC OF NOT-- use a method with try...catch to test
+                    // At the moment, typing a non-numeric character returns an error
 
-                this.bookToUpdate = searchResult.get(key);
-                System.out.println("\nSelected book ready to be updated.");
-
+                    // else if (){
+                    //     System.out.println("No such key found.\n");
+                    //     continue;
+                    // }
+                
+                
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
                 continue;
@@ -449,55 +467,66 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
 
-                System.out.println("Type key corresponding to field you wish to update:");
+                System.out.println("Type key corresponding to field you wish to update. Leave blank to exit.");
                 System.out.println("\n0 - Title\n1 - Author\n2 - Publisher\n3 - Year\n4 - Number of pages\n5 - ISBN\n6 - Rating\n7 - Other Information\n");
                 System.out.print("> ");
-                int key = Integer.valueOf(scanner.nextLine());
+                String key = scanner.nextLine();
 
-                if (key<0 || key>7) {
-                    System.out.println("No such key found.\n");
-                    continue;
+                if (key.isEmpty()) {
+                    System.out.println("Exiting...\n");
+                    break;
+                } else {
+                    if (Integer.valueOf(key)>=0 && Integer.valueOf(key)<=7) {
+                        int numKey = Integer.valueOf(key);
+
+                        switch (numKey) {
+                            case 0:
+                                this.askTitle();
+                                bookList.updateBook(bookToUpdate, this.title, numKey);    
+                                break;
+                            case 1:
+                                this.askAuthor();
+                                bookList.updateBook(bookToUpdate, this.author, numKey);    
+                                break;
+                            case 2:
+                                this.askPublisher();
+                                bookList.updateBook(bookToUpdate, this.publisher, numKey);    
+                                break;
+                            case 3:
+                                this.askYear();
+                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                break;    
+                            case 4:
+                                this.askNumPages();
+                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                break;    
+                            case 5:
+                                this.askIsbn();
+                                bookList.updateBook(bookToUpdate, this.isbn, numKey);
+                                break;    
+                            case 6:
+                                this.askRating();
+                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                break;    
+                            case 7:
+                                this.askOtherInfo();
+                                bookList.updateBook(bookToUpdate, this.otherInfo, numKey);
+                                break;
+        
+                            default:
+                                break;
+                            }
+                        
+                            System.out.println("\nBook has been updated.");
+                        } else {
+                            System.out.println("No such key found.");
+                            continue;
+                        } 
+                    
+                    // ADD VALIDATION TO CHECK IF KEY IS NUMERIC OF NOT-- use a method with try...catch to test
+                    // At the moment, typing a non-numeric character returns an error
                 }
 
-                switch (key) {
-                    case 0:
-                        this.askTitle();
-                        bookList.updateBook(bookToUpdate, this.title, key);    
-                        break;
-                    case 1:
-                        this.askAuthor();
-                        bookList.updateBook(bookToUpdate, this.author, key);    
-                        break;
-                    case 2:
-                        this.askPublisher();
-                        bookList.updateBook(bookToUpdate, this.publisher, key);    
-                        break;
-                    case 3:
-                        this.askYear();
-                        bookList.updateBook(bookToUpdate, this.fieldString, key);
-                        break;    
-                    case 4:
-                        this.askNumPages();
-                        bookList.updateBook(bookToUpdate, this.fieldString, key);
-                        break;    
-                    case 5:
-                        this.askIsbn();
-                        bookList.updateBook(bookToUpdate, this.isbn, key);
-                        break;    
-                    case 6:
-                        this.askRating();
-                        bookList.updateBook(bookToUpdate, this.fieldString, key);
-                        break;    
-                    case 7:
-                        this.askOtherInfo();
-                        bookList.updateBook(bookToUpdate, this.otherInfo, key);
-                        break;
-
-                    default:
-                        break;
-                }
-                
-                System.out.println("\nBook has been updated.");
 
             } else if (answerCont.equals("n") || answerCont.equals("N")) {
                 continue;
@@ -520,6 +549,7 @@ public class Prompts {
             String searchTerm = scanner.nextLine();
     
             if (searchTerm.isEmpty()) {
+                System.out.println("Exiting...\n");
                 break;
             }
     
