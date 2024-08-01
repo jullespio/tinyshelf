@@ -15,11 +15,9 @@ public class Prompts {
     private String publisher;
     private int year;
     private int numPages;
-
-    // create askMethods and returnMethods for fields below 
     private String isbn;
     private double rating;
-    private int otherInfo;
+    private String otherInfo;
 
     private String continueOrNot;
 
@@ -179,6 +177,81 @@ public class Prompts {
         return this.numPages;
 
     }
+
+    //ISBN
+    public void askIsbn(){
+
+        while (true) {
+            System.out.print("ISBN: ");
+            String isbn = scanner.nextLine();
+            if (publisher.isEmpty()) {
+                System.out.print("Field required.\n");
+                continue;
+            }
+            this.isbn = isbn;
+            this.fieldString = isbn;
+            break;   
+        }
+        
+    }
+
+    public String returnIsbn(){
+
+        return this.isbn;
+
+    }
+
+    //rating
+    public void askRating(){
+
+        while (true) {
+            System.out.print("Rating: ");
+            String rating = scanner.nextLine();
+            if (rating.isEmpty()) {
+                System.out.print("Field required.\n");
+                System.out.println();
+                continue;
+            } else if (rating.equals("e")) {
+                this.fieldString = rating;
+                break;
+            } else {
+                this.rating = Double.valueOf(rating);
+                this.fieldString = rating;
+                break; 
+            }
+        }
+        
+    }
+
+    public double returnRating(){
+
+        return this.rating;
+
+    }
+
+    //ISBN
+    public void askOtherInfo(){
+
+        while (true) {
+            System.out.print("Other info: ");
+            String otherInfo = scanner.nextLine();
+            if (otherInfo.isEmpty()) {
+                System.out.print("Field required.\n");
+                continue;
+            }
+            this.otherInfo = otherInfo;
+            this.fieldString = otherInfo;
+            break;   
+        }
+        
+    }
+
+    public String returnOtherInfo(){
+
+        return this.otherInfo;
+
+    }
+
 
 
     //continue prompt
