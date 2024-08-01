@@ -169,8 +169,9 @@ public class Book {
     @Override
     public String toString() {
         return this.title + ", by " + this.author + 
-        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year + "." +
-        "\n    Rated " + this.rating + "/5.0. ISBN " + this.isbn + "." +
+        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year +
+        "\n    ISBN " + this.isbn + "." +
+        "\n    Rated " + this.rating + "/5.0 " + 
         "\n    Other information: \n    " + this.otherInfo + 
         "\n    Created " + this.dateCreated + ", last modified " + dateModified;
     }

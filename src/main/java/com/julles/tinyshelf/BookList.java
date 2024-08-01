@@ -54,6 +54,15 @@ public class BookList {
 
     }
 
+    public int returnNumOfBooks(){
+
+        List<Book> bookList = this.returnBookList();
+
+        int size = bookList.size();
+        return size;
+
+    }
+
     public void AddNewBook(String title, String author, String publisher, int year, int numPages){
 
         try {

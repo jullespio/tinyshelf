@@ -17,14 +17,5 @@ public class App
       prompt.displayGreetings();
       prompt.mainMenuPrompt();
 
-      // prompt.updatePrompt();
-      // BookList bookList = new BookList();
-      // List<Book> savedBooks = bookList.returnBookList();
-      // Book book = savedBooks.get(0);
-
-      // bookList.removeBook(book, savedBooks);
-
-      // prompt.removePrompt();
-
     }
 }

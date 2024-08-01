@@ -488,7 +488,7 @@ public class Prompts {
                         this.askOtherInfo();
                         bookList.updateBook(bookToUpdate, this.otherInfo, key);
                         break;
-                            
+
                     default:
                         break;
                 }
@@ -586,7 +586,14 @@ public class Prompts {
    
         while (true) {
 
-            System.out.println("\nWhat do you wish to do?\nType:\n(a) to add a new book\n(s) to use the search function\n(u) to update a book\n(r) to remove a book\n(e) to exit program");
+            System.out.println(
+            "\nWhat do you wish to do?\n" + 
+            "\nType:" + 
+            "\n(a) to add a new book" + 
+            "\n(s) to use the search function" + 
+            "\n(u) to update a book" +
+            "\n(r) to remove a book" +
+            "\n-or-\n(h) for help\n(e) to exit program\n");
             System.out.print("> ");
             String answer = scanner.nextLine();
 
@@ -608,6 +615,12 @@ public class Prompts {
             } else if (answer.equals("r") || answer.equals("R")) {
     
                 this.removePrompt();
+                continue;
+    
+            } else if (answer.equals("h") || answer.equals("H")) {
+                
+                System.out.println("\nThis section is still under construction.\n");
+                //this.showHelp();
                 continue;
     
             } else if (answer.equals("e") || answer.equals("E")) {
