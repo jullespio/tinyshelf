@@ -121,8 +121,25 @@ public class BookList {
                 case 1:
                     updatedBook.setAuthor(newData);
                     break;
+                case 2:
+                    updatedBook.setPublisher(newData);
+                    break;
                 case 3:
                     updatedBook.setYear(Integer.valueOf(newData));
+                    break;
+                case 4:
+                    updatedBook.setNumPages(Integer.valueOf(newData));
+                    break;
+                case 5:
+                    updatedBook.setIsbn(newData);
+                    break;
+                case 6:
+                    updatedBook.setRating(Double.valueOf(newData));
+                    break;
+                case 7:
+                    updatedBook.setOtherInfo(newData);
+                    break;     
+
                 default:
                     break;
             }

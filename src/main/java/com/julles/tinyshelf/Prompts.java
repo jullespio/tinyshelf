@@ -425,10 +425,12 @@ public class Prompts {
                 System.out.println("\nType key corresponding to book you wish to update:");
                 System.out.print("> ");
                 int key = Integer.valueOf(scanner.nextLine());
+
                 if (key<0 || key>numOfResults-1) {
                     System.out.println("No such key found.\n");
                     continue;
                 }
+
                 this.bookToUpdate = searchResult.get(key);
                 System.out.println("\nSelected book ready to be updated.");
 
@@ -462,10 +464,31 @@ public class Prompts {
                         this.askAuthor();
                         bookList.updateBook(bookToUpdate, this.author, key);    
                         break;
+                    case 2:
+                        this.askPublisher();
+                        bookList.updateBook(bookToUpdate, this.publisher, key);    
+                        break;
                     case 3:
                         this.askYear();
                         bookList.updateBook(bookToUpdate, this.fieldString, key);
                         break;    
+                    case 4:
+                        this.askNumPages();
+                        bookList.updateBook(bookToUpdate, this.fieldString, key);
+                        break;    
+                    case 5:
+                        this.askIsbn();
+                        bookList.updateBook(bookToUpdate, this.isbn, key);
+                        break;    
+                    case 6:
+                        this.askRating();
+                        bookList.updateBook(bookToUpdate, this.fieldString, key);
+                        break;    
+                    case 7:
+                        this.askOtherInfo();
+                        bookList.updateBook(bookToUpdate, this.otherInfo, key);
+                        break;
+                            
                     default:
                         break;
                 }
