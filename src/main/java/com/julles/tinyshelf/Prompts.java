@@ -18,13 +18,10 @@ public class Prompts {
     private String isbn;
     private double rating;
     private String otherInfo;
-
+    
     private String continueOrNot;
-
     private String fieldString;
-
     private Book bookToUpdate;
-
     private Scanner scanner = new Scanner(System.in);
     
 
