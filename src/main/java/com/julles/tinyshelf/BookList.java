@@ -6,7 +6,9 @@
 package com.julles.tinyshelf;
 
 import java.nio.file.Paths;
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,16 +28,26 @@ public class BookList {
 
     }
 
+    public ObjectMapper mapper(){
+
+        DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy G 'at' HH:mm:ss");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setDateFormat(dateFormat);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        return objectMapper;
+}
+
     public List<Book> returnBookList(){
 
         List<Book> bookList = new ArrayList<Book>();
         
         try {
             // create object mapper instance
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            ObjectMapper objectMapper = this.mapper();
         
             // convert JSON array to list of books
             bookList = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
@@ -45,7 +57,7 @@ public class BookList {
             //if list is empty or doesn't exist, populate/create
             if (bookList.isEmpty()) {
                 //savedBooks = new ArrayList<Book>();
-                System.out.println("\nNote: Your book list was empty or not yet created.\nThe populated hidden file can be found at /home/*local user*/.booklist.json.\n");
+                System.out.println("\nNote: Your book list was empty or not yet created.\nThe (hidden) file can be found at /home/*local user*/.booklist.json.\n");
             }
             
         }
@@ -66,10 +78,7 @@ public class BookList {
             // add book to list
             savedBooks.add(newBook);
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            ObjectMapper objectMapper = this.mapper();;
         
             // convert books object to JSON file
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), savedBooks);
@@ -145,17 +154,14 @@ public class BookList {
                     break;
             }
 
-            updatedBook.setDateModified(LocalDate.now());
+            updatedBook.setDateModified(LocalDateTime.now());
 
             bookList.add(updatedBook);
 
                 
         try {
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            ObjectMapper objectMapper = this.mapper();;
         
             // convert books object to JSON file
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
@@ -226,10 +232,7 @@ public class BookList {
         try {
 
             // add book to list
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            ObjectMapper objectMapper = this.mapper();;
         
             // convert books object to JSON file
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), updatedBookList);

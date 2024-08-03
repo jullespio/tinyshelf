@@ -5,7 +5,10 @@
 
 package com.julles.tinyshelf;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
@@ -18,13 +21,13 @@ public class Book {
     @JsonProperty("Title")
     private String title;
 
-    @JsonProperty("Author")
+    @JsonProperty("Author(s)")
     private String author;
 
     @JsonProperty("Publisher")
     private String publisher;
 
-    @JsonProperty("Year")
+    @JsonProperty("Publication Year")
     private int year;
 
     @JsonProperty("Pages")
@@ -39,11 +42,13 @@ public class Book {
     @JsonProperty("Other information")
     private String otherInfo;
 
+    //@JsonFormat(pattern = "MM.dd.yyyy G 'at' HH:mm:ss")
     @JsonProperty("Created")
-    private LocalDate dateCreated;
+    private LocalDateTime dateCreated;
 
+    //@JsonFormat(pattern = "MM.dd.yyyy G 'at' HH:mm:ss")
     @JsonProperty("Last Modified")
-    private LocalDate dateModified;
+    private LocalDateTime dateModified;
 
 
     public Book(){
@@ -51,18 +56,18 @@ public class Book {
     };
 
 
-    public Book(String title, String author, String publisher, int year, int numPages){
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.year = year;
-        this.numPages = numPages;
-        this.isbn = "<add ISBN number>";
-        this.rating = 0.0;
-        this.otherInfo = "<add other relevant information about the book>";
-        this.dateCreated = LocalDate.now();
-        this.dateModified = LocalDate.now();  
-    };
+    // public Book(String title, String author, String publisher, int year, int numPages){
+    //     this.title = title;
+    //     this.author = author;
+    //     this.publisher = publisher;
+    //     this.year = year;
+    //     this.numPages = numPages;
+    //     this.isbn = "<add ISBN number>";
+    //     this.rating = 0.0;
+    //     this.otherInfo = "<add other relevant information about the book>";
+    //     this.dateCreated = LocalDateTime.now();
+    //     this.dateModified = LocalDateTime.now();  
+    // };
 
     public Book(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
         this.title = title;
@@ -73,8 +78,8 @@ public class Book {
         this.isbn = isbn;
         this.rating = rating;
         this.otherInfo = otherInfo;
-        this.dateCreated = LocalDate.now();
-        this.dateModified = LocalDate.now();  
+        this.dateCreated = LocalDateTime.now();
+        this.dateModified = LocalDateTime.now();  
     };
     
 
@@ -112,11 +117,13 @@ public class Book {
         return otherInfo;
     }
 
-    public LocalDate getDateCreated(){
+    //@JsonFormat(pattern = "MM.dd.yyyy 'at' KK:mm:ss a")
+    public LocalDateTime getDateCreated(){
         return this.dateCreated;
     }
 
-    public LocalDate getDateModified(){
+    //@JsonFormat(pattern = "MM.dd.yyyy 'at' KK:mm:ss a")
+    public LocalDateTime getDateModified(){
         return this.dateModified;
     }
 
@@ -125,27 +132,27 @@ public class Book {
 
     public void setTitle(String title){
         this.title = title;
-        this.dateModified = LocalDate.now();
+        this.dateModified = LocalDateTime.now();
     }
 
     public void setAuthor(String author) {
         this.author = author;
-        this.dateModified = LocalDate.now();
+        this.dateModified = LocalDateTime.now();
     }
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
-        this.dateModified = LocalDate.now();
+        this.dateModified = LocalDateTime.now();
     }
 
     public void setYear(int year) {
         this.year = year;
-        this.dateModified = LocalDate.now();
+        this.dateModified = LocalDateTime.now();
     }
 
     public void setNumPages(int numPages) {
         this.numPages = numPages;
-        this.dateModified = LocalDate.now();
+        this.dateModified = LocalDateTime.now();
     }
 
     public void setIsbn(String isbn) {
@@ -160,7 +167,7 @@ public class Book {
         this.otherInfo = otherInfo;
     }
 
-    public void setDateModified(LocalDate dateModified) {
+    public void setDateModified(LocalDateTime dateModified) {
         this.dateModified = dateModified;
     }
 
@@ -168,12 +175,17 @@ public class Book {
     // update when new optional fields are created
     @Override
     public String toString() {
+
+        DateTimeFormatter formatedDate = DateTimeFormatter.ofPattern("MMM dd yyyy 'at' KK:mm:ss a");
+
         return this.title + ", by " + this.author + 
-        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year +
-        "\n    ISBN " + this.isbn + "." +
-        "\n    Rated " + this.rating + "/5.0 " + 
-        "\n    Other information: \n    " + this.otherInfo + 
-        "\n    Created " + this.dateCreated + ", last modified " + dateModified;
+        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year + " (current edtion)." +
+        "\n    ISBN: " + this.isbn +
+        "\n    Rated " + this.rating + " out of 5 " + 
+        "\n    Other information: " + 
+        "\n    -- " + this.otherInfo + 
+        "\n    Created: " + this.dateCreated.format(formatedDate) + 
+        "\n    Last modified: " + dateModified.format(formatedDate);
     }
     
 }

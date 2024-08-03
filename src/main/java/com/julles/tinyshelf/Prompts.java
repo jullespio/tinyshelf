@@ -604,6 +604,8 @@ public class Prompts {
                     }
                 }
 
+                System.out.println("Book removed.\n");
+
             } else if (answerCont.equals("n") || answerCont.equals("N")) {
                 continue;
             } else {
@@ -664,6 +666,7 @@ public class Prompts {
     
             } else if (answer.equals("e") || answer.equals("E")) {
                 
+                System.out.print("\nExiting...\n");
                 System.out.print("\nSee you next time!\n");
                 break;
     
