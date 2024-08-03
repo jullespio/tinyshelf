@@ -6,8 +6,6 @@
 package com.julles.tinyshelf;
 
 import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +55,7 @@ public class BookList {
             //ex.printStackTrace();
             //if list is empty or doesn't exist, populate/create
             if (bookList.isEmpty()) {
+                // make the file location customizable
                 System.out.println("\nNote: Your book list was empty or not yet created.\nThe (hidden) file can be found at /home/*local user*/.booklist.json.\n");
             }
             
