@@ -8,15 +8,10 @@ package com.julles.tinyshelf;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+//import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
-
-    // New optional fields to implement: 
-    // rating (double, 0-5)
-    // isbn (string)
-    // field for More Information, moreInfo (string)
 
     @JsonProperty("Title")
     private String title;
@@ -171,8 +166,6 @@ public class Book {
         this.dateModified = dateModified;
     }
 
-    
-    // update when new optional fields are created
     @Override
     public String toString() {
 

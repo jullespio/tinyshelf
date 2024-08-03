@@ -20,13 +20,13 @@ public class BookList {
 
     final String homeDir;
     private List<Book> updatedBookList;
-    //private Book updatedBook;
 
     public BookList(){
     
         homeDir = System.getProperty("user.home");
 
     }
+
 
     public ObjectMapper mapper(){
 
@@ -39,7 +39,8 @@ public class BookList {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         return objectMapper;
-}
+    }
+
 
     public List<Book> returnBookList(){
 
@@ -56,7 +57,6 @@ public class BookList {
             //ex.printStackTrace();
             //if list is empty or doesn't exist, populate/create
             if (bookList.isEmpty()) {
-                //savedBooks = new ArrayList<Book>();
                 System.out.println("\nNote: Your book list was empty or not yet created.\nThe (hidden) file can be found at /home/*local user*/.booklist.json.\n");
             }
             
@@ -107,6 +107,7 @@ public class BookList {
         return searchFinds;
 
     }
+
 
     public void updateBook(Book book, String newData, int field){
 
@@ -173,52 +174,6 @@ public class BookList {
 
     }
 
-    // public void updateBookFieldString(Book book, int field, String updatedData){
-    //     // edit a selected string field from a book 
-        
-    //     List<Book> bookList = this.returnBookList();
-    //     Book updatedBook = book;
-        
-    //     // set new value for field
-    //     switch (field) {
-    //         case 0:
-    //             updatedBook.setTitle(updatedData);
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-        
-    //     try {
-
-    //         // Remove selected book from booklist before updating field
-    //         bookList.remove(book); //this isn't working, find out why
-    //         bookList.add(updatedBook);
-
-    //         ObjectMapper objectMapper = new ObjectMapper();
-    //         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    //         objectMapper.registerModule(new JavaTimeModule());
-    //         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        
-    //         // convert books object to JSON file
-    //         objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
-        
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
-
-        
-    //     // send to this.updateBook();
-
-    // }
-
-    // public void updateBookFieldInt(Book book, int field, int updatedData){
-
-        
-
-    //     // edit a selected string field from a book 
-
-    // }
 
     public void removeBook(Book book, List<Book> booklist){
 

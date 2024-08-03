@@ -123,6 +123,7 @@ public class Prompts {
     public void askYear(){
 
         while (true) {
+            //add validation to ensure the field is an int
             System.out.print("Publication year: ");
             String year = scanner.nextLine();
 
@@ -154,6 +155,7 @@ public class Prompts {
     public void askNumPages(){
 
         while (true) {
+            //add validation to ensure the field is an int
             System.out.print("Number of pages: ");
             String pages = scanner.nextLine();
             if (pages.isEmpty()) {
@@ -177,6 +179,7 @@ public class Prompts {
         return this.numPages;
 
     }
+
 
     //ISBN
     public void askIsbn(){
@@ -203,6 +206,7 @@ public class Prompts {
         return this.isbn;
 
     }
+
 
     //rating
     public void askRating(){
@@ -233,6 +237,7 @@ public class Prompts {
 
     }
 
+
     //ISBN
     public void askOtherInfo(){
 
@@ -256,7 +261,6 @@ public class Prompts {
         return this.otherInfo;
 
     }
-
 
 
     //continue prompt
@@ -290,6 +294,8 @@ public class Prompts {
     
     }
 
+
+    //Main Prompts
     public void newBookPrompt(){
 
         while(true) {
@@ -360,6 +366,7 @@ public class Prompts {
 
     }
 
+
     public void searchPrompt(){
 
         while (true) {
@@ -395,6 +402,7 @@ public class Prompts {
         }
 
     }
+
 
     public void updatePrompt(){
         while (true) {
@@ -540,6 +548,7 @@ public class Prompts {
 
     }
 
+
     public void removePrompt(){
 
         while (true) {
@@ -616,6 +625,7 @@ public class Prompts {
     
         }
     }
+
 
     public void mainMenuPrompt(){
         // Ask user what they wish to do (add new book, find book, update book, delete book)
