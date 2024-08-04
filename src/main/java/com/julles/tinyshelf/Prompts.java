@@ -391,7 +391,7 @@ public class Prompts {
             }
             
             for (Book book : searchResult) {
-                System.out.println("==> " + book);
+                System.out.println("==> " + book + "\n");
             }
 
             continue;
@@ -429,7 +429,7 @@ public class Prompts {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
                          
                 for (int count = 0; count < numOfResults; count++) {
-                    System.out.println("key " + count + "==> " + searchResult.get(count));
+                    System.out.println("key " + count + "==> " + searchResult.get(count) + "\n");
 
                 }
   
@@ -577,7 +577,7 @@ public class Prompts {
                 System.out.println("\n" + numOfResults + " entries have been found containing '" + searchTerm + "':\n");
                          
                 for (int count = 0; count < numOfResults; count++) {
-                    System.out.println("key " + count + "==> " + searchResult.get(count));
+                    System.out.println("key " + count + "==> " + searchResult.get(count) + "\n");
                 }
   
                 System.out.println("\nType key corresponding to book you wish to remove:");

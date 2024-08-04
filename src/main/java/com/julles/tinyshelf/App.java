@@ -6,12 +6,18 @@
 package com.julles.tinyshelf;
 
 import java.io.IOException;
-//import java.util.List;
 
 public class App 
 {
     public static void main( String[] args ) throws IOException
     {
+
+      //Implement:
+      //a method to print the full list of books (only title and author);
+      //validations for int fields;
+      //flags for lent, read book;
+      //option to change booklist location from the software itself;
+      //the concept of shelves;
 
       Prompts prompt = new Prompts();
       prompt.displayGreetings();

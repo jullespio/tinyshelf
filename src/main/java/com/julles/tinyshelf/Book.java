@@ -8,7 +8,6 @@ package com.julles.tinyshelf;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-//import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
@@ -50,19 +49,6 @@ public class Book {
 
     };
 
-
-    // public Book(String title, String author, String publisher, int year, int numPages){
-    //     this.title = title;
-    //     this.author = author;
-    //     this.publisher = publisher;
-    //     this.year = year;
-    //     this.numPages = numPages;
-    //     this.isbn = "<add ISBN number>";
-    //     this.rating = 0.0;
-    //     this.otherInfo = "<add other relevant information about the book>";
-    //     this.dateCreated = LocalDateTime.now();
-    //     this.dateModified = LocalDateTime.now();  
-    // };
 
     public Book(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
         this.title = title;

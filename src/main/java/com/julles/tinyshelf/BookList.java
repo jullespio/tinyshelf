@@ -28,11 +28,8 @@ public class BookList {
 
     public ObjectMapper mapper(){
 
-        //DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy G 'at' HH:mm:ss");
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        // objectMapper.setDateFormat(dateFormat);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
