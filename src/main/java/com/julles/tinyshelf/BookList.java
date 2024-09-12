@@ -5,6 +5,7 @@
 
 package com.julles.tinyshelf;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,11 +50,22 @@ public class BookList {
             bookList = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
         
         } catch (Exception ex) {
-            //ex.printStackTrace();
-            //if list is empty or doesn't exist, populate/create
-            if (bookList.isEmpty()) {
-                // make the file location customizable
-                System.out.println("\nNote: Your book list was empty or not yet created.\nThe (hidden) file can be found at /home/*local user*/.booklist.json.\n");
+
+
+            File bookListFile = new File(homeDir + "/.booklist.json");
+            
+            if (!(bookListFile.isFile())) {
+
+                ObjectMapper objectMapper = this.mapper();
+                List<Book> savedBooks = bookList;
+
+                try {
+                    objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), savedBooks);
+                    System.out.println("\nWarning: Unavailable booklist file. A fresh empty file was created at /home/*local user*/.booklist.json. \n");
+                } catch (Exception e) {
+                    System.out.println("\nSomething went wrong when creating the file. Please contact the developer.\n");
+                }
+    
             }
             
         }
@@ -91,6 +103,10 @@ public class BookList {
         //  list
         List<Book> bookList = returnBookList();
         List<Book> searchFinds = new ArrayList<Book>();
+
+        if (bookList.isEmpty()) {
+            System.out.println("\nWarning: Empty booklist file.\n");
+        }
 
         for (Book book : bookList) {
             
