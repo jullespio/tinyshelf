@@ -230,7 +230,7 @@ public class BookList {
         int index = 1;
 
         for (Book book : bookList) {
-            System.out.println(index + " => " + book.getTitle() + ", by " + book.getAuthor());
+            System.out.println(index + " => " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ")");
             index++;
         }
 
