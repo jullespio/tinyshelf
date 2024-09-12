@@ -1,8 +1,6 @@
-package com;
+package com.julles.tinyshelf;
 
 import java.util.ArrayList;
-import com.julles.tinyshelf.BookList;
-import com.julles.tinyshelf.Book;
 
 public class CreateEntries {
                 
