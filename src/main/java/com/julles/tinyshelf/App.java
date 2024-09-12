@@ -15,7 +15,7 @@ public class App
       //Implement:
       //try.. catch in imputs
       //equals method for books, to insoect the list for duplicates
-      //a method to print the full list of books (only title and author);
+      //DONE -- a method to print the full list of books (only title and author);
       //validations for int fields;
       //flags for lent, read book;
       //option to change booklist location from the software itself;

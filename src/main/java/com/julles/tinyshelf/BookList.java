@@ -79,17 +79,17 @@ public class BookList {
 
         try {
 
-            List<Book> savedBooks = returnBookList();
+            List<Book> bookList = returnBookList();
 
             Book newBook = new Book(title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
             // add book to list
-            savedBooks.add(newBook);
+            bookList.add(newBook);
 
             ObjectMapper objectMapper = this.mapper();;
         
             // convert books object to JSON file
-            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), savedBooks);
+            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
         
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -206,9 +206,34 @@ public class BookList {
         
         } catch (Exception ex) {
             ex.printStackTrace();
+        } 
+    }
+
+    public void printBookList(){
+        List<Book> bookList = this.returnBookList();
+
+        int numEntries = bookList.size();
+        System.out.println();
+        if (numEntries>1) {
+            System.out.println(numEntries + " entries have been found.\n");
+        } 
+        
+        if (numEntries==1) {
+            System.out.println("One entry has been found.\n");
+        } 
+
+        if (numEntries==0) {
+            System.out.println("No entries have been found.\n");
+
         }
 
-        
+        int index = 1;
+
+        for (Book book : bookList) {
+            System.out.println(index + " => " + book.getTitle() + ", by " + book.getAuthor());
+            index++;
+        }
+
     }
 
 }

@@ -623,6 +623,27 @@ public class Prompts {
         }
     }
 
+    public void printBookListPrompt(){
+
+        BookList bookList = new BookList();
+
+        bookList.printBookList();
+  
+        while (true) {
+            System.out.println("\nPress e to exit.");
+            System.out.print("> ");
+            String answer = scanner.nextLine();
+
+            if (answer.equals("e") || answer.equals("E")) {
+                break;
+            } else {
+                continue;
+            }
+
+        }
+
+
+    }
 
     public void mainMenuPrompt(){
         // Ask user what they wish to do (add new book, find book, update book, delete book)
@@ -637,6 +658,7 @@ public class Prompts {
             "\n(s) to use the search function" + 
             "\n(u) to update a book" +
             "\n(r) to remove a book" +
+            "\n(p) print the full booklist (Title, Author)" +
             "\n-or-" + 
             "\n(h) for help" + 
             "\n(e) to exit program\n");
@@ -663,6 +685,11 @@ public class Prompts {
             } else if (answer.equals("r") || answer.equals("R")) {
     
                 this.removePrompt();
+                continue;
+    
+            } else if (answer.equals("p") || answer.equals("P")) {
+    
+                this.printBookListPrompt();
                 continue;
     
             } else if (answer.equals("h") || answer.equals("H")) {
