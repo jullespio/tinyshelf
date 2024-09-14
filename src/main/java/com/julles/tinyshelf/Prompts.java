@@ -120,7 +120,6 @@ public class Prompts {
     public void askYear(){
 
         while (true) {
-            //add validation to ensure the field is an int
             System.out.print("Publication year: ");
             String year = scanner.nextLine();
 
@@ -132,7 +131,12 @@ public class Prompts {
                 this.fieldString = year;
                 break;
             } else {
-                this.year = Integer.valueOf(year);
+                try {
+                    this.year = Integer.valueOf(year);
+                } catch (Exception e) {
+                    System.out.println("\nPlease type a valid year (numbers only).\n");
+                    continue;
+                }
                 this.fieldString = year;
                 break; 
             }
@@ -163,7 +167,12 @@ public class Prompts {
                 this.fieldString = pages;
                 break;
             } else {
-                this.numPages = Integer.valueOf(pages);
+                try {
+                    this.numPages = Integer.valueOf(pages);
+                } catch (Exception e) {
+                    System.out.println("\nPlease type a valid number (integer).\n");
+                    continue;
+                }
                 this.fieldString = pages;
                 break; 
             }
@@ -190,7 +199,7 @@ public class Prompts {
                 this.isbn = "<add ISBN number>";
                 this.fieldString = "<add ISBN number>";
                 break;   
-                }
+            }
             this.isbn = isbn;
             this.fieldString = isbn;
             break;   
