@@ -25,5 +25,8 @@ public class App
       prompt.displayGreetings();
       prompt.mainMenuPrompt();
 
+      // BookList startList = new BookList();
+      // startList.generateTestEntries();
+
     }
 }

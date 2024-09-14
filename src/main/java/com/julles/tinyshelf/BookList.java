@@ -84,7 +84,7 @@ public class BookList {
             Book newBook = new Book(title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
             // add book to list
-            bookList.add(newBook);
+            bookList.add(0, newBook);
 
             ObjectMapper objectMapper = this.mapper();;
         
@@ -169,7 +169,7 @@ public class BookList {
 
             updatedBook.setDateModified(LocalDateTime.now());
 
-            bookList.add(updatedBook);
+            bookList.add(0, updatedBook);
 
                 
         try {
@@ -235,5 +235,34 @@ public class BookList {
         }
 
     }
+
+    // ONLY FOR TESTING PURPOSES
+    public void generateTestEntries(){
+        for (int e = 1; e <= 50; e++) {
+            String publisher = "Odd Publishing House";
+            String author = "Author McTesty";
+            int year = 1999;
+            if (e%2==0) {
+                publisher = "Even Publishing House";
+                year = 1993;
+                author = "Writer T. Smith";
+            }
+            this.AddNewBook("Test " + e, author, publisher, year, 99, null, e, null);
+        }
+    }
+
+    // public void removeRepeatEntry(){
+    //     List<Book> list = this.returnBookList();
+
+    //     for (Book book1 : list) {
+    //         for (Book book2 : list) {
+    //             if (book1.getTitle().equals(book2.getTitle())) {
+    //                 removeBook(book1, list);
+    //             }
+    //         }
+    //     }
+
+    // }
+
 
 }
