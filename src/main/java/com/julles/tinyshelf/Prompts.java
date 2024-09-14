@@ -235,7 +235,7 @@ public class Prompts {
     }
 
 
-    //ISBN
+    //OtherInfo
     public void askOtherInfo(){
 
         while (true) {
@@ -252,6 +252,7 @@ public class Prompts {
         }
         
     }
+
 
     public String returnOtherInfo(){
 
@@ -623,6 +624,7 @@ public class Prompts {
         }
     }
 
+
     public void printBookListPrompt(){
 
         BookList bookList = new BookList();
@@ -642,8 +644,8 @@ public class Prompts {
 
         }
 
-
     }
+
 
     public void mainMenuPrompt(){
         // Ask user what they wish to do (add new book, find book, update book, delete book)
@@ -666,7 +668,6 @@ public class Prompts {
             System.out.print("> ");
             String answer = scanner.nextLine();
 
-            //substitute if-sequence below for a switch
             if (answer.equals("a") || answer.equals("A")) {
 
                 this.newBookPrompt();
