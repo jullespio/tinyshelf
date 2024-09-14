@@ -8,7 +8,7 @@ public class CreateEntries {
     BookList bookList = new BookList();
 
     public CreateEntries(){
-        
+        this.createTestEntries();
     }
 
     public void createTestEntries(){

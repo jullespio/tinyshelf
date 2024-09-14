@@ -13,7 +13,7 @@ public class App
     {
 
       //Implement:
-      //try.. catch in imputs
+      //try.. catch in inputs
       //equals method for books, to insoect the list for duplicates
       //DONE -- a method to print the full list of books (title, author and year);
       //validations for int fields;
