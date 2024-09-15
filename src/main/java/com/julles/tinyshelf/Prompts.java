@@ -30,9 +30,6 @@ public class Prompts {
         
     }
 
-    //add validations, so that typing invalid info (like string instead of int) on prompts
-    //restarts them instead of throwing an error;
-
     // Greetings
     public void displayGreetings(){
 
@@ -686,9 +683,9 @@ public class Prompts {
             "\n(a) to add a new book" + 
             "\n(s) to use the search function" + 
             "\n(u) to update a book" +
-            "\n(r) to remove a book" +
-            "\n(p) print the full booklist" +
+            "\n(r) to remove a book\n" +
             "\n-or-" + 
+            "\n(p) to print the full booklist" +
             "\n(h) for help" + 
             "\n(e) to exit program\n");
             

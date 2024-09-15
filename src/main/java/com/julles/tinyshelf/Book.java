@@ -160,6 +160,33 @@ public class Book {
         this.dateModified = dateModified;
     }
 
+    public boolean equals(Object compared) {
+        // if the variables are located in the same position, they are equal
+        if (this == compared) {
+            return true;
+        }
+
+        // if the type of the compared object is not Book, the objects are not equal
+        if (!(compared instanceof Book)) {
+            return false;
+        }
+
+        // convert the Object type compared object
+        // into a SimpleDate type object called comparedSimpleDate
+        Book comparedBook = (Book) compared;
+
+        // if the values of the object variables are the same, the objects are equal
+        if (this.title.equals(comparedBook.getTitle()) &&
+            this.author.equals(comparedBook.getAuthor()) &&
+            this.year == comparedBook.getYear() &&
+            this.numPages == comparedBook.getNumPages()) {
+            return true;
+        }
+
+        // otherwise the objects are not equal
+        return false;
+    }
+
     @Override
     public String toString() {
 

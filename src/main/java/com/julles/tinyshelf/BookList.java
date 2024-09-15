@@ -106,7 +106,7 @@ public class BookList {
             // add book to list
             bookList.add(0, newBook);
 
-            ObjectMapper objectMapper = this.mapper();;
+            ObjectMapper objectMapper = this.mapper();
         
             // convert books object to JSON file
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
