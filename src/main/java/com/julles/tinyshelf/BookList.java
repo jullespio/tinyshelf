@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -20,6 +22,7 @@ public class BookList {
 
     final String homeDir;
     private List<Book> updatedBookList;
+    private Scanner scanner = new Scanner(System.in);
 
     public BookList(){
     
@@ -90,6 +93,29 @@ public class BookList {
 
         return bookList;
 
+    }
+
+
+    public String returnDuplicatesDecision(Book newBook, List<Book> booklist){
+
+        ArrayList<Book> duplicates = new ArrayList<>();
+
+        for (Book book : booklist) {
+            if (newBook.equals(book)) {
+                duplicates.add(book);
+            }
+        }
+
+        System.out.println("Duplicates have been found. See below: \n");
+        for (Book book : duplicates) {
+            System.out.println("==> " + book + "\n");
+        }
+
+        System.out.println("Continue anyway? y/n");
+        System.out.print("> ");
+        String answer = scanner.nextLine();
+
+        return answer;
     }
 
 
