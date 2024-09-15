@@ -251,7 +251,7 @@ public class BookList {
         int index = 1;
 
         for (Book book : bookList) {
-            System.out.println("Entry " + index + ": " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ") => Modified " + book.getDateModified().format(formatedDate));
+            System.out.println(index + " - " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ") => Modified " + book.getDateModified().format(formatedDate));
             index++;
         }
 

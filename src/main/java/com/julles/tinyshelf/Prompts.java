@@ -687,7 +687,7 @@ public class Prompts {
             "\n(s) to use the search function" + 
             "\n(u) to update a book" +
             "\n(r) to remove a book" +
-            "\n(p) print the full booklist (Title, Author)" +
+            "\n(p) print the full booklist" +
             "\n-or-" + 
             "\n(h) for help" + 
             "\n(e) to exit program\n");

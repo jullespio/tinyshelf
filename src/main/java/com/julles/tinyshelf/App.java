@@ -14,7 +14,7 @@ public class App
 
       //Implement:
 
-      //custom equals() method for books, to insoect the list for duplicates
+      //custom equals() method for books, to inspect the list for duplicates
       //flags for lent, read book;
       //option to change booklist location from the software itself;
       //the concept of shelves;
