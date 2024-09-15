@@ -13,13 +13,15 @@ public class App
     {
 
       //Implement:
-      //try.. catch in inputs
-      //equals method for books, to insoect the list for duplicates
-      //DONE -- a method to print the full list of books (title, author and year);
-      //validations for int fields;
+
+      //custom equals() method for books, to insoect the list for duplicates
       //flags for lent, read book;
       //option to change booklist location from the software itself;
       //the concept of shelves;
+      
+      //DONE -- try.. catch in relevant inputs
+      //DONE -- a method to print the full list of books (title, author and year);
+      //DONE -- validations for int fields;
 
       Prompts prompt = new Prompts();
       prompt.displayGreetings();
