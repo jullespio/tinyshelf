@@ -247,7 +247,7 @@ public class BookList {
                 year = 1993;
                 author = "Writer T. Smith";
             }
-            this.AddNewBook("Test " + e, author, publisher, year, 99, null, e, null);
+            this.AddNewBook("Test Book " + e, author, publisher, year, 99, "<add ISBN number>", 0, "<add relevant information about the book>");
         }
     }
 
