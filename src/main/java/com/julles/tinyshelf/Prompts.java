@@ -656,11 +656,11 @@ public class Prompts {
         bookList.printBookList();
   
         while (true) {
-            System.out.println("\nPress e to exit.");
+            System.out.println("\nPress enter to exit.");
             System.out.print("> ");
             String answer = scanner.nextLine();
 
-            if (answer.equals("e") || answer.equals("E")) {
+            if (answer.isEmpty()) {
                 break;
             } else {
                 continue;
