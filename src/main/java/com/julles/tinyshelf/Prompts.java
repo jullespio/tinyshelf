@@ -51,7 +51,7 @@ public class Prompts {
             System.out.print("\nTitle: ");
             String title = scanner.nextLine();
             if (title.isEmpty()) {
-                System.out.print("Field required.\n");
+                System.out.print("\n- Field required. -\n");
                 continue;
             } 
             this.title = title;
@@ -75,7 +75,7 @@ public class Prompts {
             System.out.print("Author: ");
             String author = scanner.nextLine();
             if (author.isEmpty()) {
-                System.out.print("Field required.\n");
+                System.out.print("\n- Field required. -\n");
                 continue;
             }
             this.author = author;
@@ -99,7 +99,7 @@ public class Prompts {
             System.out.print("Publisher: ");
             String publisher = scanner.nextLine();
             if (publisher.isEmpty()) {
-                System.out.print("Field required.\n");
+                System.out.print("\n- Field required. -\n");
                 continue;
             }
             this.publisher = publisher;
@@ -124,7 +124,7 @@ public class Prompts {
             String year = scanner.nextLine();
 
             if (year.isEmpty()) {
-                System.out.print("Field required.\n");
+                System.out.print("\n- Field required. -\n");
                 System.out.println();
                 continue;
             } else if (year.equals("e")) {
@@ -156,11 +156,10 @@ public class Prompts {
     public void askNumPages(){
 
         while (true) {
-            //add validation to ensure the field is an int
             System.out.print("Number of pages: ");
             String pages = scanner.nextLine();
             if (pages.isEmpty()) {
-                System.out.print("Field required.\n");
+                System.out.print("\n- Field required. -\n");
                 System.out.println();
                 continue;
             } else if (pages.equals("e")) {
@@ -218,7 +217,7 @@ public class Prompts {
     public void askRating(){
         //add validation to ensure the field is at least an int
         while (true) {
-            System.out.print("-optional- Rating: ");
+            System.out.print("-optional- Rating (between 0 and 5): ");
             String rating = scanner.nextLine();
             if (rating.isEmpty()) {
                 this.rating = 0.0;
@@ -228,7 +227,19 @@ public class Prompts {
                 this.fieldString = rating;
                 break;
             } else {
-                this.rating = Double.valueOf(rating);
+
+                try {
+                    this.rating = Double.valueOf(rating);
+                } catch (Exception e) {
+                    System.out.println("\nPlease type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).\n");
+                    continue;
+                }
+
+                if (!(this.rating>=0 && this.rating<=5)) {
+                    System.out.println("\nPlease type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).\n");
+                    continue;
+                } 
+
                 this.fieldString = rating;
                 break; 
             }
