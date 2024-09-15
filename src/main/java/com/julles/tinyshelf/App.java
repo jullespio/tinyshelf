@@ -21,12 +21,12 @@ public class App
       //option to change booklist location from the software itself;
       //the concept of shelves;
 
-      // Prompts prompt = new Prompts();
-      // prompt.displayGreetings();
-      // prompt.mainMenuPrompt();
+      Prompts prompt = new Prompts();
+      prompt.displayGreetings();
+      prompt.mainMenuPrompt();
 
-      BookList startList = new BookList();
-      startList.generateTestEntries();
+      // BookList startList = new BookList();
+      // startList.generateTestEntries();
 
     }
 }

@@ -8,6 +8,7 @@ package com.julles.tinyshelf;
 import java.io.File;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +38,23 @@ public class BookList {
         return objectMapper;
     }
 
+    public static int returnLargestId(List<Book> booklist){
+
+        ArrayList<Integer> ids = new ArrayList<Integer>(); 
+
+        for (Book book : booklist) {
+            ids.add(book.getId());
+        }
+
+        int id = 0;
+
+        if (ids.isEmpty()) {
+            return id;
+        } else {
+            return ids.size();
+        }
+
+    }
 
     public List<Book> returnBookList(){
 
@@ -75,13 +93,15 @@ public class BookList {
     }
 
 
-    public void AddNewBook(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
+    public void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
 
         try {
 
             List<Book> bookList = returnBookList();
 
-            Book newBook = new Book(title, author, publisher, year, numPages, isbn, rating, moreInfo); 
+            id = returnLargestId(bookList);
+            
+            Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
             // add book to list
             bookList.add(0, newBook);
@@ -211,11 +231,12 @@ public class BookList {
 
     public void printBookList(){
         List<Book> bookList = this.returnBookList();
-
+        DateTimeFormatter formatedDate = DateTimeFormatter.ofPattern("MMM dd yyyy 'at' KK:mm:ss a");        
         int numEntries = bookList.size();
+
         System.out.println();
         if (numEntries>1) {
-            System.out.println(numEntries + " entries have been found.\n");
+            System.out.println(numEntries + " entries have been found (ordered by last modified):\n");
         } 
         
         if (numEntries==1) {
@@ -230,7 +251,7 @@ public class BookList {
         int index = 1;
 
         for (Book book : bookList) {
-            System.out.println(index + " => " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ")");
+            System.out.println("Entry " + index + ": " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ") => Modified " + book.getDateModified().format(formatedDate));
             index++;
         }
 
@@ -247,7 +268,8 @@ public class BookList {
                 year = 1993;
                 author = "Writer T. Smith";
             }
-            this.AddNewBook("Test Book " + e, author, publisher, year, 99, "<add ISBN number>", 0, "<add relevant information about the book>");
+            int id = returnLargestId(returnBookList());
+            this.AddNewBook(id, "Test Book " + e, author, publisher, year, 99, "<add ISBN number>", 0, "<add relevant information about the book>");
         }
     }
 

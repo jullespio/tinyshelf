@@ -12,6 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
 
+    @JsonProperty("ID")
+    private int id;
+
     @JsonProperty("Title")
     private String title;
 
@@ -50,7 +53,8 @@ public class Book {
     };
 
 
-    public Book(String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
+    public Book(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
+        this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -66,6 +70,10 @@ public class Book {
 
     /*  Getters */
 
+    public int getId(){
+        return this.id;
+    }
+    
     public String getTitle(){
         return this.title;
     }
@@ -158,7 +166,7 @@ public class Book {
         DateTimeFormatter formatedDate = DateTimeFormatter.ofPattern("MMM dd yyyy 'at' KK:mm:ss a");
 
         return this.title + ", by " + this.author + 
-        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year + " (current edtion)." +
+        "\n    Published by " + this.publisher + ", " + this.numPages + " pages, " + this.year + "." +
         "\n    ISBN: " + this.isbn +
         "\n    Rated " + this.rating + " out of 5 " + 
         "\n    Other information: " + 

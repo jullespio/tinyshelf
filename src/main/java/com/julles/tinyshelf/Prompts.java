@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Prompts {
 
+    private int id;
     private String title;
     private String author;
     private String publisher;
@@ -43,6 +44,12 @@ public class Prompts {
         return this.fieldString;
     }
     
+    // id
+    public int returnId(){
+
+        return this.id;
+
+    }
 
     // Title
     public void askTitle(){
@@ -308,7 +315,7 @@ public class Prompts {
     public void sendToList(){
 
         BookList bookList = new BookList();
-        bookList.AddNewBook(returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages(), returnIsbn(), returnRating(), returnOtherInfo());
+        bookList.AddNewBook(returnId(), returnTitle(), returnAuthor(), returnPublisher(), returnYear(), returnNumPages(), returnIsbn(), returnRating(), returnOtherInfo());
     
     }
 
@@ -454,7 +461,7 @@ public class Prompts {
 
                 }
   
-                System.out.println("\nType key corresponding to book you wish to update. Leave blank to exit.");
+                System.out.println("\nType key corresponding to book you wish to update. Leave blank to cancel.");
                 System.out.print("> ");
                 String key = scanner.nextLine();
 
@@ -493,7 +500,7 @@ public class Prompts {
 
             if (answerCont.equals("y") || answerCont.equals("Y")) {
 
-                System.out.println("Type key corresponding to field you wish to update. Leave blank to exit.");
+                System.out.println("Type key corresponding to field you wish to update. Leave blank to cancel.");
                 System.out.println("\n0 - Title\n1 - Author\n2 - Publisher\n3 - Year\n4 - Number of pages\n5 - ISBN\n6 - Rating\n7 - Other Information\n");
                 System.out.print("> ");
                 String key = scanner.nextLine();
