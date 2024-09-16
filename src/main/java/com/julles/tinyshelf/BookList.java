@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -22,7 +21,6 @@ public class BookList {
 
     final String homeDir;
     private List<Book> updatedBookList;
-    private Scanner scanner = new Scanner(System.in);
 
     public BookList(){
     
@@ -96,7 +94,7 @@ public class BookList {
     }
 
 
-    public String returnDuplicatesDecision(Book newBook, List<Book> booklist){
+    public void checkForDuplicates(Book newBook, List<Book> booklist){
 
         ArrayList<Book> duplicates = new ArrayList<>();
 
@@ -106,16 +104,14 @@ public class BookList {
             }
         }
 
-        System.out.println("Duplicates have been found. See below: \n");
-        for (Book book : duplicates) {
-            System.out.println("==> " + book + "\n");
+        if (!(duplicates.isEmpty())) {
+            System.out.println("\nNote: Very similar entries were found on the list. See below: \n");
+            for (Book book : duplicates) {
+                System.out.println("==> " + book + "\n");
+            }
+            System.out.println("Type (r) in the main menu to remove unwanted entries.\n");
         }
 
-        System.out.println("Continue anyway? y/n");
-        System.out.print("> ");
-        String answer = scanner.nextLine();
-
-        return answer;
     }
 
 
@@ -128,6 +124,8 @@ public class BookList {
             id = returnLargestId(bookList);
             
             Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
+
+            this.checkForDuplicates(newBook, bookList);
 
             // add book to list
             bookList.add(0, newBook);
@@ -285,7 +283,7 @@ public class BookList {
 
     // ONLY FOR TESTING PURPOSES
     public void generateTestEntries(){
-        for (int e = 1; e <= 50; e++) {
+        for (int e = 1; e <= 25; e++) {
             String publisher = "Odd Publishing House";
             String author = "Author McTesty";
             int year = 1999;

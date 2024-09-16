@@ -359,30 +359,35 @@ public class Prompts {
             if (this.fieldString.equals("e")) {
                 break;
             }
+
+            this.sendToList();
+            System.out.println("New entry -" + this.title + "- has been added.");
+            continue;
    
-            this.continueOrNot();
    
-            String continuePrompt = this.returnContinueOrNot();
+            // this.continueOrNot();
    
-            if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
+            // String continuePrompt = this.returnContinueOrNot();
    
-                this.sendToList();
-                System.out.println("New entry -" + this.title + "- has been added.");
-                continue;
+            // if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
    
-            } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
+            //     this.sendToList();
+            //     System.out.println("New entry -" + this.title + "- has been added.");
+            //     continue;
    
-                this.sendToList();
-                System.out.println("New entry -" + this.title + "- has been added.");
-                break;
+            // } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
    
-            } else {
+            //     this.sendToList();
+            //     System.out.println("New entry -" + this.title + "- has been added.");
+            //     break;
    
-                this.sendToList();
-                System.out.println("Invalid answer. New entry -" + this.title + "- has been added.\nExiting...");
-                break;
+            // } else {
    
-            }
+            //     this.sendToList();
+            //     System.out.println("Invalid answer. New entry -" + this.title + "- has been added.\nExiting...");
+            //     break;
+   
+            // }
             
         }        
 
@@ -680,10 +685,10 @@ public class Prompts {
             "\nWhat do you wish to do?\n" + 
 
             "\nType:" + 
-            "\n(a) to add a new book" + 
+            "\n(a) to add new books" + 
             "\n(s) to use the search function" + 
-            "\n(u) to update a book" +
-            "\n(r) to remove a book\n" +
+            "\n(u) to update books" +
+            "\n(r) to remove books\n" +
             "\n-or-" + 
             "\n(p) to print the full booklist" +
             "\n(h) for help" + 
