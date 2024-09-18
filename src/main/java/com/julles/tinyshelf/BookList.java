@@ -94,7 +94,7 @@ public class BookList {
     }
 
 
-    public void checkForDuplicates(Book newBook, List<Book> booklist){
+    public Boolean areThereDupes(Book newBook, List<Book> booklist){
 
         ArrayList<Book> duplicates = new ArrayList<>();
 
@@ -105,38 +105,41 @@ public class BookList {
         }
 
         if (!(duplicates.isEmpty())) {
-            System.out.println("\nNote: Very similar entries were found on the list. See below: \n");
-            for (Book book : duplicates) {
-                System.out.println("==> " + book + "\n");
-            }
-            System.out.println("Type (r) in the main menu to remove unwanted entries.\n");
+            return true;
         }
+
+        return false;
 
     }
 
 
     public void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
 
-        try {
+        List<Book> bookList = returnBookList();
 
-            List<Book> bookList = returnBookList();
+        id = returnLargestId(bookList);
+        
+        Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
-            id = returnLargestId(bookList);
-            
-            Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
-
-            this.checkForDuplicates(newBook, bookList);
-
+        if (this.areThereDupes(newBook, bookList)==false) {
             // add book to list
             bookList.add(0, newBook);
+            
+            try {
 
-            ObjectMapper objectMapper = this.mapper();
-        
-            // convert books object to JSON file
-            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
-        
-        } catch (Exception ex) {
-            ex.printStackTrace();
+                ObjectMapper objectMapper = this.mapper();
+            
+                // convert books object to JSON file
+                objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+                System.out.println("\nNew entry -" + title + "- has been added.");
+            
+            } catch (Exception ex) {
+                //ex.printStackTrace();
+                System.out.println("\nSomething went wrong! Book not saved. Please contact the developer.\n");
+
+            }            
+        } else {
+            System.out.println("\nDuplicate entry! Book not saved, please try again.\n");
         }
 
     }

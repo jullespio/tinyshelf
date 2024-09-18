@@ -361,7 +361,7 @@ public class Prompts {
             }
 
             this.sendToList();
-            System.out.println("New entry -" + this.title + "- has been added.");
+            
             continue;
    
    
@@ -692,7 +692,7 @@ public class Prompts {
             "\n-or-" + 
             "\n(p) to print the full booklist" +
             "\n(h) for help" + 
-            "\n(e) to exit program\n");
+            "\n(q) to quit\n");
             
             System.out.print("> ");
             String answer = scanner.nextLine();
@@ -728,7 +728,7 @@ public class Prompts {
                 //this.showHelp();
                 continue;
     
-            } else if (answer.equals("e") || answer.equals("E")) {
+            } else if (answer.equals("q") || answer.equals("Q")) {
                 
                 System.out.print("\nExiting...\n");
                 System.out.print("\nSee you next time!\n");
