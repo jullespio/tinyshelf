@@ -290,13 +290,28 @@ public class BookList {
             String publisher = "Odd Publishing House";
             String author = "Author McTesty";
             int year = 1999;
+            int pages = 99;
+            double rating = 4.0;
+
             if (e%2==0) {
                 publisher = "Even Publishing House";
                 year = 1993;
                 author = "Writer T. Smith";
+                pages = 246;
+                rating = 3.8;
+    
             }
+
+            if (e%2==0 && e%4==0) {
+                publisher = "Offbeat Publishing House";
+                year = 1976;
+                author = "Harry \"Crazy Horse\" Flannagan";
+                pages = 468;
+                rating = 5.0;
+            }
+
             int id = returnLargestId(returnBookList());
-            this.AddNewBook(id, "Test Book " + e, author, publisher, year, 99, "<add ISBN number>", 0, "<add relevant information about the book>");
+            this.AddNewBook(id, "Test Book " + e, author, publisher, year, pages, "<add ISBN number>", rating, "<add relevant information about the book>");
         }
     }
 

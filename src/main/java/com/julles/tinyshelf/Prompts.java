@@ -289,7 +289,7 @@ public class Prompts {
     public void continueOrNot(){
 
         while (true) {
-            System.out.println("\nContinue? y/n");
+            System.out.println("\nContinue? [y/n]");
             System.out.print("> ");
             String answer = scanner.nextLine();
             System.out.println();
@@ -450,21 +450,13 @@ public class Prompts {
                     int numKey = Integer.valueOf(key);
                     if (numKey>=0 && numKey<=numOfResults) {
                         this.bookToUpdate = searchResult.get(numKey);
-                        System.out.println("\nSelected book ready to be updated.");
+                        System.out.println("\n--\"" + this.bookToUpdate.getTitle() + "\" selected.\nBook ready to be updated.");
 
                     } else {
-                        System.out.println("No such key found.");
+                        System.out.println("\nNo such key found.");
                         continue;
                     }
                 }
-                    
-                    // ADD VALIDATION TO CHECK IF KEY IS NUMERIC OF NOT-- use a method with try...catch to test
-                    // At the moment, typing a non-numeric character returns an error
-
-                    // else if (){
-                    //     System.out.println("No such key found.\n");
-                    //     continue;
-                    // }
                 
                 
             } else if (numOfResults == 0) {
@@ -530,7 +522,7 @@ public class Prompts {
                         
                             
                         } else {
-                            System.out.println("No such key found.");
+                            System.out.println("\nNo such key found.");
                             continue;
                         } 
                     
@@ -590,11 +582,11 @@ public class Prompts {
                 System.out.print("> ");
                 int key = Integer.valueOf(scanner.nextLine());
                 if (key>numOfResults-1) {
-                    System.out.println("No such key found.\n");
+                    System.out.println("\nNo such key found.\n");
                     continue;
                 }
                 this.bookToUpdate = searchResult.get(key);
-                System.out.println("\nSelected book ready to be removed.");
+                System.out.println("\n--\"" + this.bookToUpdate.getTitle() + "\" selected.\nBook ready to be removed.");
 
     
             } else if (numOfResults == 0) {
