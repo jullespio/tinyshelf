@@ -6,6 +6,7 @@
 package com.julles.tinyshelf;
 
 import java.io.IOException;
+import java.util.List;
 
 public class App 
 {
@@ -23,12 +24,17 @@ public class App
       //DONE -- a method to print the full list of books (title, author and year);
       //DONE -- validations for int fields;
 
+      BookList startList = new BookList();
+      List<Book> updatedList = startList.returnBookList();
+
+      if (updatedList.isEmpty()) {
+        startList.generateTestEntries(10);
+      }
+
       Prompts prompt = new Prompts();
       prompt.displayGreetings();
       prompt.mainMenuPrompt();
 
-      // BookList startList = new BookList();
-      // startList.generateTestEntries();
 
     }
 }

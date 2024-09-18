@@ -285,8 +285,8 @@ public class BookList {
     }
 
     // ONLY FOR TESTING PURPOSES
-    public void generateTestEntries(){
-        for (int e = 1; e <= 25; e++) {
+    public void generateTestEntries(int amount){
+        for (int e = 1; e <= amount; e++) {
             String publisher = "Odd Publishing House";
             String author = "Author McTesty";
             int year = 1999;
