@@ -364,30 +364,6 @@ public class Prompts {
             
             continue;
    
-   
-            // this.continueOrNot();
-   
-            // String continuePrompt = this.returnContinueOrNot();
-   
-            // if (continuePrompt.equals("y") || continuePrompt.equals("Y")) {
-   
-            //     this.sendToList();
-            //     System.out.println("New entry -" + this.title + "- has been added.");
-            //     continue;
-   
-            // } else if (continuePrompt.equals("n") || continuePrompt.equals("N")) {
-   
-            //     this.sendToList();
-            //     System.out.println("New entry -" + this.title + "- has been added.");
-            //     break;
-   
-            // } else {
-   
-            //     this.sendToList();
-            //     System.out.println("Invalid answer. New entry -" + this.title + "- has been added.\nExiting...");
-            //     break;
-   
-            // }
             
         }        
 
@@ -552,7 +528,7 @@ public class Prompts {
                                 break;
                             }
                         
-                            System.out.println("\nBook has been updated.");
+                            
                         } else {
                             System.out.println("No such key found.");
                             continue;

@@ -171,67 +171,67 @@ public class BookList {
     public void updateBook(Book book, String newData, int field){
 
 
-            List<Book> bookList = this.returnBookList();
-            Book toRemove = book;
+        List<Book> bookList = this.returnBookList();
 
-            for (Book item : bookList) {
-                if (item.toString().equals(book.toString())) {
-                    toRemove = item;
-                }
-            }
+        Book updatedBook = book;
 
-            bookList.remove(toRemove);
+        switch (field) {
+            case 0:
+                updatedBook.setTitle(newData);
+                break;
+            case 1:
+                updatedBook.setAuthor(newData);
+                break;
+            case 2:
+                updatedBook.setPublisher(newData);
+                break;
+            case 3:
+                updatedBook.setYear(Integer.valueOf(newData));
+                break;
+            case 4:
+                updatedBook.setNumPages(Integer.valueOf(newData));
+                break;
+            case 5:
+                updatedBook.setIsbn(newData);
+                break;
+            case 6:
+                updatedBook.setRating(Double.valueOf(newData));
+                break;
+            case 7:
+                updatedBook.setOtherInfo(newData);
+                break;     
 
-            Book updatedBook = book;
-
-            switch (field) {
-                case 0:
-                    updatedBook.setTitle(newData);
-                    break;
-                case 1:
-                    updatedBook.setAuthor(newData);
-                    break;
-                case 2:
-                    updatedBook.setPublisher(newData);
-                    break;
-                case 3:
-                    updatedBook.setYear(Integer.valueOf(newData));
-                    break;
-                case 4:
-                    updatedBook.setNumPages(Integer.valueOf(newData));
-                    break;
-                case 5:
-                    updatedBook.setIsbn(newData);
-                    break;
-                case 6:
-                    updatedBook.setRating(Double.valueOf(newData));
-                    break;
-                case 7:
-                    updatedBook.setOtherInfo(newData);
-                    break;     
-
-                default:
-                    break;
-            }
-
-            updatedBook.setDateModified(LocalDateTime.now());
-
-            bookList.add(0, updatedBook);
-
-                
-        try {
-
-            ObjectMapper objectMapper = this.mapper();;
-        
-            // convert books object to JSON file
-            objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
-        
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            default:
+                break;
         }
 
 
-    }
+        if (this.areThereDupes(updatedBook, bookList)==false) {
+            
+            bookList.remove(book);
+            updatedBook.setDateModified(LocalDateTime.now());
+            bookList.add(0, updatedBook);
+            
+            try {
+
+                ObjectMapper objectMapper = this.mapper();
+            
+                // convert books object to JSON file
+                objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+
+                System.out.println("\nEntry -" + updatedBook.getTitle() + "- has been updated.");
+            
+            } catch (Exception ex) {
+                //ex.printStackTrace();
+                System.out.println("\nSomething went wrong! Book not updated. Please contact the developer.\n");
+
+            }            
+        } else {
+            System.out.println("\nThis action will create a duplicate entry! Book not updated, please try again.\n");
+        }
+
+
+    }    
 
 
     public void removeBook(Book book, List<Book> booklist){
