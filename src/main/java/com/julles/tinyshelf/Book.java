@@ -178,8 +178,12 @@ public class Book {
         // if the values of the object variables are the same, the objects are equal
         if (this.title.equals(comparedBook.getTitle()) &&
             this.author.equals(comparedBook.getAuthor()) &&
+            this.publisher.equals(comparedBook.getPublisher()) &&
             this.year == comparedBook.getYear() &&
-            this.numPages == comparedBook.getNumPages()) {
+            this.numPages == comparedBook.getNumPages() &&
+            this.isbn.equals(comparedBook.getIsbn()) &&
+            this.rating == comparedBook.getYear() &&
+            this.otherInfo.equals(comparedBook.getOtherInfo())) {
             return true;
         }
 

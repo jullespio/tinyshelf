@@ -219,7 +219,7 @@ public class Prompts {
 
     //rating
     public void askRating(){
-        //add validation to ensure the field is at least an int
+
         while (true) {
             System.out.print("-optional- Rating (between 0 and 5): ");
             String rating = scanner.nextLine();
@@ -409,7 +409,6 @@ public class Prompts {
 
     public void updatePrompt(){
         while (true) {
-
             System.out.println("\nWhich book do you wish to update? Search is case sensitive.\nEnter a blank search term to exit.");
             System.out.print("> ");
             String searchTerm = scanner.nextLine();
@@ -420,9 +419,7 @@ public class Prompts {
             }
     
             BookList bookList = new BookList();
-
             List<Book> searchResult = bookList.findBook(searchTerm);
-
             int numOfResults = searchResult.size();
     
             if (numOfResults == 1) {  
@@ -447,18 +444,23 @@ public class Prompts {
                     System.out.println("Exiting...\n");
                     break;
                 } else {
-                    int numKey = Integer.valueOf(key);
-                    if (numKey>=0 && numKey<=numOfResults) {
-                        this.bookToUpdate = searchResult.get(numKey);
-                        System.out.println("\n--\"" + this.bookToUpdate.getTitle() + "\" selected.\nBook ready to be updated.");
-
-                    } else {
-                        System.out.println("\nNo such key found.");
+                    
+                    try {
+                        int numKey = Integer.valueOf(key);
+                        if (numKey>=0 && numKey<=numOfResults) {
+                            this.bookToUpdate = searchResult.get(numKey);
+                            System.out.println("\n--\"" + this.bookToUpdate.getTitle() + "\" selected.\nBook ready to be updated.");
+    
+                        } else {
+                            System.out.println("\nNo such key found.");
+                            continue;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("\nWarning: Please type a valid numeric key. Try again.");
                         continue;
-                    }
+                    } 
                 }
-                
-                
+
             } else if (numOfResults == 0) {
                 System.out.println("\nNo entries have been found containing '" + searchTerm + "''.\n");
                 continue;
@@ -479,57 +481,59 @@ public class Prompts {
                     System.out.println("Exiting...\n");
                     break;
                 } else {
-                    if (Integer.valueOf(key)>=0 && Integer.valueOf(key)<=7) {
-                        int numKey = Integer.valueOf(key);
 
-                        switch (numKey) {
-                            case 0:
-                                this.askTitle();
-                                bookList.updateBook(bookToUpdate, this.title, numKey);    
-                                break;
-                            case 1:
-                                this.askAuthor();
-                                bookList.updateBook(bookToUpdate, this.author, numKey);    
-                                break;
-                            case 2:
-                                this.askPublisher();
-                                bookList.updateBook(bookToUpdate, this.publisher, numKey);    
-                                break;
-                            case 3:
-                                this.askYear();
-                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
-                                break;    
-                            case 4:
-                                this.askNumPages();
-                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
-                                break;    
-                            case 5:
-                                this.askIsbn();
-                                bookList.updateBook(bookToUpdate, this.isbn, numKey);
-                                break;    
-                            case 6:
-                                this.askRating();
-                                bookList.updateBook(bookToUpdate, this.fieldString, numKey);
-                                break;    
-                            case 7:
-                                this.askOtherInfo();
-                                bookList.updateBook(bookToUpdate, this.otherInfo, numKey);
-                                break;
-        
-                            default:
-                                break;
-                            }
-                        
+                    try {
+                        if (Integer.valueOf(key)>=0 && Integer.valueOf(key)<=7) {
+                            int numKey = Integer.valueOf(key);
+    
+                            switch (numKey) {
+                                case 0:
+                                    this.askTitle();
+                                    bookList.updateBook(bookToUpdate, this.title, numKey);    
+                                    break;
+                                case 1:
+                                    this.askAuthor();
+                                    bookList.updateBook(bookToUpdate, this.author, numKey);    
+                                    break;
+                                case 2:
+                                    this.askPublisher();
+                                    bookList.updateBook(bookToUpdate, this.publisher, numKey);    
+                                    break;
+                                case 3:
+                                    this.askYear();
+                                    bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                    break;    
+                                case 4:
+                                    this.askNumPages();
+                                    bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                    break;    
+                                case 5:
+                                    this.askIsbn();
+                                    bookList.updateBook(bookToUpdate, this.isbn, numKey);
+                                    break;    
+                                case 6:
+                                    this.askRating();
+                                    bookList.updateBook(bookToUpdate, this.fieldString, numKey);
+                                    break;    
+                                case 7:
+                                    this.askOtherInfo();
+                                    bookList.updateBook(bookToUpdate, this.otherInfo, numKey);
+                                    break;
+            
+                                default:
+                                    break;
+                                }
                             
-                        } else {
-                            System.out.println("\nNo such key found.");
-                            continue;
-                        } 
-                    
-                    // ADD VALIDATION TO CHECK IF KEY IS NUMERIC OF NOT-- use a method with try...catch to test
-                    // At the moment, typing a non-numeric character returns an error
+                                
+                            } else {
+                                System.out.println("\nNo such key found.");
+                                continue;
+                            } 
+                    } catch (Exception e) {
+                        System.out.println("\nWarning: Please type a valid numeric key. Try again.");
+                        continue;
+                    }
                 }
-
 
             } else if (answerCont.equals("n") || answerCont.equals("N")) {
                 continue;

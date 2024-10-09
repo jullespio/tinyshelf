@@ -104,11 +104,11 @@ public class BookList {
             }
         }
 
-        if (!(duplicates.isEmpty())) {
-            return true;
+        if (duplicates.isEmpty()) {
+            return false;
         }
 
-        return false;
+        return true;
 
     }
 
