@@ -24,6 +24,9 @@ public class App
       //DONE -- a method to print the full list of books (title, author and year);
       //DONE -- validations for int fields;
 
+      //Improve:
+      //Method to check for duplicates 
+
       BookList startList = new BookList();
       List<Book> updatedList = startList.returnBookList();
 
