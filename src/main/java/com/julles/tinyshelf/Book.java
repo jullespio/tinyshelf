@@ -180,10 +180,8 @@ public class Book {
             this.author.equals(comparedBook.getAuthor()) &&
             this.publisher.equals(comparedBook.getPublisher()) &&
             this.year == comparedBook.getYear() &&
-            this.numPages == comparedBook.getNumPages() &&
-            this.isbn.equals(comparedBook.getIsbn()) &&
-            this.rating == comparedBook.getYear() &&
-            this.otherInfo.equals(comparedBook.getOtherInfo())) {
+            this.numPages == comparedBook.getNumPages()) 
+            {
             return true;
         }
 
