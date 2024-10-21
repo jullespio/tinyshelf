@@ -19,8 +19,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class BookList {
 
-    final String homeDir;
-    private List<Book> updatedBookList;
+    private String homeDir;
 
     public BookList(){
     
@@ -28,8 +27,7 @@ public class BookList {
 
     }
 
-
-    public ObjectMapper mapper(){
+    private final static ObjectMapper mapper(){
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -39,7 +37,7 @@ public class BookList {
         return objectMapper;
     }
 
-    public static int returnLargestId(List<Book> booklist){
+    private static int returnLargestId(List<Book> booklist){
 
         ArrayList<Integer> ids = new ArrayList<Integer>(); 
 
@@ -62,27 +60,24 @@ public class BookList {
         List<Book> bookList = new ArrayList<Book>();
         
         try {
-            // create object mapper instance
-            ObjectMapper objectMapper = this.mapper();
-        
-            // convert JSON array to list of books
+ 
+            ObjectMapper objectMapper = mapper();
             bookList = new ArrayList<Book>(Arrays.asList(objectMapper.readValue(Paths.get(homeDir + "/.booklist.json").toFile(), Book[].class)));
         
         } catch (Exception ex) {
-
 
             File bookListFile = new File(homeDir + "/.booklist.json");
             
             if (!(bookListFile.isFile())) {
 
-                ObjectMapper objectMapper = this.mapper();
-                List<Book> savedBooks = bookList;
+                ObjectMapper objectMapper = mapper();
+                //List<Book> savedBooks = bookList;
 
                 try {
-                    objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), savedBooks);
-                    System.out.println("\nWarning: Unavailable booklist file. A fresh empty file was created at /home/*local user*/.booklist.json. \n");
+                    objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
+                    System.out.println("\nWarning: Unavailable booklist file. A fresh one has been created at /home/*local user*/.booklist.json. \n");
                 } catch (Exception e) {
-                    System.out.println("\nSomething went wrong when creating the file. Please contact the developer.\n");
+                    System.out.println("\nWarning: Something went wrong when creating the file! Please inform the developer.\n");
                 }
     
             }
@@ -122,14 +117,12 @@ public class BookList {
         Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
         if (this.areThereDupes(newBook, bookList)==false) {
-            // add book to list
+
             bookList.add(0, newBook);
             
             try {
 
-                ObjectMapper objectMapper = this.mapper();
-            
-                // convert books object to JSON file
+                ObjectMapper objectMapper = mapper();
                 objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
                 System.out.println("\nNew entry -" + title + "- has been added.");
             
@@ -173,32 +166,32 @@ public class BookList {
 
         List<Book> bookList = this.returnBookList();
 
-        Book updatedBook = book;
+        Book bookToUpdate = book;
 
         switch (field) {
             case 0:
-                updatedBook.setTitle(newData);
+                bookToUpdate.setTitle(newData);
                 break;
             case 1:
-                updatedBook.setAuthor(newData);
+                bookToUpdate.setAuthor(newData);
                 break;
             case 2:
-                updatedBook.setPublisher(newData);
+                bookToUpdate.setPublisher(newData);
                 break;
             case 3:
-                updatedBook.setYear(Integer.valueOf(newData));
+                bookToUpdate.setYear(Integer.valueOf(newData));
                 break;
             case 4:
-                updatedBook.setNumPages(Integer.valueOf(newData));
+                bookToUpdate.setNumPages(Integer.valueOf(newData));
                 break;
             case 5:
-                updatedBook.setIsbn(newData);
+                bookToUpdate.setIsbn(newData);
                 break;
             case 6:
-                updatedBook.setRating(Double.valueOf(newData));
+                bookToUpdate.setRating(Double.valueOf(newData));
                 break;
             case 7:
-                updatedBook.setOtherInfo(newData);
+                bookToUpdate.setOtherInfo(newData);
                 break;     
 
             default:
@@ -206,20 +199,17 @@ public class BookList {
         }
 
 
-        if (this.areThereDupes(updatedBook, bookList)==false) {
+        if (this.areThereDupes(bookToUpdate, bookList)==false) {
             
             bookList.remove(book);
-            updatedBook.setDateModified(LocalDateTime.now());
-            bookList.add(0, updatedBook);
+            bookToUpdate.setDateModified(LocalDateTime.now());
+            bookList.add(0, bookToUpdate);
             
             try {
 
-                ObjectMapper objectMapper = this.mapper();
-            
-                // convert books object to JSON file
+                ObjectMapper objectMapper = mapper();
                 objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
-
-                System.out.println("\nEntry -" + updatedBook.getTitle() + "- has been updated.");
+                System.out.println("\nEntry -" + bookToUpdate.getTitle() + "- has been updated.");
             
             } catch (Exception ex) {
                 //ex.printStackTrace();
@@ -230,25 +220,17 @@ public class BookList {
             System.out.println("\nThis action will create a duplicate entry! Book not updated, please try again.\n");
         }
 
-
     }    
 
 
     public void removeBook(Book book, List<Book> booklist){
 
-        // remove a preselected book from list
-
-        //if (booklist.contains(book)) {
-            booklist.remove(book);
-            this.updatedBookList = booklist;
-        //}
+        booklist.remove(book);
+        List<Book> updatedBookList = booklist;
                 
         try {
 
-            // add book to list
-            ObjectMapper objectMapper = this.mapper();;
-        
-            // convert books object to JSON file
+            ObjectMapper objectMapper = mapper();
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), updatedBookList);
         
         } catch (Exception ex) {
