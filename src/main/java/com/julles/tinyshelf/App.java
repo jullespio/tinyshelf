@@ -6,7 +6,7 @@
 package com.julles.tinyshelf;
 
 import java.io.IOException;
-import java.util.List;
+//import java.util.List;
 
 public class App 
 {
@@ -31,17 +31,19 @@ public class App
       //Improve:
       //Method to check for duplicates 
 
-      BookList startList = new BookList();
-      List<Book> updatedList = startList.returnBookList();
+      // BookList startList = new BookList();
+      // List<Book> updatedList = startList.returnBookList();
 
-      if (updatedList.isEmpty()) {
-        startList.generateTestEntries(10);
-      }
+      // if (updatedList.isEmpty()) {
+      //   startList.generateTestEntries(10);
+      // }
 
-      Prompts prompt = new Prompts();
-      prompt.displayGreetings();
-      prompt.mainMenuPrompt();
+      //Prompts prompt = new Prompts();
+      //prompt.displayGreetings();
+      //prompt.mainMenuPrompt();
 
+      MainMenuPrompt main = new MainMenuPrompt();
+      main.currentPrompt();
 
     }
 }

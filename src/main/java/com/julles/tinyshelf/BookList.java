@@ -37,7 +37,7 @@ public class BookList {
         return objectMapper;
     }
 
-    private static int returnLargestId(List<Book> booklist){
+    public int returnLargestId(List<Book> booklist){
 
         ArrayList<Integer> ids = new ArrayList<Integer>(); 
 
