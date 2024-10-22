@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 abstract class Prompt {
 
-    Scanner scanner;
+    static Scanner scanner;
 
     Prompt(){
         scanner = new Scanner(System.in);
@@ -22,7 +22,7 @@ abstract class Prompt {
         System.out.println(infoToDisplay + "\n");
     };
 
-    Boolean continueOrNot(){
+    static Boolean continueOrNot(){
         while (true) {
             
             System.out.println("\nContinue? [y/n]");
