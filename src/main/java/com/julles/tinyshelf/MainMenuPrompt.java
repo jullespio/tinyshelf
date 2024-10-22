@@ -26,41 +26,41 @@ public class MainMenuPrompt extends Prompt {
             System.out.print("> ");
             String answer = scanner.nextLine();
 
-            if (answer.equals("a") || answer.equals("A")) {
+            if (answer.equalsIgnoreCase("a")) {
                 NewBookPrompt newBook = new NewBookPrompt();
                 newBook.currentPrompt();                
                 continue;
     
-            } else if (answer.equals("s") || answer.equals("S")) {
+            } else if (answer.equalsIgnoreCase("s")) {
     
                 //this.searchPrompt();
                 continue;
     
-            } else if (answer.equals("u") || answer.equals("U")) {
+            } else if (answer.equalsIgnoreCase("u")) {
 
                 //this.updatePrompt();
                 continue;
     
-            } else if (answer.equals("r") || answer.equals("R")) {
+            } else if (answer.equalsIgnoreCase("r")) {
     
                 //this.removePrompt();
                 continue;
     
-            } else if (answer.equals("p") || answer.equals("P")) {
+            } else if (answer.equalsIgnoreCase("p")) {
     
                 //this.printBookListPrompt();
                 continue;
     
-            } else if (answer.equals("h") || answer.equals("H")) {
+            } else if (answer.equalsIgnoreCase("h")) {
                 
-                System.out.println("\nThis section is still under construction.\n");
+                displayInfoPaddingFull("This section is still under construction.");
                 //this.showHelp();
                 continue;
     
-            } else if (answer.equals("q") || answer.equals("Q")) {
+            } else if (answer.equalsIgnoreCase("q")) {
                 
-                System.out.print("\nExiting...\n");
-                System.out.print("\nSee you next time!\n");
+                displayInfoPaddingFull("Exiting...");
+                displayInfoPaddingFull("See you next time!");
                 break;
     
             } else {

@@ -171,35 +171,35 @@ public class NewBookPrompt extends Prompt {
             displayInfoPaddingFull("Press (e) to exit.");
 
             this.askTitle();
-            if (this.title.equals("e")) {
+            if (this.title.equalsIgnoreCase("e")) {
                 break;
             }
             this.askAuthor();
-            if (this.author.equals("e")) {
+            if (this.author.equalsIgnoreCase("e")) {
                 break;
             }
             this.askPublisher();
-            if (this.publisher.equals("e")) {
+            if (this.publisher.equalsIgnoreCase("e")) {
                 break;
             }
             this.askYear();
-            if (this.fieldString.equals("e")) {
+            if (this.fieldString.equalsIgnoreCase("e")) {
                 break;
             }
             this.askNumPages();
-            if (this.fieldString.equals("e")) {
+            if (this.fieldString.equalsIgnoreCase("e")) {
                 break;
             }
             this.askIsbn();
-            if (this.isbn.equals("e")) {
+            if (this.isbn.equalsIgnoreCase("e")) {
                 break;
             }
             this.askRating();
-            if (this.fieldString.equals("e")) {
+            if (this.fieldString.equalsIgnoreCase("e")) {
                 break;
             }
             this.askOtherInfo();
-            if (this.fieldString.equals("e")) {
+            if (this.fieldString.equalsIgnoreCase("e")) {
                 break;
             }
 

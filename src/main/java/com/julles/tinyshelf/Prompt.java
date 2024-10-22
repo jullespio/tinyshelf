@@ -5,7 +5,6 @@ import java.util.Scanner;
 abstract class Prompt {
 
     Scanner scanner;
-    String paddedString;
 
     Prompt(){
 
