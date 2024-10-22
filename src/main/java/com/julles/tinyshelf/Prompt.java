@@ -4,25 +4,34 @@ import java.util.Scanner;
 
 abstract class Prompt {
 
-    static Scanner scanner;
+    Scanner scanner;
+    String paddedString;
 
     Prompt(){
+
         scanner = new Scanner(System.in);
+
     }
 
     static void displayInfoPaddingFull(String infoToDisplay){
+        
         System.out.println("\n" + infoToDisplay + "\n");
+    
     };
 
     static void displayInfoPaddingTop(String infoToDisplay){
+        
         System.out.println("\n" + infoToDisplay);
+    
     };
 
     static void displayInfoPaddingBottom(String infoToDisplay){
+        
         System.out.println(infoToDisplay + "\n");
+    
     };
 
-    static Boolean continueOrNot(){
+    Boolean continueOrNot(){
         while (true) {
             
             System.out.println("\nContinue? [y/n]");
