@@ -6,6 +6,10 @@ public class MainMenuPrompt extends Prompt {
         super();
     }
 
+    public void displayGreeting(){
+        displayInfoPaddingTop("Greetings!\n>>>> Welcome to tinyShelf <<<<");
+    }
+
     public void currentPrompt(){
 
         while (true) {
@@ -30,12 +34,12 @@ public class MainMenuPrompt extends Prompt {
                 NewBookPrompt newBook = new NewBookPrompt();
                 newBook.currentPrompt();                
                 continue;
-    
+
             } else if (answer.equalsIgnoreCase("s")) {
-    
-                //this.searchPrompt();
+                SearchPrompt search = new SearchPrompt();
+                search.currentPrompt();
                 continue;
-    
+                
             } else if (answer.equalsIgnoreCase("u")) {
 
                 //this.updatePrompt();

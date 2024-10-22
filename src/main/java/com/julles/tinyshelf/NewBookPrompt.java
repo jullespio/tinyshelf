@@ -67,6 +67,7 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.year = Integer.valueOf(year);
+                    this.fieldString = year;
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid year (numbers only).");
                     continue;
@@ -90,6 +91,7 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.numPages = Integer.valueOf(pages);
+                    this.fieldString = pages;
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid number (integer).");
                     continue;
@@ -130,6 +132,8 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.rating = Double.valueOf(rating);
+                    this.fieldString = rating;
+
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).");
                     continue;
@@ -140,7 +144,6 @@ public class NewBookPrompt extends Prompt {
                     continue;
                 } 
 
-                this.fieldString = rating;
                 break; 
             }
 
@@ -168,24 +171,28 @@ public class NewBookPrompt extends Prompt {
         while(true) {
         
             displayInfoPaddingTop("Please type information as asked. All fields are required unless stated otherwise.");
-            displayInfoPaddingFull("Press (e) to exit.");
+            displayInfoPaddingFull("Answer (e) to exit.");
 
             this.askTitle();
             if (this.title.equalsIgnoreCase("e")) {
                 break;
             }
+
             this.askAuthor();
             if (this.author.equalsIgnoreCase("e")) {
                 break;
             }
+
             this.askPublisher();
             if (this.publisher.equalsIgnoreCase("e")) {
                 break;
             }
+
             this.askYear();
             if (this.fieldString.equalsIgnoreCase("e")) {
                 break;
             }
+
             this.askNumPages();
             if (this.fieldString.equalsIgnoreCase("e")) {
                 break;

@@ -139,8 +139,6 @@ public class BookList {
 
 
     public List<Book> findBook(String searchTerm){
-
-        //  list
         List<Book> bookList = returnBookList();
         List<Book> searchFinds = new ArrayList<Book>();
 
@@ -153,11 +151,9 @@ public class BookList {
             if (book.getTitle().contains(searchTerm) || book.getAuthor().contains(searchTerm)) {
                 searchFinds.add(book);
             }
-            
         }
 
         return searchFinds;
-
     }
 
 

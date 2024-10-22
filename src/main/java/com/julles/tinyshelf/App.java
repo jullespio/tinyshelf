@@ -41,8 +41,9 @@ public class App
       //Prompts prompt = new Prompts();
       //prompt.displayGreetings();
       //prompt.mainMenuPrompt();
-
+      
       MainMenuPrompt main = new MainMenuPrompt();
+      main.displayGreeting();
       main.currentPrompt();
 
     }
