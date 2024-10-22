@@ -50,12 +50,8 @@ abstract class Prompt {
                 System.out.println("\nPlease provide a valid answer.\n");
                 continue;
             }
-
-            break;
-
-        }
-        
-        return false;
+            
+        }        
     }
 
     abstract void currentPrompt();
