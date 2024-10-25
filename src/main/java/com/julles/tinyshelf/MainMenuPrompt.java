@@ -52,13 +52,12 @@ public class MainMenuPrompt extends Prompt {
     
             } else if (answer.equalsIgnoreCase("p")) {
     
-                //this.printBookListPrompt();
+                displayInfoPaddingFull("This section is still under construction.");
                 continue;
     
             } else if (answer.equalsIgnoreCase("h")) {
                 
                 displayInfoPaddingFull("This section is still under construction.");
-                //this.showHelp();
                 continue;
     
             } else if (answer.equalsIgnoreCase("q")) {
