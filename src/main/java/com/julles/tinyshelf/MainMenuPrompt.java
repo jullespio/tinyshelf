@@ -46,8 +46,8 @@ public class MainMenuPrompt extends Prompt {
                 continue;
     
             } else if (answer.equalsIgnoreCase("r")) {
-    
-                //this.removePrompt();
+                RemovePrompt remove = new RemovePrompt();
+                remove.currentPrompt();
                 continue;
     
             } else if (answer.equalsIgnoreCase("p")) {
