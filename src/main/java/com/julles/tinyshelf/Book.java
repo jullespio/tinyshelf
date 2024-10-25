@@ -70,6 +70,7 @@ public class Book {
 
     /*  Getters */
 
+
     public int getId(){
         return this.id;
     }
@@ -119,6 +120,11 @@ public class Book {
 
     /*  Setters */
 
+    public void setId(int id) {
+        this.id = id;
+        this.dateModified = LocalDateTime.now();
+    }
+
     public void setTitle(String title){
         this.title = title;
         this.dateModified = LocalDateTime.now();
@@ -156,6 +162,10 @@ public class Book {
         this.otherInfo = otherInfo;
     }
 
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     public void setDateModified(LocalDateTime dateModified) {
         this.dateModified = dateModified;
     }
@@ -180,7 +190,10 @@ public class Book {
             this.author.equals(comparedBook.getAuthor()) &&
             this.publisher.equals(comparedBook.getPublisher()) &&
             this.year == comparedBook.getYear() &&
-            this.numPages == comparedBook.getNumPages()) 
+            this.numPages == comparedBook.getNumPages() && 
+            this.isbn.equals(comparedBook.getIsbn()) &&
+            this.rating == comparedBook.getRating() &&
+            this.otherInfo.equals(comparedBook.getOtherInfo())) 
             {
             return true;
         }

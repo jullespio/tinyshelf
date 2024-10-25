@@ -24,6 +24,7 @@ public class UpdatePrompt extends Prompt {
             }
     
             BookList bookList = new BookList();
+
             List<Book> searchResult = bookList.findBook(searchTerm);
             int numOfResults = searchResult.size();
     
@@ -61,8 +62,9 @@ public class UpdatePrompt extends Prompt {
                             continue;
                         }
                     } catch (Exception e) {
-                        System.out.println("\nWarning: Please type a valid numeric key. Try again.");
-                        continue;
+                        e.printStackTrace();
+                        //System.out.println("\nWarning: Please type a valid numeric key. Try again.");
+                        //continue;
                     } 
                 }
 
@@ -72,9 +74,7 @@ public class UpdatePrompt extends Prompt {
 
             }
              
-            Boolean answerCont = this.continueOrNot();
-
-            if (answerCont == true) {
+            if (this.continueOrNot() == true) {
 
                 System.out.println("Type key corresponding to field you wish to update. Leave blank to cancel.");
                 System.out.println("\n0 - Title\n1 - Author\n2 - Publisher\n3 - Year\n4 - Number of pages\n5 - ISBN\n6 - Rating\n7 - Other Information\n");
@@ -99,35 +99,55 @@ public class UpdatePrompt extends Prompt {
                                     } else {
                                         break;
                                     }
-                                    // CHANGE THE OTHERS BELOW TOO
                                 case 1:
-                                    newBook.askAuthor();
-                                    bookList.updateBook(bookToUpdate, newBook.getAuthor(), numKey);    
-                                    break;
+                                    if (newBook.askAuthor()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getAuthor(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 2:
-                                    newBook.askPublisher();
-                                    bookList.updateBook(bookToUpdate, newBook.getPublisher(), numKey);    
-                                    break;
+                                    if (newBook.askPublisher()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getPublisher(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 3:
-                                    newBook.askYear();
-                                    bookList.updateBook(bookToUpdate, newBook.getYear(), numKey);
-                                    break;    
+                                    if (newBook.askYear()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getYear(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 4:
-                                    newBook.askNumPages();
-                                    bookList.updateBook(bookToUpdate, newBook.getNumPages(), numKey);
-                                    break;    
+                                    if (newBook.askNumPages()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getNumPages(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 5:
-                                    newBook.askIsbn();
-                                    bookList.updateBook(bookToUpdate, newBook.getIsbn(), numKey);
-                                    break;    
+                                    if (newBook.askIsbn()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getIsbn(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 6:
-                                    newBook.askRating();
-                                    bookList.updateBook(bookToUpdate, newBook.getRating(), numKey);
-                                    break;    
+                                    if (newBook.askRating()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getRating(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 7:
-                                    newBook.askOtherInfo();
+                                if (newBook.askOtherInfo()==true) {
                                     bookList.updateBook(bookToUpdate, newBook.getOtherInfo(), numKey);
+                                    break;    
+                                } else {
                                     break;
+                                }
             
                                 default:
                                     break;
@@ -138,18 +158,15 @@ public class UpdatePrompt extends Prompt {
                                 continue;
                             } 
                     } catch (Exception e) {
+                        e.printStackTrace();
                         System.out.println("\nWarning: Please type a valid numeric key. Try again.");
                         continue;
                     }
                 }
 
-            } else if (answerCont == false) {
+            } else {
                 continue;
             } 
-    
         }
-
     }
-
-
 }

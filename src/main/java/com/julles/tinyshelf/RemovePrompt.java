@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RemovePrompt extends Prompt {
 
-    private Book bookToUpdate;
+    private Book bookToRemove;
 
     RemovePrompt(){
         super();
@@ -34,7 +34,7 @@ public class RemovePrompt extends Prompt {
     
                 System.out.println("\n1 entry has been found containing '" + searchTerm + "':\n");
                 System.out.println("==> " + searchResult.get(0));
-                this.bookToUpdate = searchResult.get(0);
+                this.bookToRemove = searchResult.get(0);
                 System.out.println("Selected book ready to be removed.");
                     
             } else if (numOfResults > 1) {
@@ -51,8 +51,8 @@ public class RemovePrompt extends Prompt {
                     System.out.println("\nNo such key found.\n");
                     continue;
                 }
-                this.bookToUpdate = searchResult.get(key);
-                System.out.println("\n--\"" + this.bookToUpdate.getTitle() + "\" selected.\nBook ready to be removed.");
+                this.bookToRemove = searchResult.get(key);
+                System.out.println("\n--\"" + this.bookToRemove.getTitle() + "\" selected.\nBook ready to be removed.");
 
     
             } else if (numOfResults == 0) {
@@ -60,22 +60,20 @@ public class RemovePrompt extends Prompt {
                 continue;
             }
             
-            Boolean answerCont = this.continueOrNot();
-
-            if (answerCont == true) {
+            if (this.continueOrNot() == true) {
                 
-                bookList.removeBook(bookToUpdate, currentList);
+                bookList.removeBook(bookToRemove, currentList);
 
-                for (Book book : currentList) {
-                    if (book.toString().equals(bookToUpdate.toString())) {
-                        bookList.removeBook(book, currentList);
-                        break;
-                    }
-                }
+                // for (Book book : currentList) {
+                //     if (book.toString().equals(bookToUpdate.toString())) {
+                //         bookList.removeBook(book, currentList);
+                //         break;
+                //     }
+                // }
 
                 System.out.println("Book removed.\n");
 
-            } else if (answerCont == false) {
+            } else {
                 continue;
             } 
         }

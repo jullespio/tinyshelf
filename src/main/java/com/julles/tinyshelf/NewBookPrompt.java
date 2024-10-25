@@ -99,7 +99,7 @@ public class NewBookPrompt extends Prompt {
                 break;
             } else {
                 try {
-                    this.year = Integer.valueOf(year);
+                    this.year = Integer.valueOf(answer);
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid year (numbers only).");
                     continue;
@@ -179,7 +179,7 @@ public class NewBookPrompt extends Prompt {
                 break;
             } else {
                 try {
-                    this.rating = Double.valueOf(rating);
+                    this.rating = Double.valueOf(answer);
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).");
                     continue;
@@ -260,48 +260,39 @@ public class NewBookPrompt extends Prompt {
             displayInfoPaddingTop("Please type information as asked. All fields are required unless stated otherwise.");
             displayInfoPaddingFull("Answer (e) to exit.");
 
-            Boolean title = this.askTitle();
-            if (title==false) {
+            if (this.askTitle()==false) {
                 break;
             }
-
-            Boolean author = this.askAuthor();
-            if (author==false) {
+            if (this.askAuthor()==false) {
                 break;
             }
-
-            Boolean publisher = this.askPublisher();
-            if (publisher==false) {
+            if (this.askPublisher()==false) {
                 break;
             }
-
-            Boolean year = this.askYear();
-            if (year==false) {
+            if (this.askYear()==false) {
                 break;
             }
-
-            Boolean pages = this.askNumPages();
-            if (pages==false) {
+            if (this.askNumPages()==false) {
                 break;
             }
-            Boolean isbn = this.askIsbn();
-            if (isbn==false) {
+            if (this.askIsbn()==false) {
                 break;
             }
-            Boolean rating = this.askRating();
-            if (rating==false) {
+            if (this.askRating()==false) {
                 break;
             }
-            Boolean otherInfo = this.askOtherInfo();
-            if (otherInfo==false) {
+            if (this.askOtherInfo()==false) {
                 break;
             }
 
             BookList bookList = new BookList();
             bookList.AddNewBook(bookList.returnLargestId(bookList.returnBookList()), this.title, this.author, 
             this.publisher, this.year, this.numPages, this.isbn, this.rating, this.otherInfo);
-                
-            continue;
+            
+            if (this.continueOrNot()==true) {
+                continue;
+            }
+            break;
    
         }        
        

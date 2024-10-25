@@ -100,10 +100,9 @@ public class BookList {
 
         if (duplicates.isEmpty()) {
             return false;
+        } else {
+            return true;
         }
-
-        return true;
-
     }
 
     public void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
@@ -136,7 +135,7 @@ public class BookList {
     }
 
     public List<Book> findBook(String searchTerm){
-        List<Book> bookList = returnBookList();
+        List<Book> bookList = this.returnBookList();
         List<Book> searchFinds = new ArrayList<Book>();
 
         if (bookList.isEmpty()) {
@@ -153,85 +152,114 @@ public class BookList {
         return searchFinds;
     }
 
-
     public void updateBook(Book book, String newData, int field){
         List<Book> bookList = this.returnBookList();
 
-        Book bookToUpdate = book;
+        Book updatedBook = new Book();
+        updatedBook.setId(book.getId());
+        updatedBook.setTitle(book.getTitle());
+        updatedBook.setAuthor(book.getAuthor());
+        updatedBook.setPublisher(book.getPublisher());
+        updatedBook.setYear(book.getYear());
+        updatedBook.setNumPages(book.getNumPages());
+        updatedBook.setIsbn(book.getIsbn());
+        updatedBook.setRating(book.getRating());
+        updatedBook.setOtherInfo(book.getOtherInfo());
+        updatedBook.setDateCreated(book.getDateCreated());
+        updatedBook.setDateModified(LocalDateTime.now());
 
         switch (field) {
             case 0:
-                bookToUpdate.setTitle(newData);
+                updatedBook.setTitle(newData);
                 break;
             case 1:
-                bookToUpdate.setAuthor(newData);
+                updatedBook.setAuthor(newData);
                 break;
             case 2:
-                bookToUpdate.setPublisher(newData);
+                updatedBook.setPublisher(newData);
                 break;
             case 5:
-                bookToUpdate.setIsbn(newData);
+                updatedBook.setIsbn(newData);
                 break;
             case 7:
-                bookToUpdate.setOtherInfo(newData);
+                updatedBook.setOtherInfo(newData);
                 break;     
 
             default:
                 break;
         }
 
-        this.checkAndUpdate(book, bookToUpdate, bookList);
+        this.checkAndUpdate(book, updatedBook, bookList);
     } 
 
     public void updateBook(Book book, int newData, int field){
         List<Book> bookList = this.returnBookList();
 
-        Book bookToUpdate = book;
+        Book updatedBook = new Book();
+        updatedBook.setId(book.getId());
+        updatedBook.setTitle(book.getTitle());
+        updatedBook.setAuthor(book.getAuthor());
+        updatedBook.setPublisher(book.getPublisher());
+        updatedBook.setYear(book.getYear());
+        updatedBook.setNumPages(book.getNumPages());
+        updatedBook.setIsbn(book.getIsbn());
+        updatedBook.setRating(book.getRating());
+        updatedBook.setOtherInfo(book.getOtherInfo());
+        updatedBook.setDateCreated(book.getDateCreated());
+        updatedBook.setDateModified(LocalDateTime.now());
 
         switch (field) {
             case 3:
-                bookToUpdate.setYear(Integer.valueOf(newData));
+                updatedBook.setYear(Integer.valueOf(newData));
                 break;
             case 4:
-                bookToUpdate.setNumPages(Integer.valueOf(newData));
+                updatedBook.setNumPages(Integer.valueOf(newData));
                 break;
             default:
                 break;
         }
 
-        this.checkAndUpdate(book, bookToUpdate, bookList);
+        this.checkAndUpdate(book, updatedBook, bookList);
     }
     
     public void updateBook(Book book, Double newData, int field){
-
-
         List<Book> bookList = this.returnBookList();
 
-        Book bookToUpdate = book;
+        Book updatedBook = new Book();
+        updatedBook.setId(book.getId());
+        updatedBook.setTitle(book.getTitle());
+        updatedBook.setAuthor(book.getAuthor());
+        updatedBook.setPublisher(book.getPublisher());
+        updatedBook.setYear(book.getYear());
+        updatedBook.setNumPages(book.getNumPages());
+        updatedBook.setIsbn(book.getIsbn());
+        updatedBook.setRating(book.getRating());
+        updatedBook.setOtherInfo(book.getOtherInfo());
+        updatedBook.setDateCreated(book.getDateCreated());
+        updatedBook.setDateModified(book.getDateModified());
 
         switch (field) {
             case 6:
-                bookToUpdate.setRating(Double.valueOf(newData));
+                updatedBook.setRating(Double.valueOf(newData));
                 break;
             default:
                 break;
         }
 
-        this.checkAndUpdate(book, bookToUpdate, bookList);
+        this.checkAndUpdate(book, updatedBook, bookList);
     }
     
-    public void checkAndUpdate(Book oldBook, Book bookToUpdate, List<Book> bookList){
-        if (this.areThereDupes(bookToUpdate, bookList)==false) {
-            
-            bookList.remove(oldBook);
-            bookToUpdate.setDateModified(LocalDateTime.now());
-            bookList.add(0, bookToUpdate);
+    public void checkAndUpdate(Book oldBook, Book updatedBook, List<Book> bookList){
+        if (this.areThereDupes(updatedBook, bookList)==false) {
+            this.removeBook(oldBook, bookList);
+            updatedBook.setDateModified(LocalDateTime.now());
+            bookList.add(0, updatedBook);
             
             try {
 
                 ObjectMapper objectMapper = mapper();
                 objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
-                System.out.println("\nEntry -" + bookToUpdate.getTitle() + "- has been updated.");
+                System.out.println("\nEntry -" + updatedBook.getTitle() + "- has been updated.");
             
             } catch (Exception ex) {
                 //ex.printStackTrace();
@@ -239,6 +267,8 @@ public class BookList {
 
             }            
         } else {
+            System.out.println("\n" + oldBook);
+            System.out.println(updatedBook);
             System.out.println("\nThis action will create a duplicate entry! Book not updated, please try again.\n");
         }
     }
