@@ -41,8 +41,8 @@ public class MainMenuPrompt extends Prompt {
                 continue;
                 
             } else if (answer.equalsIgnoreCase("u")) {
-
-                //this.updatePrompt();
+                UpdatePrompt update = new UpdatePrompt();
+                update.currentPrompt();
                 continue;
     
             } else if (answer.equalsIgnoreCase("r")) {

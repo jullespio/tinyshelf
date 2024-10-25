@@ -88,7 +88,6 @@ public class BookList {
 
     }
 
-
     public Boolean areThereDupes(Book newBook, List<Book> booklist){
 
         ArrayList<Book> duplicates = new ArrayList<>();
@@ -106,7 +105,6 @@ public class BookList {
         return true;
 
     }
-
 
     public void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
 
@@ -137,7 +135,6 @@ public class BookList {
 
     }
 
-
     public List<Book> findBook(String searchTerm){
         List<Book> bookList = returnBookList();
         List<Book> searchFinds = new ArrayList<Book>();
@@ -158,8 +155,6 @@ public class BookList {
 
 
     public void updateBook(Book book, String newData, int field){
-
-
         List<Book> bookList = this.returnBookList();
 
         Book bookToUpdate = book;
@@ -174,17 +169,8 @@ public class BookList {
             case 2:
                 bookToUpdate.setPublisher(newData);
                 break;
-            case 3:
-                bookToUpdate.setYear(Integer.valueOf(newData));
-                break;
-            case 4:
-                bookToUpdate.setNumPages(Integer.valueOf(newData));
-                break;
             case 5:
                 bookToUpdate.setIsbn(newData);
-                break;
-            case 6:
-                bookToUpdate.setRating(Double.valueOf(newData));
                 break;
             case 7:
                 bookToUpdate.setOtherInfo(newData);
@@ -194,10 +180,50 @@ public class BookList {
                 break;
         }
 
+        this.checkAndUpdate(book, bookToUpdate, bookList);
+    } 
 
+    public void updateBook(Book book, int newData, int field){
+        List<Book> bookList = this.returnBookList();
+
+        Book bookToUpdate = book;
+
+        switch (field) {
+            case 3:
+                bookToUpdate.setYear(Integer.valueOf(newData));
+                break;
+            case 4:
+                bookToUpdate.setNumPages(Integer.valueOf(newData));
+                break;
+            default:
+                break;
+        }
+
+        this.checkAndUpdate(book, bookToUpdate, bookList);
+    }
+    
+    public void updateBook(Book book, Double newData, int field){
+
+
+        List<Book> bookList = this.returnBookList();
+
+        Book bookToUpdate = book;
+
+        switch (field) {
+            case 6:
+                bookToUpdate.setRating(Double.valueOf(newData));
+                break;
+            default:
+                break;
+        }
+
+        this.checkAndUpdate(book, bookToUpdate, bookList);
+    }
+    
+    public void checkAndUpdate(Book oldBook, Book bookToUpdate, List<Book> bookList){
         if (this.areThereDupes(bookToUpdate, bookList)==false) {
             
-            bookList.remove(book);
+            bookList.remove(oldBook);
             bookToUpdate.setDateModified(LocalDateTime.now());
             bookList.add(0, bookToUpdate);
             
@@ -215,8 +241,7 @@ public class BookList {
         } else {
             System.out.println("\nThis action will create a duplicate entry! Book not updated, please try again.\n");
         }
-
-    }    
+    }
 
 
     public void removeBook(Book book, List<Book> booklist){

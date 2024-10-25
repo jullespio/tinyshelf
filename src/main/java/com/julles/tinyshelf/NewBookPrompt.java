@@ -67,7 +67,7 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.year = Integer.valueOf(year);
-                    this.fieldString = year;
+                    //this.fieldString = year;
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid year (numbers only).");
                     continue;
@@ -91,7 +91,7 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.numPages = Integer.valueOf(pages);
-                    this.fieldString = pages;
+                    //this.fieldString = pages;
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid number (integer).");
                     continue;
@@ -132,7 +132,7 @@ public class NewBookPrompt extends Prompt {
             } else {
                 try {
                     this.rating = Double.valueOf(rating);
-                    this.fieldString = rating;
+                    //this.fieldString = rating;
 
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).");
@@ -166,6 +166,43 @@ public class NewBookPrompt extends Prompt {
         
     }
     
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getNumPages() {
+        return numPages;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public String getOtherInfo() {
+        return otherInfo;
+    }
+
+    public String getFieldString() {
+        return fieldString;
+    }
+
+
     public void currentPrompt(){
 
         while(true) {
