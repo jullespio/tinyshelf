@@ -8,7 +8,6 @@ abstract class Prompt {
 
     Scanner scanner;
 
-
     Prompt(){
         scanner = new Scanner(System.in);
     }
@@ -43,8 +42,7 @@ abstract class Prompt {
             if (!(answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("n"))) {
                 System.out.println("\nPlease provide a valid answer.\n");
                 continue;
-            }
-            
+            }   
         }        
     }
 
