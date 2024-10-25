@@ -99,6 +99,7 @@ public class UpdatePrompt extends Prompt {
                                     } else {
                                         break;
                                     }
+                                    // CHANGE THE OTHERS BELOW TOO
                                 case 1:
                                     newBook.askAuthor();
                                     bookList.updateBook(bookToUpdate, newBook.getAuthor(), numKey);    
