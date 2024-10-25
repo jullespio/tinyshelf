@@ -90,7 +90,7 @@ public class UpdatePrompt extends Prompt {
                         if (Integer.valueOf(key)>=0 && Integer.valueOf(key)<=7) {
                             int numKey = Integer.valueOf(key);
                             NewBookPrompt newBook = new NewBookPrompt();
-    
+                            // Maybe inform users that they can exit by pressing (e), review exiting system in this class 
                             switch (numKey) {
                                 case 0:
                                     if (newBook.askTitle()==true) {
