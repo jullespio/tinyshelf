@@ -93,9 +93,12 @@ public class UpdatePrompt extends Prompt {
     
                             switch (numKey) {
                                 case 0:
-                                    newBook.askTitle();
-                                    bookList.updateBook(bookToUpdate, newBook.getTitle(), numKey);    
-                                    break;
+                                    if (newBook.askTitle()==true) {
+                                        bookList.updateBook(bookToUpdate, newBook.getTitle(), numKey);
+                                        break;    
+                                    } else {
+                                        break;
+                                    }
                                 case 1:
                                     newBook.askAuthor();
                                     bookList.updateBook(bookToUpdate, newBook.getAuthor(), numKey);    

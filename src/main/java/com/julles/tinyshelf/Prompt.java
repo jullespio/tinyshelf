@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 abstract class Prompt {
 
-    
     Boolean continueOrNot;
-
 
     Scanner scanner;
 

@@ -16,58 +16,90 @@ public class NewBookPrompt extends Prompt {
         super();
     }
 
-    public void askTitle(){
+    public Boolean askTitle(){
+
+        Boolean current = true;
+        String answer;
+
         while (true) {
             displayInfoPaddingTop("Title: ");
-            this.title = scanner.nextLine();
-            if (title.isEmpty()) {
+            answer = scanner.nextLine();
+            if (answer.isEmpty()) {
                 displayInfoPaddingFull("- Field required. -");
                 continue;
-            } 
-            break;
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
+                break; 
+            } else {
+                this.title = answer;
+                break;
+            }  
         }
+        return current; 
     }
 
-    public void askAuthor(){
+    public Boolean askAuthor(){
+
+        Boolean current = true;
+        String answer;
+
         while (true) {
             displayInfoPaddingTop("Author: ");
-            this.author = scanner.nextLine();
-            if (author.isEmpty()) {
+            answer = scanner.nextLine();
+            if (answer.isEmpty()) {
                 displayInfoPaddingFull("- Field required. -");
                 continue;
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
+                break;   
+            } else {
+                this.author = answer;
+                break;
             }
-            break;   
-        }   
+        }
+        return current;   
     }
 
-    public void askPublisher(){
+    public Boolean askPublisher(){
+
+        Boolean current = true;
+        String answer;
 
         while (true) {
             displayInfoPaddingTop("Publisher: ");
-            this.publisher = scanner.nextLine();
-            if (publisher.isEmpty()) {
+            answer = scanner.nextLine();
+            if (answer.isEmpty()) {
                 displayInfoPaddingFull("- Field required. -");
                 continue;
-            }
-            break;   
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
+                break; 
+            } else {
+                this.publisher = answer;
+                break;
+            }  
         }
+        return current; 
     }
 
-    public void askYear(){
+    public Boolean askYear(){
+
+        Boolean current = true;
+        String answer;
+
         while (true) {
             displayInfoPaddingTop("Publication year: ");
-            String year = scanner.nextLine();
+            answer = scanner.nextLine();
 
-            if (year.isEmpty()) {
+            if (answer.isEmpty()) {
                 displayInfoPaddingFull("- Field required. -");
                 continue;
-            } else if (year.equals("e")) {
-                this.fieldString = year;
+            } else if (answer.equals("e")) {
+                current = false;
                 break;
             } else {
                 try {
                     this.year = Integer.valueOf(year);
-                    //this.fieldString = year;
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid year (numbers only).");
                     continue;
@@ -75,23 +107,27 @@ public class NewBookPrompt extends Prompt {
                 break; 
             }
         }
+        return current; 
     }
 
-    public void askNumPages(){
+    public Boolean askNumPages(){
+
+        Boolean current = true;
+        String answer;
+        
         while (true) {
             displayInfoPaddingTop("Number of pages: ");
-            String pages = scanner.nextLine();
+            answer = scanner.nextLine();
 
-            if (pages.isEmpty()) {
+            if (answer.isEmpty()) {
                 displayInfoPaddingFull("- Field required. -");
                 continue;
-            } else if (pages.equals("e")) {
-                this.fieldString = pages;
+            } else if (answer.equals("e")) {
+                current = false;
                 break;
             } else {
                 try {
-                    this.numPages = Integer.valueOf(pages);
-                    //this.fieldString = pages;
+                    this.numPages = Integer.valueOf(answer);
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid number (integer).");
                     continue;
@@ -99,71 +135,85 @@ public class NewBookPrompt extends Prompt {
                 break; 
             }
         }
-        
+        return current;
     }
 
-    public void askIsbn(){
+    public Boolean askIsbn(){
+
+        Boolean current = true;
+        String answer;
+
         while (true) {
             //add validation to ensure the field is only 10 or 13 characters long
             //and all inputs are numbers;
             displayInfoPaddingTop("-optional- ISBN: ");
-            String isbn = scanner.nextLine();
-            if (isbn.isEmpty()) {
+            answer = scanner.nextLine();
+            if (answer.isEmpty()) {
                 this.isbn = "<add ISBN number>";
                 break;   
-            }
-            this.isbn = isbn;
-            break;   
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
+                break; 
+            } else {
+                this.isbn = answer;
+                break;
+            }  
         }
-        
+        return current; 
     }
 
-    public void askRating(){
+    public Boolean askRating(){
+
+        Boolean current = true;
+        String answer;
+
         while (true) {
             System.out.print("-optional- Rating (between 0 and 5): ");
-            String rating = scanner.nextLine();
+            answer = scanner.nextLine();
 
-            if (rating.isEmpty()) {
+            if (answer.isEmpty()) {
                 this.rating = 0.0;
                 break;
-            } else if (rating.equals("e")) {
-                this.fieldString = rating;
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
                 break;
             } else {
                 try {
                     this.rating = Double.valueOf(rating);
-                    //this.fieldString = rating;
-
                 } catch (Exception e) {
                     displayInfoPaddingFull("Please type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).");
                     continue;
                 }
-
                 if (!(this.rating>=0 && this.rating<=5)) {
                     displayInfoPaddingFull("Please type a valid rating from zero to five (e.g.: 5, 4.3, 2.6).");
                     continue;
                 } 
-
                 break; 
             }
-
         }
-        
+        return current; 
     }
 
-    public void askOtherInfo(){
+    public Boolean askOtherInfo(){
+
+        Boolean current = true;
+        String answer;
 
         while (true) {
             displayInfoPaddingTop("-optional- Other info: ");
-            String otherInfo = scanner.nextLine();
-            if (otherInfo.isEmpty()) {
+            answer = scanner.nextLine();
+            if (answer.isEmpty()) {
                 this.otherInfo = "<add relevant information about the book>";
                 break;   
-            }
-            this.otherInfo = otherInfo;
-            break;   
+            } else if (answer.equalsIgnoreCase("e")) {
+                current = false;
+                break; 
+            } else {
+                this.otherInfo = answer;
+                break;
+            }  
         }
-        
+        return current; 
     }
     
     public String getTitle() {
@@ -210,40 +260,40 @@ public class NewBookPrompt extends Prompt {
             displayInfoPaddingTop("Please type information as asked. All fields are required unless stated otherwise.");
             displayInfoPaddingFull("Answer (e) to exit.");
 
-            this.askTitle();
-            if (this.title.equalsIgnoreCase("e")) {
+            Boolean title = this.askTitle();
+            if (title==false) {
                 break;
             }
 
-            this.askAuthor();
-            if (this.author.equalsIgnoreCase("e")) {
+            Boolean author = this.askAuthor();
+            if (author==false) {
                 break;
             }
 
-            this.askPublisher();
-            if (this.publisher.equalsIgnoreCase("e")) {
+            Boolean publisher = this.askPublisher();
+            if (publisher==false) {
                 break;
             }
 
-            this.askYear();
-            if (this.fieldString.equalsIgnoreCase("e")) {
+            Boolean year = this.askYear();
+            if (year==false) {
                 break;
             }
 
-            this.askNumPages();
-            if (this.fieldString.equalsIgnoreCase("e")) {
+            Boolean pages = this.askNumPages();
+            if (pages==false) {
                 break;
             }
-            this.askIsbn();
-            if (this.isbn.equalsIgnoreCase("e")) {
+            Boolean isbn = this.askIsbn();
+            if (isbn==false) {
                 break;
             }
-            this.askRating();
-            if (this.fieldString.equalsIgnoreCase("e")) {
+            Boolean rating = this.askRating();
+            if (rating==false) {
                 break;
             }
-            this.askOtherInfo();
-            if (this.fieldString.equalsIgnoreCase("e")) {
+            Boolean otherInfo = this.askOtherInfo();
+            if (otherInfo==false) {
                 break;
             }
 

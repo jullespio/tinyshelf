@@ -37,10 +37,6 @@ public class App
       // if (updatedList.isEmpty()) {
       //   startList.generateTestEntries(10);
       // }
-
-      //Prompts prompt = new Prompts();
-      //prompt.displayGreetings();
-      //prompt.mainMenuPrompt();
       
       MainMenuPrompt main = new MainMenuPrompt();
       main.displayGreeting();
