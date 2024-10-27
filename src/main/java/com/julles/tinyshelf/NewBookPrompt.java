@@ -16,7 +16,7 @@ public class NewBookPrompt extends Prompt {
         super();
     }
 
-    public Boolean askTitle(){
+    Boolean askTitle(){
 
         Boolean current = true;
         String answer;
@@ -38,7 +38,7 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
 
-    public Boolean askAuthor(){
+    Boolean askAuthor(){
 
         Boolean current = true;
         String answer;
@@ -60,7 +60,7 @@ public class NewBookPrompt extends Prompt {
         return current;   
     }
 
-    public Boolean askPublisher(){
+    Boolean askPublisher(){
 
         Boolean current = true;
         String answer;
@@ -82,7 +82,7 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
 
-    public Boolean askYear(){
+    Boolean askYear(){
 
         Boolean current = true;
         String answer;
@@ -110,7 +110,7 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
 
-    public Boolean askNumPages(){
+    Boolean askNumPages(){
 
         Boolean current = true;
         String answer;
@@ -138,7 +138,7 @@ public class NewBookPrompt extends Prompt {
         return current;
     }
 
-    public Boolean askIsbn(){
+    Boolean askIsbn(){
 
         Boolean current = true;
         String answer;
@@ -162,7 +162,7 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
 
-    public Boolean askRating(){
+    Boolean askRating(){
 
         Boolean current = true;
         String answer;
@@ -194,7 +194,7 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
 
-    public Boolean askOtherInfo(){
+    Boolean askOtherInfo(){
 
         Boolean current = true;
         String answer;
@@ -216,44 +216,44 @@ public class NewBookPrompt extends Prompt {
         return current; 
     }
     
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public String getAuthor() {
+    String getAuthor() {
         return author;
     }
 
-    public String getPublisher() {
+    String getPublisher() {
         return publisher;
     }
 
-    public int getYear() {
+    int getYear() {
         return year;
     }
 
-    public int getNumPages() {
+    int getNumPages() {
         return numPages;
     }
 
-    public String getIsbn() {
+    String getIsbn() {
         return isbn;
     }
 
-    public double getRating() {
+    double getRating() {
         return rating;
     }
 
-    public String getOtherInfo() {
+    String getOtherInfo() {
         return otherInfo;
     }
 
-    public String getFieldString() {
+    String getFieldString() {
         return fieldString;
     }
 
 
-    public void currentPrompt(){
+    void currentPrompt(){
 
         while(true) {
         

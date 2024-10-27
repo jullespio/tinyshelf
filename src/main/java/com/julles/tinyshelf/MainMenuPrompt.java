@@ -6,11 +6,11 @@ public class MainMenuPrompt extends Prompt {
         super();
     }
 
-    public void displayGreeting(){
+    void displayGreeting(){
         displayInfoPaddingTop("Greetings!\n>>>> Welcome to tinyShelf <<<<");
     }
 
-    public void currentPrompt(){
+    void currentPrompt(){
 
         while (true) {
 
@@ -67,7 +67,7 @@ public class MainMenuPrompt extends Prompt {
                 break;
     
             } else {
-                System.out.println("\nInvalid option. Please try again.\n");
+                displayInfoPaddingFull("Invalid option. Please try again.");
                 continue;
             }
 

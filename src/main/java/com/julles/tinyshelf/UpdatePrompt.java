@@ -10,7 +10,7 @@ public class UpdatePrompt extends Prompt {
         super();
     }
 
-    public void currentPrompt(){
+    void currentPrompt(){
 
         while (true) {
 

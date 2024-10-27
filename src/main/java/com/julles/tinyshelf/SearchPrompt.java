@@ -8,7 +8,7 @@ public class SearchPrompt extends Prompt {
         super();
     }
     
-    public void currentPrompt(){
+    void currentPrompt(){
         while (true) {
 
             displayInfoPaddingTop("Type complete or partial name of the book or author. Search is case sensitive.");

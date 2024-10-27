@@ -10,7 +10,7 @@ public class RemovePrompt extends Prompt {
         super();
     }
 
-    public void currentPrompt() {
+    void currentPrompt() {
         
         while (true) {
 
@@ -61,18 +61,8 @@ public class RemovePrompt extends Prompt {
             }
             
             if (this.continueOrNot() == true) {
-                
                 bookList.removeBook(bookToRemove, currentList);
-
-                // for (Book book : currentList) {
-                //     if (book.toString().equals(bookToUpdate.toString())) {
-                //         bookList.removeBook(book, currentList);
-                //         break;
-                //     }
-                // }
-
-                System.out.println("Book removed.\n");
-
+                displayInfoPaddingBottom("Book removed.");
             } else {
                 continue;
             } 
