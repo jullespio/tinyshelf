@@ -2,11 +2,11 @@ package com.julles.tinyshelf;
 
 import java.util.Scanner;
 
-abstract class Prompt {
+abstract class AbstractPrompt {
 
     Scanner scanner;
 
-    Prompt(){
+    AbstractPrompt(){
         scanner = new Scanner(System.in);
     }
 

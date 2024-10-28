@@ -2,7 +2,7 @@ package com.julles.tinyshelf;
 
 import java.util.List;
 
-class UpdatePrompt extends Prompt {
+class UpdatePrompt extends AbstractPrompt {
 
     private Book bookToUpdate;
 

@@ -1,6 +1,6 @@
 package com.julles.tinyshelf;
 
-class MainMenuPrompt extends Prompt {
+class MainMenuPrompt extends AbstractPrompt {
 
     MainMenuPrompt(){
         super();

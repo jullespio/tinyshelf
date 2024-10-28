@@ -2,7 +2,7 @@ package com.julles.tinyshelf;
 
 import java.util.List;
 
-class NewBookPrompt extends Prompt {
+class NewBookPrompt extends AbstractPrompt {
 
     private String title;
     private String author;

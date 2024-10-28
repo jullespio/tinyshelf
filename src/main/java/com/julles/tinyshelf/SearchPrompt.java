@@ -2,7 +2,7 @@ package com.julles.tinyshelf;
 
 import java.util.List;
 
-class SearchPrompt extends Prompt {
+class SearchPrompt extends AbstractPrompt {
 
     SearchPrompt(){
         super();
