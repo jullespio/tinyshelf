@@ -107,6 +107,14 @@ class Book {
         return otherInfo;
     }
 
+    public Boolean getRead() {
+        return read;
+    }
+
+    public Boolean getLent() {
+        return lent;
+    }
+
     //@JsonFormat(pattern = "MM.dd.yyyy 'at' KK:mm:ss a")
     LocalDateTime getDateCreated(){
         return this.dateCreated;
@@ -167,6 +175,14 @@ class Book {
 
     void setDateModified(LocalDateTime dateModified) {
         this.dateModified = dateModified;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
+
+    public void setLent(Boolean lent) {
+        this.lent = lent;
     }
 
     public boolean equals(Object compared) {
