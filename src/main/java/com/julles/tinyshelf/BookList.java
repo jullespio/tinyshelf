@@ -24,13 +24,10 @@ class BookList {
     private List<Book> duplicates;
 
     BookList(){
-    
         homeDir = System.getProperty("user.home");
-
     }
 
     private final static ObjectMapper mapper(){
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -88,7 +85,6 @@ class BookList {
     }
 
     private Boolean areThereDupes(Book newBook, List<Book> booklist){
-
         this.duplicates = new ArrayList<>();
 
         for (Book book : booklist) {
@@ -109,7 +105,6 @@ class BookList {
     }
 
     void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
-
         List<Book> bookList = returnBookList();
 
         id = returnLargestId(bookList);
@@ -202,7 +197,6 @@ class BookList {
 
     void updateBook(Book book, int newData, int field){
         List<Book> bookList = this.returnBookList();
-
         Book updatedBook = this.returnCopy(book);
 
         switch (field) {
@@ -221,7 +215,6 @@ class BookList {
 
     void updateBook(Book book, Double newData, int field){
         List<Book> bookList = this.returnBookList();
-
         Book updatedBook = this.returnCopy(book);
 
         switch (field) {
