@@ -55,7 +55,6 @@ class BookList {
     }
 
     List<Book> returnBookList(){
-
         List<Book> bookList = new ArrayList<Book>();
         
         try {
@@ -129,7 +128,6 @@ class BookList {
         } else {
             System.out.println("\nDuplicate entry! Book not saved, please try again.\n");
         }
-
     }
 
     List<Book> findBook(String searchTerm){
@@ -146,7 +144,6 @@ class BookList {
                 searchFinds.add(book);
             }
         }
-
         return searchFinds;
     }
 
@@ -255,15 +252,12 @@ class BookList {
     }
 
     void removeBook(Book book, List<Book> booklist){
-
         booklist.remove(book);
         List<Book> updatedBookList = booklist;
                 
         try {
-
             ObjectMapper objectMapper = mapper();
             objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), updatedBookList);
-        
         } catch (Exception ex) {
             ex.printStackTrace();
         } 
@@ -285,7 +279,6 @@ class BookList {
 
         if (numEntries==0) {
             System.out.println("No entries have been found.\n");
-
         }
 
         int index = 1;
@@ -296,9 +289,8 @@ class BookList {
         }
     }
 
-    // ONLY FOR TESTING PURPOSES
+    //FOR TESTING PURPOSES ONLY
     void generateTestEntries(int amount){
-
         List<Book> updatedList = this.returnBookList();
 
         if (updatedList.isEmpty()) {
@@ -315,7 +307,6 @@ class BookList {
                     author = "Writer T. Smith";
                     pages = 246;
                     rating = 3.8;
-        
                 }
     
                 if (e%2==0 && e%4==0) {
