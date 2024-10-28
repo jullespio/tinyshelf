@@ -218,6 +218,7 @@ public class Book {
         "\n    Rated " + this.rating + " out of 5 " + 
         "\n    Other information: " + 
         "\n    -- " + this.otherInfo + 
+        "\n    Read? " + this.read + " | Lent? " + this.lent + 
         "\n    Created: " + this.dateCreated.format(formatedDate) + 
         "\n    Last modified: " + dateModified.format(formatedDate);
     }
