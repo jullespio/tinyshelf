@@ -73,21 +73,18 @@ class BookList {
             if (!(bookListFile.isFile())) {
 
                 ObjectMapper objectMapper = mapper();
-                //List<Book> savedBooks = bookList;
 
                 try {
                     objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
                     System.out.println("\nWarning: Unavailable booklist file. A fresh one has been created at /home/*local user*/.booklist.json. \n");
                 } catch (Exception e) {
-                    System.out.println("\nWarning: Something went wrong when creating the file! Please inform the developer.\n");
+                    System.out.println("\nWarning: Something went wrong while creating new booklist file! Please inform the developer.\n");
                 }
     
             }
             
         }
-
         return bookList;
-
     }
 
     private Boolean areThereDupes(Book newBook, List<Book> booklist){
