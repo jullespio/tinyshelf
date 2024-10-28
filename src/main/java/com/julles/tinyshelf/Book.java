@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Book {
+class Book {
 
     @JsonProperty("ID")
     private int id;
@@ -52,11 +52,11 @@ public class Book {
     private LocalDateTime dateModified;
 
 
-    public Book(){
+    Book(){
 
     };
 
-    public Book(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
+    Book(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
         this.id = id;
         this.title = title;
         this.author = author;
@@ -76,102 +76,102 @@ public class Book {
     /*  Getters */
 
 
-    public int getId(){
+    int getId(){
         return this.id;
     }
     
-    public String getTitle(){
+    String getTitle(){
         return this.title;
     }
     
-    public String getAuthor(){
+    String getAuthor(){
         return this.author;
     }
     
-    public String getPublisher(){
+    String getPublisher(){
         return this.publisher;
     }
         
-    public int getYear(){
+    int getYear(){
         return this.year;
     }
     
-    public int getNumPages(){
+    int getNumPages(){
         return this.numPages;
     }
 
-    public String getIsbn() {
+    String getIsbn() {
         return this.isbn;
     }
 
-    public double getRating() {
+    double getRating() {
         return rating;
     }
 
-    public String getOtherInfo() {
+    String getOtherInfo() {
         return otherInfo;
     }
 
     //@JsonFormat(pattern = "MM.dd.yyyy 'at' KK:mm:ss a")
-    public LocalDateTime getDateCreated(){
+    LocalDateTime getDateCreated(){
         return this.dateCreated;
     }
 
     //@JsonFormat(pattern = "MM.dd.yyyy 'at' KK:mm:ss a")
-    public LocalDateTime getDateModified(){
+    LocalDateTime getDateModified(){
         return this.dateModified;
     }
 
 
     /*  Setters */
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setTitle(String title){
+    void setTitle(String title){
         this.title = title;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setAuthor(String author) {
+    void setAuthor(String author) {
         this.author = author;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setPublisher(String publisher) {
+    void setPublisher(String publisher) {
         this.publisher = publisher;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setYear(int year) {
+    void setYear(int year) {
         this.year = year;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setNumPages(int numPages) {
+    void setNumPages(int numPages) {
         this.numPages = numPages;
         this.dateModified = LocalDateTime.now();
     }
 
-    public void setIsbn(String isbn) {
+    void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    public void setRating(double rating) {
+    void setRating(double rating) {
         this.rating = rating;
     }
 
-    public void setOtherInfo(String otherInfo) {
+    void setOtherInfo(String otherInfo) {
         this.otherInfo = otherInfo;
     }
 
-    public void setDateCreated(LocalDateTime dateCreated) {
+    void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public void setDateModified(LocalDateTime dateModified) {
+    void setDateModified(LocalDateTime dateModified) {
         this.dateModified = dateModified;
     }
 
@@ -209,7 +209,6 @@ public class Book {
 
     @Override
     public String toString() {
-
         DateTimeFormatter formatedDate = DateTimeFormatter.ofPattern("MMM dd yyyy 'at' KK:mm:ss a");
 
         return this.title + ", by " + this.author + 
@@ -222,6 +221,5 @@ public class Book {
         "\n    Created: " + this.dateCreated.format(formatedDate) + 
         "\n    Last modified: " + dateModified.format(formatedDate);
     }
-    
 }
 
