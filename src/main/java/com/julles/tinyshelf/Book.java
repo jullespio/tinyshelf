@@ -51,10 +51,7 @@ class Book {
     @JsonProperty("Last Modified")
     private LocalDateTime dateModified;
 
-
-    Book(){
-
-    };
+    Book(){};
 
     Book(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
         this.id = id;
@@ -71,10 +68,8 @@ class Book {
         this.dateCreated = LocalDateTime.now();
         this.dateModified = LocalDateTime.now();  
     };
-    
 
     /*  Getters */
-
 
     int getId(){
         return this.id;
@@ -121,7 +116,6 @@ class Book {
     LocalDateTime getDateModified(){
         return this.dateModified;
     }
-
 
     /*  Setters */
 
