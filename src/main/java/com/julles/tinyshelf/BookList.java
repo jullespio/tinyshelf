@@ -111,11 +111,9 @@ class BookList {
         Book newBook = new Book(id, title, author, publisher, year, numPages, isbn, rating, moreInfo); 
 
         if (this.areThereDupes(newBook, bookList)==false) {
-
             bookList.add(0, newBook);
             
             try {
-
                 ObjectMapper objectMapper = mapper();
                 objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
                 System.out.println("\nNew entry -" + title + "- has been added.");
@@ -123,7 +121,6 @@ class BookList {
             } catch (Exception ex) {
                 //ex.printStackTrace();
                 System.out.println("\nSomething went wrong! Book not saved. Please contact the developer.\n");
-
             }            
         } else {
             System.out.println("\nDuplicate entry! Book not saved, please try again.\n");
@@ -139,7 +136,6 @@ class BookList {
         }
 
         for (Book book : bookList) {
-            
             if (book.getTitle().contains(searchTerm) || book.getAuthor().contains(searchTerm)) {
                 searchFinds.add(book);
             }
@@ -188,7 +184,6 @@ class BookList {
             default:
                 break;
         }
-
         this.checkAndUpdate(book, updatedBook, bookList);
     } 
 
@@ -206,7 +201,6 @@ class BookList {
             default:
                 break;
         }
-
         this.checkAndUpdate(book, updatedBook, bookList);
     }
 
@@ -221,7 +215,6 @@ class BookList {
             default:
                 break;
         }
-
         this.checkAndUpdate(book, updatedBook, bookList);
     }
     
@@ -232,18 +225,16 @@ class BookList {
             bookList.add(0, updatedBook);
             
             try {
-
                 ObjectMapper objectMapper = mapper();
                 objectMapper.writeValue(Paths.get(homeDir + "/.booklist.json").toFile(), bookList);
                 System.out.println("\nEntry -" + updatedBook.getTitle() + "- has been updated.");
-            
             } catch (Exception ex) {
                 //ex.printStackTrace();
                 System.out.println("\nSomething went wrong! Book not updated. Please contact the developer.\n");
-
             }            
         } else {
             System.out.println("\nWarning: duplicate(s) found: ");
+
             for (Book book : this.duplicates) {
                 System.out.println("\n" + book);
             }
@@ -316,7 +307,7 @@ class BookList {
                     pages = 468;
                     rating = 5.0;
                 }
-    
+                
                 int id = returnLargestId(returnBookList());
                 this.AddNewBook(id, "Test Book " + (e-1), author, publisher, year, pages, "<add ISBN number>", rating, "<add relevant information about the book>");
             }
