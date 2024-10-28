@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,21 +39,20 @@ public class BookList {
     }
 
     public int returnLargestId(List<Book> booklist){
-
         ArrayList<Integer> ids = new ArrayList<Integer>(); 
 
         for (Book book : booklist) {
             ids.add(book.getId());
         }
 
-        int id = 0;
-
+        Collections.sort(ids);
+        int max = ids.get(ids.size()-1);
+        
         if (ids.isEmpty()) {
-            return id;
+            return 0;
         } else {
-            return ids.size();
+            return max+1;
         }
-
     }
 
     public List<Book> returnBookList(){

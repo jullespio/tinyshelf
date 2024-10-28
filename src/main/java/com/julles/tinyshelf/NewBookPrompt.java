@@ -1,5 +1,7 @@
 package com.julles.tinyshelf;
 
+import java.util.List;
+
 public class NewBookPrompt extends Prompt {
 
     private String title;
@@ -286,8 +288,11 @@ public class NewBookPrompt extends Prompt {
             }
 
             BookList bookList = new BookList();
-            bookList.AddNewBook(bookList.returnLargestId(bookList.returnBookList()), this.title, this.author, 
-            this.publisher, this.year, this.numPages, this.isbn, this.rating, this.otherInfo);
+            List<Book> currentList = bookList.returnBookList();
+            int id = bookList.returnLargestId(currentList);
+
+            bookList.AddNewBook(id, this.title, this.author, this.publisher, 
+            this.year, this.numPages, this.isbn, this.rating, this.otherInfo);
             
             if (this.continueOrNot()==true) {
                 continue;
