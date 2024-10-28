@@ -16,8 +16,8 @@ public class App
       //Implement:
 
       //flags for lent, read book;
-      //option to change booklist location from the software itself;
       //the concept of shelves;
+      //option to change booklist location from the software itself;
       
       //DONE -- custom equals() method for books, to inspect the list for duplicates
       //DONE -- try.. catch in relevant inputs
@@ -25,7 +25,7 @@ public class App
       //DONE -- validations for int fields;
 
       //Improve:
-      //Method to check for duplicates 
+      //[add...]
 
       // BookList startList = new BookList();
       // List<Book> updatedList = startList.returnBookList();
