@@ -1,6 +1,6 @@
 package com.julles.tinyshelf;
 
-public class MainMenuPrompt extends Prompt {
+class MainMenuPrompt extends Prompt {
 
     MainMenuPrompt(){
         super();
@@ -72,7 +72,7 @@ public class MainMenuPrompt extends Prompt {
             }
 
         }
-
+        scanner.close();
     }
 
 }

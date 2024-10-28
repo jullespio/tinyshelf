@@ -18,11 +18,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-public class BookList {
+class BookList {
 
     private String homeDir;
+    private List<Book> duplicates;
 
-    public BookList(){
+    BookList(){
     
         homeDir = System.getProperty("user.home");
 
@@ -38,7 +39,7 @@ public class BookList {
         return objectMapper;
     }
 
-    public int returnLargestId(List<Book> booklist){
+    int returnLargestId(List<Book> booklist){
         ArrayList<Integer> ids = new ArrayList<Integer>(); 
 
         for (Book book : booklist) {
@@ -55,7 +56,7 @@ public class BookList {
         }
     }
 
-    public List<Book> returnBookList(){
+    List<Book> returnBookList(){
 
         List<Book> bookList = new ArrayList<Book>();
         
@@ -88,9 +89,9 @@ public class BookList {
 
     }
 
-    public Boolean areThereDupes(Book newBook, List<Book> booklist){
+    private Boolean areThereDupes(Book newBook, List<Book> booklist){
 
-        ArrayList<Book> duplicates = new ArrayList<>();
+        this.duplicates = new ArrayList<>();
 
         for (Book book : booklist) {
             if (newBook.equals(book)) {
@@ -105,7 +106,11 @@ public class BookList {
         }
     }
 
-    public void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
+    List<Book> returnDupes(){
+        return this.duplicates;
+    }
+
+    void AddNewBook(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String moreInfo){
 
         List<Book> bookList = returnBookList();
 
@@ -134,7 +139,7 @@ public class BookList {
 
     }
 
-    public List<Book> findBook(String searchTerm){
+    List<Book> findBook(String searchTerm){
         List<Book> bookList = this.returnBookList();
         List<Book> searchFinds = new ArrayList<Book>();
 
@@ -152,21 +157,26 @@ public class BookList {
         return searchFinds;
     }
 
-    public void updateBook(Book book, String newData, int field){
-        List<Book> bookList = this.returnBookList();
+    Book returnCopy(Book book){
+        Book copy = new Book();
+        copy.setId(book.getId());
+        copy.setTitle(book.getTitle());
+        copy.setAuthor(book.getAuthor());
+        copy.setPublisher(book.getPublisher());
+        copy.setYear(book.getYear());
+        copy.setNumPages(book.getNumPages());
+        copy.setIsbn(book.getIsbn());
+        copy.setRating(book.getRating());
+        copy.setOtherInfo(book.getOtherInfo());
+        copy.setDateCreated(book.getDateCreated());
+        copy.setDateModified(book.getDateModified());
 
-        Book updatedBook = new Book();
-        updatedBook.setId(book.getId());
-        updatedBook.setTitle(book.getTitle());
-        updatedBook.setAuthor(book.getAuthor());
-        updatedBook.setPublisher(book.getPublisher());
-        updatedBook.setYear(book.getYear());
-        updatedBook.setNumPages(book.getNumPages());
-        updatedBook.setIsbn(book.getIsbn());
-        updatedBook.setRating(book.getRating());
-        updatedBook.setOtherInfo(book.getOtherInfo());
-        updatedBook.setDateCreated(book.getDateCreated());
-        updatedBook.setDateModified(LocalDateTime.now());
+        return copy;
+    }
+
+    void updateBook(Book book, String newData, int field){
+        List<Book> bookList = this.returnBookList();
+        Book updatedBook = this.returnCopy(book);
 
         switch (field) {
             case 0:
@@ -192,21 +202,10 @@ public class BookList {
         this.checkAndUpdate(book, updatedBook, bookList);
     } 
 
-    public void updateBook(Book book, int newData, int field){
+    void updateBook(Book book, int newData, int field){
         List<Book> bookList = this.returnBookList();
 
-        Book updatedBook = new Book();
-        updatedBook.setId(book.getId());
-        updatedBook.setTitle(book.getTitle());
-        updatedBook.setAuthor(book.getAuthor());
-        updatedBook.setPublisher(book.getPublisher());
-        updatedBook.setYear(book.getYear());
-        updatedBook.setNumPages(book.getNumPages());
-        updatedBook.setIsbn(book.getIsbn());
-        updatedBook.setRating(book.getRating());
-        updatedBook.setOtherInfo(book.getOtherInfo());
-        updatedBook.setDateCreated(book.getDateCreated());
-        updatedBook.setDateModified(LocalDateTime.now());
+        Book updatedBook = this.returnCopy(book);
 
         switch (field) {
             case 3:
@@ -221,22 +220,11 @@ public class BookList {
 
         this.checkAndUpdate(book, updatedBook, bookList);
     }
-    
-    public void updateBook(Book book, Double newData, int field){
+
+    void updateBook(Book book, Double newData, int field){
         List<Book> bookList = this.returnBookList();
 
-        Book updatedBook = new Book();
-        updatedBook.setId(book.getId());
-        updatedBook.setTitle(book.getTitle());
-        updatedBook.setAuthor(book.getAuthor());
-        updatedBook.setPublisher(book.getPublisher());
-        updatedBook.setYear(book.getYear());
-        updatedBook.setNumPages(book.getNumPages());
-        updatedBook.setIsbn(book.getIsbn());
-        updatedBook.setRating(book.getRating());
-        updatedBook.setOtherInfo(book.getOtherInfo());
-        updatedBook.setDateCreated(book.getDateCreated());
-        updatedBook.setDateModified(book.getDateModified());
+        Book updatedBook = this.returnCopy(book);
 
         switch (field) {
             case 6:
@@ -249,7 +237,7 @@ public class BookList {
         this.checkAndUpdate(book, updatedBook, bookList);
     }
     
-    public void checkAndUpdate(Book oldBook, Book updatedBook, List<Book> bookList){
+    void checkAndUpdate(Book oldBook, Book updatedBook, List<Book> bookList){
         if (this.areThereDupes(updatedBook, bookList)==false) {
             this.removeBook(oldBook, bookList);
             updatedBook.setDateModified(LocalDateTime.now());
@@ -267,14 +255,15 @@ public class BookList {
 
             }            
         } else {
-            System.out.println("\n" + oldBook);
-            System.out.println(updatedBook);
-            System.out.println("\nThis action will create a duplicate entry! Book not updated, please try again.\n");
+            System.out.println("\nWarning: duplicate(s) found: ");
+            for (Book book : this.duplicates) {
+                System.out.println("\n" + book);
+            }
+            System.out.println("\nBook not updated, please try again.\n");
         }
     }
 
-
-    public void removeBook(Book book, List<Book> booklist){
+    void removeBook(Book book, List<Book> booklist){
 
         booklist.remove(book);
         List<Book> updatedBookList = booklist;
@@ -289,7 +278,7 @@ public class BookList {
         } 
     }
 
-    public void printBookList(){
+    void printBookList(){
         List<Book> bookList = this.returnBookList();
         DateTimeFormatter formatedDate = DateTimeFormatter.ofPattern("MMM dd yyyy 'at' KK:mm:ss a");        
         int numEntries = bookList.size();
@@ -314,11 +303,10 @@ public class BookList {
             System.out.println(index + " - " + book.getTitle() + ", by " + book.getAuthor() + " (" + book.getYear() + ") => Modified " + book.getDateModified().format(formatedDate));
             index++;
         }
-
     }
 
     // ONLY FOR TESTING PURPOSES
-    public void generateTestEntries(int amount){
+    void generateTestEntries(int amount){
         for (int e = 1; e <= amount; e++) {
             String publisher = "Odd Publishing House";
             String author = "Author McTesty";
@@ -347,19 +335,4 @@ public class BookList {
             this.AddNewBook(id, "Test Book " + e, author, publisher, year, pages, "<add ISBN number>", rating, "<add relevant information about the book>");
         }
     }
-
-    // public void removeRepeatEntry(){
-    //     List<Book> list = this.returnBookList();
-
-    //     for (Book book1 : list) {
-    //         for (Book book2 : list) {
-    //             if (book1.getTitle().equals(book2.getTitle())) {
-    //                 removeBook(book1, list);
-    //             }
-    //         }
-    //     }
-
-    // }
-
-
 }

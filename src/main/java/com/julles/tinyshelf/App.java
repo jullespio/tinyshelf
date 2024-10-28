@@ -13,10 +13,6 @@ public class App
     public static void main( String[] args ) throws IOException
     {
 
-      //Idea:
-      //Improve Prompts class by creating an abstract Prompts class,
-      //Which will be extended for each different kind of prompt
-
       //Implement:
 
       //flags for lent, read book;
@@ -41,6 +37,6 @@ public class App
       MainMenuPrompt main = new MainMenuPrompt();
       main.displayGreeting();
       main.currentPrompt();
-
+      
     }
 }

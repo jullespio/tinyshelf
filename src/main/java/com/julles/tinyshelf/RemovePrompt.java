@@ -2,7 +2,7 @@ package com.julles.tinyshelf;
 
 import java.util.List;
 
-public class RemovePrompt extends Prompt {
+class RemovePrompt extends Prompt {
 
     private Book bookToRemove;
 
