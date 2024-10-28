@@ -39,11 +39,15 @@ public class Book {
     @JsonProperty("Other information")
     private String otherInfo;
 
-    //@JsonFormat(pattern = "MM.dd.yyyy G 'at' HH:mm:ss")
+    @JsonProperty("Read")
+    private Boolean read;
+
+    @JsonProperty("Lent")
+    private Boolean lent;
+
     @JsonProperty("Created")
     private LocalDateTime dateCreated;
 
-    //@JsonFormat(pattern = "MM.dd.yyyy G 'at' HH:mm:ss")
     @JsonProperty("Last Modified")
     private LocalDateTime dateModified;
 
@@ -51,7 +55,6 @@ public class Book {
     public Book(){
 
     };
-
 
     public Book(int id, String title, String author, String publisher, int year, int numPages, String isbn, double rating, String otherInfo){
         this.id = id;
@@ -63,6 +66,8 @@ public class Book {
         this.isbn = isbn;
         this.rating = rating;
         this.otherInfo = otherInfo;
+        this.read = true;
+        this.lent = false;
         this.dateCreated = LocalDateTime.now();
         this.dateModified = LocalDateTime.now();  
     };

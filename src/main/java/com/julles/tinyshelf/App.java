@@ -6,7 +6,6 @@
 package com.julles.tinyshelf;
 
 import java.io.IOException;
-//import java.util.List;
 
 public class App 
 {
@@ -15,7 +14,7 @@ public class App
 
       //Implement:
 
-      //flags for lent, read book;
+      //flags for lent, read book (partial, added to book class; now update UpdatePrompt for manually setting values);
       //the concept of shelves;
       //option to change booklist location from the software itself;
       
@@ -27,12 +26,8 @@ public class App
       //Improve:
       //[add...]
 
-      // BookList startList = new BookList();
-      // List<Book> updatedList = startList.returnBookList();
-
-      // if (updatedList.isEmpty()) {
-      //   startList.generateTestEntries(10);
-      // }
+      //BookList startList = new BookList();
+      //startList.generateTestEntries(5);
       
       MainMenuPrompt main = new MainMenuPrompt();
       main.displayGreeting();

@@ -46,12 +46,13 @@ class BookList {
             ids.add(book.getId());
         }
 
-        Collections.sort(ids);
-        int max = ids.get(ids.size()-1);
-        
         if (ids.isEmpty()) {
             return 0;
+        } else if (ids.size()==1) {
+            return 1;
         } else {
+            Collections.sort(ids);
+            int max = ids.get(ids.size()-1);    
             return max+1;
         }
     }
@@ -307,32 +308,38 @@ class BookList {
 
     // ONLY FOR TESTING PURPOSES
     void generateTestEntries(int amount){
-        for (int e = 1; e <= amount; e++) {
-            String publisher = "Odd Publishing House";
-            String author = "Author McTesty";
-            int year = 1999;
-            int pages = 99;
-            double rating = 4.0;
 
-            if (e%2==0) {
-                publisher = "Even Publishing House";
-                year = 1993;
-                author = "Writer T. Smith";
-                pages = 246;
-                rating = 3.8;
+        List<Book> updatedList = this.returnBookList();
+
+        if (updatedList.isEmpty()) {
+            for (int e = 1; e <= amount; e++) {
+                String publisher = "Odd Publishing House";
+                String author = "Author McTesty";
+                int year = 1999;
+                int pages = 99;
+                double rating = 4.0;
     
+                if (e%2==0) {
+                    publisher = "Even Publishing House";
+                    year = 1993;
+                    author = "Writer T. Smith";
+                    pages = 246;
+                    rating = 3.8;
+        
+                }
+    
+                if (e%2==0 && e%4==0) {
+                    publisher = "Offbeat Publishing House";
+                    year = 1976;
+                    author = "Harry \"Crazy Horse\" Flannagan";
+                    pages = 468;
+                    rating = 5.0;
+                }
+    
+                int id = returnLargestId(returnBookList());
+                this.AddNewBook(id, "Test Book " + (e-1), author, publisher, year, pages, "<add ISBN number>", rating, "<add relevant information about the book>");
             }
+        }  
 
-            if (e%2==0 && e%4==0) {
-                publisher = "Offbeat Publishing House";
-                year = 1976;
-                author = "Harry \"Crazy Horse\" Flannagan";
-                pages = 468;
-                rating = 5.0;
-            }
-
-            int id = returnLargestId(returnBookList());
-            this.AddNewBook(id, "Test Book " + e, author, publisher, year, pages, "<add ISBN number>", rating, "<add relevant information about the book>");
-        }
     }
 }
