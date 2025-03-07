@@ -34,38 +34,28 @@ class MainMenuPrompt extends AbstractPrompt {
                 NewBookPrompt newBook = new NewBookPrompt();
                 newBook.currentPrompt();                
                 continue;
-
             } else if (answer.equalsIgnoreCase("s")) {
                 SearchPrompt search = new SearchPrompt();
                 search.currentPrompt();
                 continue;
-                
             } else if (answer.equalsIgnoreCase("u")) {
                 UpdatePrompt update = new UpdatePrompt();
                 update.currentPrompt();
                 continue;
-    
             } else if (answer.equalsIgnoreCase("r")) {
                 RemovePrompt remove = new RemovePrompt();
                 remove.currentPrompt();
                 continue;
-    
             } else if (answer.equalsIgnoreCase("p")) {
-    
                 displayInfoPaddingFull("This section is still under construction.");
                 continue;
-    
             } else if (answer.equalsIgnoreCase("h")) {
-                
                 displayInfoPaddingFull("This section is still under construction.");
                 continue;
-    
-            } else if (answer.equalsIgnoreCase("q")) {
-                
+            } else if (answer.equalsIgnoreCase("q")) {  
                 displayInfoPaddingFull("Exiting...");
                 displayInfoPaddingFull("See you next time!");
                 break;
-    
             } else {
                 displayInfoPaddingFull("Invalid option. Please try again.");
                 continue;
